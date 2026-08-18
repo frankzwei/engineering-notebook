@@ -1,2 +1,9 @@
+# Local reference files
+**/files/*
+
+# Quarto output files
 _site/
 .quarto/
+/.luarc.json
+/.quarto/
+**/*.quarto_ipynb
