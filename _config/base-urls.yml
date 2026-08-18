@@ -1,0 +1,7 @@
+local:
+  files: ""
+  assets: ""
+
+production:
+  files: ""
+  assets: ""
