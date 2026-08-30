@@ -1,6 +1,6 @@
 project:
   type: website
-  post-render: "uv run update_base_urls --mode local --output-dir _site --config-path _config/base-urls.yml"
+  post-render: "uv run update_base_urls --mode local --output-dir _site"
   resources:
     - "**/files/**/*"
     - "**/assets/**/*"
@@ -21,7 +21,3 @@ format:
     css: styles.css
     toc: true
     html-math-method: katex
-
-base-url:
-  files: ""
-  assets: ""

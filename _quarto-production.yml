@@ -1,0 +1,2 @@
+project:
+  post-render: "uv run update_base_urls --mode production --output-dir _site"
