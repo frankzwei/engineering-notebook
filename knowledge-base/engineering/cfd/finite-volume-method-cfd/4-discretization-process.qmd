@@ -1,0 +1,61 @@
+---
+title: The Discretization Process
+format:
+  html:
+    toc: true
+    toc-location: right
+    other-links:
+      - text: Moukalled and Mangani (2015)
+        href: "$FILES_BASE_URL/knowledge-base/engineering/cfd/finite-volume-method-cfd/files/2015_Moukalled-Mangani_The-Finite-Volume-Method-CFD_1st-Ed_Springer.pdf"
+        icon: file-pdf
+---
+
+# The Process of Discretizing
+
+Meshing is the act of discretizing the domain of interest into a set of discrete elements. At specified points, called grid nodes, in the mesh, we solve for the dependent variable $\varphi$ to determine how $\varphi$ varies across the domain. These grid nodes may be located at the centroids or vertices of each element. To solve for the discretized distribution of $\varphi$, the original PDE must be converted into a set of algebraic equations from which $\varphi$ may be solved for. The methods used to solve for discrete values of $\varphi$ are called *discretization methods*. The resulting solution is processed to extract the appropriate information (e.g., pressure and temperature of the fluid). The steps to the discretization procedure are given below.
+
+## Step 1. Geometric and Physical Modeling
+
+Geometric and physical simplifications may be made for irrelevant or unimportant details. Geometrically speaking, we impose boundary conditions to replace certain components with a succinct mathematical constraint. Physically speaking, the computational domain may be simplified by considering how certain properties vary in space.
+
+A good example of this is thermal modeling of a copper plate connected to a microprocessor and heatsink. Since the variation in $T$ is small across the plate's thickness, the problem is conceptually 2D (physical modeling). And for steady state, the processor and heatsink can be replaced with constant temperature boundary conditions (geometric modeling). Both play a role in constructing a simple model of the physics at hand.
+
+## Step 2. Domain Discretization
+
+Conservation equations are numerically solved on a discrete mesh. To discretize the domain, the region is subdivided into multiple non-overlapping elements. Each element is treated as a control volume and must therefore satisfy conservation. Solving the governing equations requires computing certain mesh topology information, such as element-to-element relations, face-to-element relations, cell volumes, cell centroids, etc.
+
+At the most fundamental level, a mesh can be described as a list of vertices and points, each representing a physical location in space. Together, a collection of vertices form a cell that can take on any arbitrary polyhedral shape. Each cell is either bounded on all sides by either faces corresponding to a neighboring element or a boundary face.
+
+The faces in a mesh can be classified into two types: an interior face that connects two elements or a boundary face that coincides with a domain boundary. Boundary faces only have one contiguous element; they are only tied to one element as opposed to an interior face, which is tied to two. Interior faces are constructed based off their neighboring elements' topology. When two neighboring cells share the same set of points, the program automatically detects this shared interface as an interior face and constructs an interior face that links one cell to its neighbor. On the other hand, boundary faces must be explicitly assigned and cannot be inferred purely from element connectivity as they border the domain of interest.
+
+In two dimensions, faces are defined in terms of their starting and ending points. In some cases, sources will use "edge" in place of "face" in two dimensions. For three dimensions, the defining points describe the bounding edges of the face. When connected in a certain direction, the edges form a closed loop from which, the interior or boundary face is defined. The unit normal direction for an interior face is usually defined as starting from the "owner" cell and ending at the "target" or neighboring cell. For boundary faces, however, the unit normal is always defined to point outwards from the domain.
+
+It is also common to organize boundary faces into cohesive groups based off spatial location. These groups are often called boundary patches. For example, the faces that make up an airfoil wall may be grouped into a single patch, and the inlet faces that mark the start of the domain in a wind tunnel may be grouped into a separate patch. Patches help impose a common constraint across all faces scoped to that patch.
+
+## Mesh Topology
+
+PDEs are integrated over each element. The set of algebraic equations are linked since the quantity of $\varphi$ flowing out of a single face must equal the quantity of $\varphi$ flowing into the neighboring cell's face. These algebraic equations may then be assembled into global matrices and vectors. The coefficients of each equation can be stored in the row and column indices that correspond to the element's index. Integrating the PDE over each individual element is called the *local assembly*, whereas the construction of the overall system is called the *global assembly*.
+
+1. **Element Connectivity** relates the local assembly matrix to the global matrix so equations formed from one element are consistent with the equations formed for the other elements in the computational domain. Generally, element-to-element, element-to-face, and element-to-vertex connectivities are created. These matrices relate an arbitrary element to its neighboring elements, bounding faces, and element vertices respectively.
+
+2. **Face Connectivity** is used when assembling flux terms between faces. Since it is more efficient to loop over faces rather than reconstruct a face given its edges and vertices, we establish a face connectivity matrix to facilitate in constructing the fluxes across all faces. Face connectivity establishes the elements that share a common face. For interior and boundary faces, there should be two elements and one element respectively. The face orientation is given such that the normal vector points from the *owner* element to the *neighbor* element. For the case of boundary faces, since there is only one associated element, the owner, the normal vector orientation naturally points outwards. Examples of element and face connectivities is given in @fig-element-connectivity and @fig-face-connectivity below.
+
+3. **Vertex Connectivity** is used during post processing and gradient computation. All elements and faces that share a common vertex are stored for vertex connectivity.
+
+::: {layout-ncol=2}
+
+![Element connectivity]($ASSETS_BASE_URL/knowledge-base/engineering/cfd/finite-volume-method-cfd/assets/4-element-connectivity-example.png){#fig-element-connectivity .lightbox}
+
+![Face connectivity]($ASSETS_BASE_URL/knowledge-base/engineering/cfd/finite-volume-method-cfd/assets/4-face-connectivity-example.png){#fig-face-connectivity .lightbox}
+
+:::
+
+## Step 3. Equation Discretization
+
+The governing PDEs are discretized and transformed into a set of algebraic equations. These equations are constructed for each individual element, before being assembled into a global matrix. The global structure takes the form
+
+$$
+\textbf A[T]=\textbf b
+$$ {#eq-equation-discretization}
+
+where $T$ is an unknown variable defined for each interior and boundary element in the domain. To fully constrain the problem, values for $T$ must be specified at the boundaries.

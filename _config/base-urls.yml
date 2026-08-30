@@ -3,5 +3,5 @@ local:
   assets: ""
 
 production:
-  files: ""
-  assets: ""
+  files: https://pub-f7acf1ba602e433f9a8bd0e03679fb8c.r2.dev
+  assets: https://pub-f7acf1ba602e433f9a8bd0e03679fb8c.r2.dev

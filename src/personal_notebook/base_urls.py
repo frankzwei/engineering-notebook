@@ -26,9 +26,12 @@ def parse_cli_args(argv: list[str] | None = None) -> Namespace:
     parser.add_argument(
         '--mode',
         dest='mode',
+        nargs='?',
+        choices=('local', 'production'),
         type=str,
         help='the build mode used for the program (default: %(default)s)',
-        default='local'
+        default='local',
+        const='local'
     )
 
     parser.add_argument(
@@ -56,7 +59,7 @@ def load_placeholders(mode: str, config_path: Path) -> dict[str, str]:
     if (mode := mode.lower()) not in config:
         raise ValueError(f'Received an unknown deployment mode: {mode}. The valid deployment modes are: production and local')
 
-    base_urls: dict[str, Any] = config.get(mode)
+    base_urls: dict[str, Any] = config[mode]
     for key in ('files', 'assets'):
         if key not in base_urls:
             raise ValueError(f'Missing \'{mode}.{key}\' in {config_path}')
