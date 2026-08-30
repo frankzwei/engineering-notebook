@@ -1,4 +1,5 @@
 from argparse import HelpFormatter, Namespace
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
@@ -42,14 +43,6 @@ def parse_cli_args(argv: list[str] | None = None) -> Namespace:
         default='_site'
     )
 
-    parser.add_argument(
-        '--config-path',
-        dest='config_path',
-        type=str,
-        help='path to the base URL configuration file (default: %(default)s)',
-        default='_config/base-urls.yml'
-    )
-
     return parser.parse_args(argv)
 
 def load_placeholders(mode: str, config_path: Path) -> dict[str, str]:
@@ -72,7 +65,8 @@ def load_placeholders(mode: str, config_path: Path) -> dict[str, str]:
     return base_urls
 
 def replace_placeholders(args: Namespace) -> int:
-    config_path: Path = _validate_path(args.config_path)
+    config: str = str(files('personal_notebook.config').joinpath('base-urls.yml'))
+    config_path: Path = _validate_path(config)
     output_path: Path = _validate_path(args.output_dir)
 
     base_urls: dict[str, str] = load_placeholders(args.mode, config_path)
@@ -93,7 +87,7 @@ def replace_placeholders(args: Namespace) -> int:
 def main(argv: list[str] | None = None):
     args: Namespace = parse_cli_args(argv)
     count: int = replace_placeholders(args)
-    print(f'Finished replacing all base URLs ({args.mode.lower()}: {count} HTML file(s) updated)')
+    print(f'Finished replacing all base URLs ({args.mode.lower()}: {count} HTML file{'' if count == 1 else 's'} updated)')
 
 if __name__ == '__main__':
     main()

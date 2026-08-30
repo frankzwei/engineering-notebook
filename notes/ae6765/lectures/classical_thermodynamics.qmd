@@ -1,0 +1,128 @@
+---
+title: Classical Thermodynamics for Compressible Substances
+---
+
+# Introduction and Definitions
+
+Thermodynamics is the study of energy and matter. That is, how energy and matter change throughout a process. Broadly speaking, we may list four laws or postulates from empirical evidence.
+
+1. **The Zeroth Law of Thermodynamics**
+
+   Bodies are in thermal equilibrium with each other only when they have the same degree of "hotness". In modern physics, we use temperature to describe "hotness" between objects. So two objects with the same temperature are in thermal equilibrium.
+
+2. **The First Law of Thermodynamics**
+
+   Energy cannot be created nor destroyed, it is conserved. One of the key conclusions from this law is that perpetual motion machines cannot exist.
+
+3. **The Second Law of Thermodynamics**
+
+   Entropy can only be created, it cannot be destroyed. Therefore, it is impossible to reverse any natural process in its entirety and there is a "time dependence" in all processes that arises from the inability to destroy entropy.
+
+4. **The State Postulate**
+
+   The number of independent thermodynamic properties needed to define a state can be determined prior.
+
+When analyzing an object or region, we typically classify objects or regions as systems or surroundings. A *thermodynamic system* is simply a finite portion of matter or restricted portion of space upon which we are interested in. For example, when considering a volume of air inside a piston, we may declare the enclosed air to be our system. The *surroundings* on the other hand is anything not enclosed by the system. For the example above, the piston, outer environment, etc. make up the *surroundings*. Sometimes, *environment* is also used to describe the surroundings. The system is enclosed by the *control surface*. This is a surface, typically imaginary but can also be real, that separates the system from its surroundings. Oftentimes, it is helpful to classify the system based off the object or region it is enclosing. The system is called a *control mass* if a finite volume of matter is enclosed, and a *control volume* if a finite portion of space is restricted.
+
+There are three different types of systems, they are *isolated*, *closed*, and *open* systems. An open system is one where both matter and energy may be exchanged with the surroundings. An example is a boiling pot of water (superheated water vapor from the pot can be exchanged with the environment). A closed system is one where only energy may be exchanged, no matter is permitted to cross the control surface. An example is a plastic water bottle with the cap on. Lastly, an isolated system is one where neither energy or matter may be exchanged. In reality, no systems are truly isolated. The closest approximation is likely an insulated water bottle.
+
+# The State Postulate
+
+Recall that a thermodynamic state is a unique description of a substance that is identified by its state variables such as temperature, pressure, volume, mass, etc. An important question to ask is how many thermodynamic properties must be known to be able to uniquely identify a system's state?
+
+Empirical evidence suggests that the number of ways a substance's energy can be independently changed gives the required number of independent thermodynamic properties. Broadly speaking, there are two ways of changing a substance's energy level: reversible work modes and heat transfer. Work is defined as applying a force across a certain distance. Mathematically, this is expressed as
+
+$$
+\delta W=F\,\mathrm dx
+$$
+
+A work mode is reversible if one of two requirements are met.
+
+1. The force $F$ is independent of direction and rate of change of the process.
+
+2. An equivalent amount of energy is transferred to the system when $x$ is increased by $\mathrm dx$ as when $x$ is decreased by the same $\mathrm dx$ amount.
+
+In reality, no processes are ever truly reversible. However, what is considered is not whether the work mode is reversible or irreversible, but rather *can* the work mode be reversible. Three examples of reversible work modes are **fluid compression**, **polarization**, and **surface tension extension**.
+
+$$
+\begin{aligned}
+\delta W & =-p\,\mathrm dV \\
+\delta W & =\textbf E\cdot\mathrm d\left(v\textbf P\right) \\
+\delta W & =\sigma\,\mathrm dA
+\end{aligned}
+$$
+
+A *simple substance* is defined as a substance that only has one reversible work mode. In most cases, we will be dealing with a simple substance whose only reversible work mode is through fluid compression. In this case, the substance is called a *simple compressible substance*. If we define $n$ to be the number of relevant reversible work modes, then the formal definition of the state postulate is
+
+::: {.callout-important title="The State Postulate"}
+
+The number of independent, intensive, thermodynamic properties of a specified substance is equal to $n+1$. This requires knowing the state of the specified substance, including the fraction of each constituent in a mixture or the quality of the fluid if dealing with multi-phase substances, as well as the number of reversible work modes that will affect the system in question.
+
+:::
+
+The state postulate, however, makes no determination for which set of $n+1$ properties are independent. Furthermore, two thermodynamic properties may not always be independent of each other. For example, when undergoing a phase change, temperature and pressure are independent of each other (knowing temperature gives no information for what pressure the system is in). The relationships between thermodynamic properties is given by an equation of state. Most state equations relate intensive thermodynamic properties with one another.
+
+# The Second Law
+
+The concept of entropy was created originally to explain the time-dependent nature of most processes. For example, energy always seems to flow from hot to cold, but never the reverse. The first law does not dictate directionality as energy is conserved regardless of the direction energy flows. As such, there must be some property of the system that differentiates the two.
+
+Entropy, $S$, was introduced by Clausius in 1865 to explain this dependence on time. Entropy can be produced, but never destroyed. FOr the case of an isolated system, entropy is always increasing as matter or energy cannot flow into or out of the system.
+
+$$
+S_{\mathrm{final}}-S_{\mathrm{initial}}=\Delta S=\mathcal P_s\geq0
+$$
+
+where $\mathcal P_s$ is the entropy production.
+
+## Reversible and Irreversible Processes
+
+A reversible process is defined as when there is no entropy production, $\mathcal P_s=0$. Conversely, an irreversible process is defined as when entropy is produced, $\mathcal P_s>0$.
+
+To illustrate why, imagine a process whose forward direction is irreversible, $\mathcal P_s>0$. In the $T-s$ diagram, this corresponds to a curve whose end point is positioned to the right of its starting point. The reverse direction is then impossible as that would require the process to end at a point where the entropy has decreased. Since that would require entropy destruction (recall this is an isolated system), the reverse is impossible and cannot exist. On the other hand, imagine a process where no entropy is produced. This is a reversible process and the start and end points lie on the same $S$ level. Now, the reverse process can exist as entropy destruction is not required. Therefore, this process can proceed in the forward and backward directions.
+
+::: {.callout-note}
+
+All real processes are irreversible. Some processes may be minimally irreversible (i.e., close to the limit of reversibility). In these cases, the reversible assumption can be nearly correct and helpful as a limit.
+
+:::
+
+## Thermodynamic Definition of Temperature
+
+Consider the isolated system $C$ below that is comprised of two closed systems $A$ and $B$. A rigid wall is created to divide the two closed systems from each other. Since $A$ and $B$ are closed, they may exchange energy via heat transfer with each other, but not mass. System $C$ is comprised of an outer rigid, adiabatic wall.
+
+At this current state, $A$ and $B$ are in a state of internal thermodynamic equilibrium. They are not necessarily in thermodynamic equilibrium with each other as no information is given regarding mechanical and thermal equilibrium (in fact, there is no reason for them to be in mechanical and thermal equilibrium at all). Assuming a simple compressible substance
+
+From $S_C=S_A(U_A, V_A)+S_B(U_B, V_B)$, the derivative gives
+
+$$
+\frac {\mathrm dS_C}{\mathrm d\mu}=\left(\frac {\partial S_A}{\partial U_A}\right)_{V_A}\frac {\mathrm dU_A}{\mathrm d\mu}+\left(\frac {\partial S_B}{\partial U_B}\right)_{V_B}\frac {\mathrm dU_B}{\mathrm d\mu}
+$$ {#eq-entropy-total-derivative}
+
+Since all walls are rigid, $\mathrm dV=0$ and no contribution to the total derivative is made from volume change. From the 1st and 2nd laws for an isolated system, we also have
+
+$$
+\begin{aligned}
+\frac {\mathrm dU_C}{\mathrm d\mu} & =\frac {\mathrm dU_A}{\mathrm d\mu}+\frac {\mathrm dU_B}{\mathrm d\mu}=0 \\
+\frac {\mathrm dS_C}{\mathrm d\mu} & =0
+\end{aligned}
+$$
+
+Substituting into @eq-entropy-total-derivative gives
+
+$$
+\left(\frac {\partial S_A}{\partial U_A}\right)_{V_A}=\left(\frac {\partial S_B}{\partial U_B}\right)_{V_B}
+$$
+
+In other words, two systems are in termal equilibrium when $\left(\frac {\partial S}{\partial U}\right)_V$ is the same. However, by definition, we also know that two systems are in thermal equilibrium when $T$ is the same. Therefore, we may use the derivative above to define $T$ as
+
+$$
+T\equiv\frac 1{\left(\frac {\partial S}{\partial U}\right)_V}
+$$
+
+::: {.callout-important}
+
+The thermodynamic definition for temperature defined above, $\frac 1T=\left(\frac {\partial S}{\partial U}\right)_V$, is only valid for a simple compressible substance *in equilibrium*. The only way for the thermodymamic temperature to be defined is if the system is in thermal equilibrium. It is only at this point when a temperature is well-defined for the system.
+
+:::
+
+## Thermodymamic Definition of Pressure
