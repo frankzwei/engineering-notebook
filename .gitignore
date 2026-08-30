@@ -1,2 +1,14 @@
+# Local reference files
+**/files/*
+**/assets/*
+
+# Quarto output files
 _site/
 .quarto/
+/.luarc.json
+/.quarto/
+**/*.quarto_ipynb
+
+# Python package files
+.venv/
+**/__pycache__/*

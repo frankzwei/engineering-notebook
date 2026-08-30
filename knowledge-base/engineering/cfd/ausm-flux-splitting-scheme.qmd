@@ -1,0 +1,35 @@
+---
+title: Introduction to the AUSM Scheme
+format:
+  html:
+    toc: true
+    toc-location: right
+    other-links:
+      - text: Liou and Steffen (1993)
+        href: "$FILES_BASE_URL/knowledge-base/engineering/cfd/files/1993_Liou_AUSM-Scheme_JCP-107.pdf"
+        icon: file-pdf
+---
+
+# Derivation {#sec-derivation}
+
+Consider the two dimensional system of Euler equations for an ideal gas.
+
+$$
+\frac {\partial\textbf U}{\partial t}+\frac {\partial\textbf E}{\partial x}+\frac {\partial\textbf F}{\partial y}=0
+$$ {#eq-euler-equation}
+
+The conservation vector, $\textbf U$, and inviscid flux vectors, $\textbf E$ and $\textbf F$, are defined as
+
+$$
+\begin{aligned}
+\textbf U=\begin{pmatrix}
+\rho \\\rho u \\\rho v\\\rho e_t
+\end{pmatrix} & \qquad\qquad &
+\textbf E=\begin{pmatrix}
+\rho u \\\rho u^2+p \\\rho uv \\\rho h_tu
+\end{pmatrix} & \qquad\qquad &
+\textbf F=\begin{pmatrix}
+\rho u \\\rho uv \\\rho v^2+p \\\rho h_tv
+\end{pmatrix}
+\end{aligned}
+$$

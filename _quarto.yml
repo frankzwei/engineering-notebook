@@ -1,8 +1,12 @@
 project:
   type: website
+  post-render: "uv run update_base_urls --mode local --output-dir _site --config-path _config/base-urls.yml"
+  resources:
+    - "**/files/**/*"
+    - "**/assets/**/*"
 
 website:
-  title: "personal-notebook"
+  title: Frank's Digital Notebook
   navbar:
     left:
       - href: index.qmd
@@ -16,3 +20,8 @@ format:
       - brand
     css: styles.css
     toc: true
+    html-math-method: katex
+
+base-url:
+  files: ""
+  assets: ""

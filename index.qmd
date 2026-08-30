@@ -1,7 +1,5 @@
 ---
-title: "personal-notebook"
+title: Frank's Digital Engineering Notebook
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This is my online digital notebook. On here, I have my digitized version of my college lecture notes, knowledge base documents and articles, and links to my personal projects.
