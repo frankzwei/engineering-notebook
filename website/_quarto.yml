@@ -1,12 +1,13 @@
 project:
   type: website
-  post-render: "uv run update_base_urls --mode local --output-dir _site"
+  output-dir: ../build/_site
+  post-render: "uv run update_base_urls --mode local --output-dir ../build/_site"
   resources:
     - "**/files/**/*"
     - "**/assets/**/*"
 
 website:
-  title: Frank's Digital Notebook
+  title: Frank's Engineering Notebook
   navbar:
     left:
       - href: index.qmd

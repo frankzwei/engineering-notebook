@@ -2,13 +2,9 @@
 **/files/*
 **/assets/*
 
-# Quarto output files
+# Build files
 _site/
-.quarto/
-/.luarc.json
-/.quarto/
-**/*.quarto_ipynb
-build-tools/
+tools/
 
 # Python package files
 .venv/

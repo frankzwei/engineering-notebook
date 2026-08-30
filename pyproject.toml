@@ -1,7 +1,7 @@
 [project]
-name = "personal-notebook"
+name = "engineering-notebook"
 version = "0.1.0"
-description = "Add your description here"
+description = "Frank's personal engineering notebook"
 readme = "README.md"
 authors = [
     { name = "Frank Wei", email = "fwei1729@gmail.com" }
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-update_base_urls = "personal_notebook.base_urls:main"
+update_base_urls = "engineering_notebook.base_urls:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]

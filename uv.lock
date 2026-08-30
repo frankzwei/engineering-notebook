@@ -3,7 +3,7 @@ revision = 3
 requires-python = ">=3.12"
 
 [[package]]
-name = "personal-notebook"
+name = "engineering-notebook"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
