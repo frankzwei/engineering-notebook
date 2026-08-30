@@ -4,7 +4,7 @@ set -euo pipefail
 quarto_version="1.10.18"
 uv_version="0.12.7"
 
-build_dir="build"
+build_dir=$(realpath -m build)
 tools_dir="$build_dir/tools"
 quarto_dir="$tools_dir/quarto"
 uv_dir="$tools_dir/uv"
