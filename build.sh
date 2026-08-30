@@ -1,4 +1,4 @@
-#!/usr/bin/bash env
+#!/usr/bin/env bash
 set -euo pipefail
 
 quarto_version="1.10.18"

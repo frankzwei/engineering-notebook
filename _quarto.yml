@@ -21,7 +21,3 @@ format:
     css: styles.css
     toc: true
     html-math-method: katex
-
-base-url:
-  files: ""
-  assets: ""
