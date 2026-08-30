@@ -1,5 +1,6 @@
 from argparse import HelpFormatter, Namespace
-from importlib.resources import files
+from importlib.resources import as_file, files
+from importlib.resources.abc import Traversable
 from pathlib import Path
 from typing import Any
 
@@ -13,7 +14,7 @@ TOKENS = {
 }
 
 def _validate_path(path: str | Path) -> Path:
-    if not (path_obj := Path(path).expanduser().resolve()).exists():
+    if not (path_obj := Path(path).expanduser().resolve()).is_file():
         raise FileNotFoundError(f'Missing file or directory in path: {path_obj}')
 
     return path_obj
@@ -50,7 +51,9 @@ def load_placeholders(mode: str, config_path: Path) -> dict[str, str]:
         config: dict[str, Any] = yaml.safe_load(f)
 
     if (mode := mode.lower()) not in config:
-        raise ValueError(f'Received an unknown deployment mode: {mode}. The valid deployment modes are: production and local')
+        raise ValueError(
+            f'Received an unknown deployment mode: {mode}. The valid deployment modes are: production and local'
+        )
 
     base_urls: dict[str, Any] = config[mode]
     for key in ('files', 'assets'):
@@ -65,11 +68,12 @@ def load_placeholders(mode: str, config_path: Path) -> dict[str, str]:
     return base_urls
 
 def replace_placeholders(args: Namespace) -> int:
-    config: str = str(files('personal_notebook.config').joinpath('base-urls.yml'))
-    config_path: Path = _validate_path(config)
+    config_resource: Traversable = files('personal_notebook.config').joinpath('base-urls.yml')
     output_path: Path = _validate_path(args.output_dir)
 
-    base_urls: dict[str, str] = load_placeholders(args.mode, config_path)
+    with as_file(config_resource) as resource_path:
+        config_path: Path = _validate_path(resource_path)
+        base_urls: dict[str, str] = load_placeholders(args.mode, config_path)
 
     counter: int = 0
     for html_path in output_path.rglob('*.html'):
@@ -87,7 +91,9 @@ def replace_placeholders(args: Namespace) -> int:
 def main(argv: list[str] | None = None):
     args: Namespace = parse_cli_args(argv)
     count: int = replace_placeholders(args)
-    print(f'Finished replacing all base URLs ({args.mode.lower()}: {count} HTML file{'' if count == 1 else 's'} updated)')
+    print(
+        f'Finished replacing all base URLs ({args.mode.lower()}: {count} HTML file{'' if count == 1 else 's'} updated)'
+    )
 
 if __name__ == '__main__':
     main()
