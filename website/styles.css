@@ -1,3 +1,44 @@
 figcaption, .figure-caption {
     text-align: center;
 }
+
+/*
+ * Divide up the layout to 15% sidebar, 65% body, 20% margin. For screen widths below 992 px, disable
+ * this as Quarto defaults to collapsing the sidebar.
+ */
+@media (min-width: 992px) {
+  #quarto-content.page-columns {
+    display: grid;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    gap: 0;
+
+    grid-template-columns:
+      [screen-start screen-start-inset page-start page-start-inset]
+      minmax(0, 15%)
+
+      [body-start-outset body-start body-content-start]
+      minmax(0, 65%)
+
+      [body-content-end body-end body-end-outset]
+      minmax(0, 20%)
+
+      [page-end-inset page-end screen-end-inset screen-end];
+  }
+
+  #quarto-content > #quarto-sidebar,
+  #quarto-content > main.content,
+  #quarto-content > #quarto-margin-sidebar {
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  #quarto-content > main.content {
+    padding-inline: 1.5rem;
+  }
+
+  #quarto-content > #quarto-margin-sidebar {
+    padding-inline: 1.5rem;
+  }
+}
