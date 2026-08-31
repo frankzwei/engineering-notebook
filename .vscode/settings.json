@@ -11,5 +11,19 @@
             "strings": "off",
             "other": "off"
         }
+    },
+    "[quarto]": {
+        "editor.wordWrap": "on",
+        "editor.wordWrapColumn": 120,
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "other": "on",
+            "strings": "on"
+        },
+        "editor.quickSuggestionsDelay": 250,
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggestOnTriggerCharacters": true,
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false
     }
 }

@@ -1,0 +1,6 @@
+---
+title: Engineering Knowledge Base
+sidebar: engineering
+---
+
+This section contains knowledge base articles related to engineering, including theory and practical applications. Here, documents summarizing papers and textbooks are located for future reference. The goal is to provide an easily understandable summary pertaining to key concepts throughout engineering.

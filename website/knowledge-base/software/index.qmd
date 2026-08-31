@@ -1,0 +1,6 @@
+---
+title: Software Knowledge Base
+sidebar: software
+---
+
+This section contains knowledge base articles relevant to software practices and application development.
