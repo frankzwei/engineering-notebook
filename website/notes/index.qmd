@@ -1,0 +1,6 @@
+---
+title: Lecture Notes
+sidebar: notes
+---
+
+This section is dedicated to lecture notes from various undergraduate and graduate-level courses taken at Georgia Tech between Fall 2021 and Fall 2026. This section is still a heavy work in progress

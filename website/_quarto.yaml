@@ -5,15 +5,60 @@ project:
   resources:
     - "**/files/**/*"
     - "**/assets/**/*"
-
 website:
   title: Frank's Engineering Notebook
+  bread-crumbs: false
   navbar:
+    background: primary
+    search: true
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+      - text: Home
+        href: index.qmd
+      - text: Knowledge Base
+        menu:
+          - text: Engineering
+            href: knowledge-base/engineering/index.qmd
+          - text: Software
+            href: knowledge-base/software/index.qmd
+      - text: Lecture Notes
+        href: notes/index.qmd
+      - text: Personal Projects
+        href: projects/index.qmd
+    tools:
+      - icon: github
+        href: https://github.com/frankzwei/engineering-notebook
+  sidebar:
+    - id: engineering
+      style: floating
+      collapse-level: 1
+      contents:
+        - section: CFD
+          contents:
+            - text: Introduction to AUSM Scheme
+              href: knowledge-base/engineering/cfd/ausm-flux-splitting-scheme.qmd
+            - section: Finite Volume Method for CFD
+              contents:
+                - text: Chapter 4. The Discretization Process
+                  href: knowledge-base/engineering/cfd/finite-volume-method-cfd/4-discretization-process.qmd
+    - id: software
+      style: floating
+      collapse-level: 1
+      contents:
+        - section: Minecraft Modding
+    - id: notes
+      style: floating
+      collapse-level: 1
+      contents:
+        - section: AE 6760
+          href: notes/ae6760/index.qmd
+          contents:
+            - text: Lecture Notes
+              href: notes/ae6760/lecture-notes.qmd
+        - section: AE 6765
+          href: notes/ae6765/index.qmd
+          contents:
+            - text: Classical Thermodynamics
+              href: notes/ae6765/lectures/classical_thermodynamics.qmd
 format:
   html:
     theme:
@@ -22,3 +67,7 @@ format:
     css: styles.css
     toc: true
     html-math-method: katex
+crossref:
+  eq-prefix: Eq.
+  fig-prefix: Fig.
+  sec-prefix: Sec.

@@ -1,5 +1,6 @@
 ---
 title: Frank's Digital Engineering Notebook
+sidebar: false
 ---
 
 This is my online digital notebook. On here, I have my digitized version of my college lecture notes, knowledge base documents and articles, and links to my personal projects.
