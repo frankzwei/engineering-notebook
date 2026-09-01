@@ -1,0 +1,139 @@
+---
+title: Introduction to Acoustics
+---
+
+# Part II. Review of Driven-Damped Oscillations
+
+Consider a 1 DoF (degree of freedom) system consisting of a spring and mass damper. The spring has a stiffness of $s$ and the damper has a damping coefficient of $R_m$. A loading force $F(t)$ is applied to the mass, as shown in the image below.
+
+From Newton's 2^nd^ law, the force balance for the system is
+
+$$
+m\ddot x+R_m\dot x+sx=F(t)
+$$ {#eq-motion-equation-general}
+
+The displacement solution $x(t)$ can be solved for and expressed as the sum of a *transient* solution and a *steady-state* solution. The transient solution is dependent on time and naturally decays to zero as $t\to\infty$. The steady-state solution is a sinusoidal function that has a frequency of $\omega$.
+
+## Steady-State Solution
+
+The general form for the steady-state solution is
+
+$$
+x(t)=A\cos(\omega t+\phi)
+$$
+
+where $A$ is the amplitude of the wave, $\omega$ is the frequency as discussed above, and $\phi$ is the phase angle or phase lag. The phase lag is responsible for the delay between when the loading force is applied and when the system registers this force and affects the mass' position. To simplify the arithematic, we may introduce the complex unit $j$ to describe harmonic oscillation. For instance, the loading force $F(t)$ may be expressed as the real component of the complex loading force $\underline F(t)$.
+
+$$
+\underline F(t)=F_0e^{j\omega t}=F_0\cos\omega t+F_0j\sin\omega t
+$$ {#eq-complex-loading-force}
+
+And obviously, the physical loading force is the real part of @eq-complex-loading-force.
+
+$$
+F(t)=\mathrm{Re}\left[\underline F(t)\right]=F_0\cos\omega t
+$$
+
+Similarly, the displacement $x(t)$ can be thought of as the real component of the complex displacement $\underline x(t)$.
+
+$$
+\underline x(t)=Ae^{j(\omega t+\phi)}=\left(Ae^{j\phi}\right)e^{j\omega t}=\underline Ae^{j\omega t}
+$$ {#eq-complex-displacement}
+
+The coefficient of $\exp(j\omega t)$ in @eq-complex-displacement is called the complex amplitude $\underline A$.
+
+::: {.callout-note title="Reasoning Behind Complex Numbers"}
+
+Introducing complex numbers may seem like an odd choice initially. However, as we will see throughout the course, they simplify the math when deriving these equations of motion. The derivative of $\exp(j\omega t)$ is much easier to compute than the raw trigonometric functions themselves. Additionally, because of Euler's formula
+
+$$
+\left(e^{j\omega t}\right)^n=e^{j\omega nt}=\cos\omega nt+j\sin\omega nt
+$$
+
+raising complex numbers to some power becomes much simpler to handle.
+
+:::
+
+We may substitute the polar form of the complex numbers into @eq-motion-equation-general to derive a simpler form. The first and second order derivatives of $\underline x(t)$ are
+
+$$
+\begin{aligned}
+\dot{\underline x} & =j\omega\underline x \\
+\ddot{\underline x} & =j\omega\dot{\underline x}=-\omega^2\underline x
+\end{aligned}
+$$
+
+As a result, @eq-motion-equation-general becomes
+
+$$
+F_0e^{j\omega t}=(-m\omega^2+j\omega R_m+s)\underline x=(-m\omega^2+j\omega R_m+s)\underline Ae^{j\omega t}
+$$
+
+Cancelling like-terms and solving for the complex amplitude $\underline A$ gives
+
+$$
+\underline A=\frac {F_0}{s-m\omega^2+j\omega R_m}
+$$ {#eq-complex-amplitude}
+
+The magnitude $\left|\underline A\right|$ and polar angle $\phi$ are simply
+
+$$
+\begin{aligned}
+\left|\underline A\right| & =\frac {F_0}{\sqrt{(s-m\omega^2)^2+(\omega R_m)^2}} \\
+\phi & =-\arctan\left(\frac {\omega R_m}{s-m\omega^2}\right)
+\end{aligned}
+$$ {#eq-complex-amplitude-magnitude-angle}
+
+## Mechanical Impedance
+
+## Physical Velocity
+
+## Resonance Frequency
+
+## Power Consumption
+
+When talking about waves, it is important to discuss the power associated with a specific waveform. The instantaneous power is denoted by $\Pi_i(t)$ and represents the instantaneous power carried by the wave. This quantity is a real, physical, time-dependent value. The power can be computed based off the wave's force $F(t)$ and propagation velocity $u(t)$.
+
+$$
+\Pi_i(t)=F(t)u(t)=\mathrm{Re}\left[\underline F(t)\right]\mathrm{Re}\left[\underline u(t)\right]
+$$ {#eq-wave-instantaneous-power}
+
+::: {.callout-warning}
+
+Observe that the $\mathrm{Re}(\cdot)$ function is applied to each term separately. That is, the real part of $\underline F(t)$ and $\underline u(t)$ are carried out in separate functions. This is because $\mathrm{Re}(\cdot)$ cannot be "distributed".
+
+$$
+\mathrm{Re}\left[\underline F(t)\underline u(t)\right]\neq\mathrm{Re}\left[\underline F(t)\right]\mathrm{Re}\left[\underline u(t)\right]=F(t)u(t)
+$$
+
+:::
+
+Typically, it is useful to compute the time-averaged power $\Pi_{\mathrm{avg}}$. This is simply calculated by integral averaging the instantaneous power across a suitable averaging time interval $T_{\mathrm{avg}}$. For harmonics, we use the period: $T_{\mathrm{avg}}=T=2\pi/\omega$.
+
+$$
+\Pi_{\mathrm{avg}}=\frac 1T\int\limits_0^T\Pi_i(t)\,\mathrm dt=\frac {F_0^2}{2\left|\underline z_m\right|}\cos\theta_z
+$$
+
+where $\underline z_m=R_m+X_mj$ is the complex mechanical impedance and $\theta_z$ is the phase angle associated with $\underline z_m$. Here, it can be shown that $\cos\theta_z=R_m/\left|\underline z_m\right|$ so
+
+$$
+\Pi_{\mathrm{avg}}=\frac {F_0^2R_m}{2\left|\underline z_m\right|^2}=\frac {F_0^2R_m}{2\left[R_m^2+\left(\omega m-\frac sm\right)^2\right]}
+$$ {#eq-wave-average-power}
+
+# Part III. Wave Propagation and Vibration of a 1D System
+
+Consider a string of length $L$ vibrating between two solid walls. The string is fixed at both ends, $x=0$ and $x=L$, and let $y(x, t)$ be the transverse displacement of a point on the string. The equation of motion for the string is described by the wave equation.
+
+$$
+\frac {\partial^2y}{\partial x^2}=\frac 1{c^2}\frac {\partial y}{\partial t}
+$$ {#eq-wave-equation}
+
+where $c=\sqrt{T/\rho_L}$ is the wave speed, $T$ is the tension in the string, and $\rho_L$ is the linear density of the string. In SI units, $\rho_L$ will have units of kg/m. It is worth pointing out, however, that @eq-wave-equation makes a series of underlying assumptions.
+
+1. The string undergoes small deflection, defined as a small maximum transverse displacement relative to its length. Mathematically, this means $y_{\mathrm{max}}/L\ll1$ or $\partial y/\partial x\ll1$.
+
+2. The tension and string linear density are constant and uniform throughout the length of the string.
+
+3. The effects of gravity are negligible.
+
+4. No damping is present in the string.

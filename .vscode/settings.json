@@ -13,7 +13,7 @@
         }
     },
     "[quarto]": {
-        "editor.wordWrap": "on",
+        "editor.wordWrap": "bounded",
         "editor.wordWrapColumn": 120,
         "editor.quickSuggestions": {
             "comments": "on",

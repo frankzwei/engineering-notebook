@@ -52,8 +52,8 @@ website:
         - section: AE 6760
           href: notes/ae6760/index.qmd
           contents:
-            - text: Lecture Notes
-              href: notes/ae6760/lecture-notes.qmd
+            - text: Introduction to Acoustics
+              href: notes/ae6760/lectures/introduction-acoustics.qmd
         - section: AE 6765
           href: notes/ae6765/index.qmd
           contents:
