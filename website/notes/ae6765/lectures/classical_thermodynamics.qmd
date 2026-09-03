@@ -84,7 +84,7 @@ When there is no entropy production in a system or process, $\mathcal P_s=0$ and
 
 To illustrate why, consider an isolated system with some process whose forward and reverse directions are denoed by $F$ and $R$ respectively.
 
-![$T-S$ diagram of reversible and irreversible processes](../files/reversible-irreversible-processes.png){width=40% .lightbox}
+![$T-S$ diagram of reversible and irreversible processes](../assets/reversible-irreversible-processes.png){width=40% .lightbox}
 
 Since $Q=0$, there is no entropy convected into or out of the system. Therefore, the only contribution of entropy is $\mathcal P_s$. There are three situations to consider:
 
@@ -102,7 +102,7 @@ Historically, temperature was assigned as a measurement of the degree of "hotnes
 
 We consider an isolated system $C$ that is comprised of two closed systems $A$ and $B$ with differing temperatures. A rigid wall separates the two systems from one another. Since $A$ and $B$ are closed, they may exchange energy via heat transfer, but not mass. System $C$ is retained by a rigid, adiabatic wall.
 
-![The isolated system used for deriving the thermodynamic definition of temperature](../files/temperature-thermo-def-system.png){width=20% .lightbox}
+![The isolated system used for deriving the thermodynamic definition of temperature](../assets/temperature-thermo-def-system.png){width=20% .lightbox}
 
 $A$ and $B$ are in internal thermodynamic equilibrium. They are not in thermodynamic equilibrium with each other as $T_A\neq $_B$. Because of this, $C$ is also not in thermodynamic equilibrium since its constituents are not in thermal equilibrium initially.
 
@@ -237,10 +237,10 @@ At this point, we've established heat transfer can convect entropy into or out o
 From @sec-entropy-transfer, $\mathrm dS_A=-\delta Q/T_A$ and $\mathrm dS_B=\delta Q/T_B$. $S_A$ decreases as heat flows from $A$ to $B$. Conversely, $S_B$ increases as $B$ receives more energy from $A$. We may solve $A$'s entropy transfer equation and substitute into $B$'s to see
 
 $$
-\frac {\mathrm dS_B}=-\frac {T_A}{T_B}\,\mathrm dS_A
+\mathrm dS_B=-\frac {T_A}{T_B}\,\mathrm dS_A
 $$
 
-Since $C$ is isolated, we know $S_C$ must increase on account of $\mathcal P_S>0$ as $C$ tends towards equilibrium. As a result
+Since $C$ is isolated, we know $S_C$ must increase on account of $\mathcal P_s>0$ as $C$ tends towards equilibrium. As a result
 
 $$
 \mathrm dS_C=\mathrm dS_A+\mathrm dS_B=\left(1-\frac {T_A}{T_B}\right)\,\mathrm dS_A\geq0
