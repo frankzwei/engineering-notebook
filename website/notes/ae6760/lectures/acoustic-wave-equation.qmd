@@ -1,0 +1,29 @@
+---
+title: The Acoustic Wave Equation
+---
+
+# Derivation of the Wave Equation
+
+Consider the standard 3D coordinate system. Acoustic variables include
+
+$$
+\begin{aligned}
+\rho & =\rho(\textbf x, t) \\
+\mathcal P & =p(\textbf x, t) \\
+\mathcal P_0 & =p_0(\textbf x, t) \\
+p & =\mathcal P(\textbf r, t)-\mathcal P_0(\textbf r)=p(\textbf r, t) \\
+T & =
+\end{aligned}
+$$
+
+Applying Newton's second law gives for small perturbations using the linearized Euler equation
+
+$$
+\frac {\partial\textbf u}{\partial t}+\frac 1{\rho_0}\nabla p=0
+$$
+
+The $\nabla p$ term is on the acoustic pressure, defined as $\frac {\partial p}{\partial x}\textbf x+\frac {\partial p}{\partial y}\textbf y+\frac {\partial p}{\partial z}\textbf z$. Next, apply mass conservation in differential form.
+
+$$
+\frac {\partial\rho}{\partial t}+\rho_0\nabla\cdot\textbf u=0
+$$

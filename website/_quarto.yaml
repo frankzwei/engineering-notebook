@@ -20,7 +20,7 @@ website:
             href: knowledge-base/engineering/index.qmd
           - text: Software
             href: knowledge-base/software/index.qmd
-      - text: Lecture Notes
+      - text: Class Notes
         href: notes/index.qmd
       - text: Personal Projects
         href: projects/index.qmd

@@ -125,7 +125,7 @@ $$ {#eq-wave-average-power}
 Consider a string of length $L$ vibrating between two solid walls. The string is fixed at both ends, $x=0$ and $x=L$, and let $y(x, t)$ be the transverse displacement of a point on the string. The equation of motion for the string is described by the wave equation.
 
 $$
-\frac {\partial^2y}{\partial x^2}=\frac 1{c^2}\frac {\partial y}{\partial t}
+\frac {\partial^2y}{\partial x^2}=\frac 1{c^2}\frac {\partial^2 y}{\partial t^2}
 $$ {#eq-wave-equation}
 
 where $c=\sqrt{T/\rho_L}$ is the wave speed, $T$ is the tension in the string, and $\rho_L$ is the linear density of the string. In SI units, $\rho_L$ will have units of kg/m. It is worth pointing out, however, that @eq-wave-equation makes a series of underlying assumptions.
@@ -137,3 +137,91 @@ where $c=\sqrt{T/\rho_L}$ is the wave speed, $T$ is the tension in the string, a
 3. The effects of gravity are negligible.
 
 4. No damping is present in the string.
+
+Assume a general solution of the form
+
+$$
+y(x, t)=y_1(ct-x)+y_2(ct+x)
+$$ {#eq-wave-equation-general-solution}
+
+where $y_1$ and $y_2$ are two arbitrary functions.
+
+::: {.callout-note title="Proof of Wave Equation Solution" collapse=true}
+
+Take the partial derivative of @eq-wave-equation-general-solution twice.
+
+$$
+\frac {\partial^2y}{\partial x^2}=
+$$
+
+:::
+
+::: {.callout-important title="Solving for $y_1$ and $y_2$"}
+
+In @eq-wave-equation-general-solution, $y_1$ and $y_2$ are unknown. In reality, these functions depend on the boundary conditions if the string is finite and initial conditions. For example, consider a string of infinite length with the following initial conditions.
+
+$$
+\begin{aligned}
+y(x, 0) & =y_0(x) \\
+\frac {\partial y}{\partial t}(x, 0) & =0
+\end{aligned}
+$$
+
+Substituting into @eq-wave-equation-general-solution gives the following system of equation.
+
+$$
+\begin{aligned}
+y_1(-x)+y_2(x) & =y_0(x) \\
+cy_1'(-x)+cy_2'(x) & =0
+\end{aligned}
+$$
+
+:::
+
+Let's consider the example of a string of length $L$ with both ends fixed. The string is subject to the initial conditions
+
+$$
+\begin{aligned}
+y(x, 0) & =y_0(x) \\
+\frac {\partial y}{\partial t}(x, 0) & =0
+\end{aligned}
+$$ {#eq-wave-equation-example-initial-conditions}
+
+Since @eq-wave-equation has no damping, we note that the motion will be periodic as the waves travel through the length of the string without losing energy. Therefore, we may assume that
+
+$$
+y_m(x, t)=\left[A_m\sin k_mx+B_m\cos k_mx\right]e^{j\omega_m t}
+$$
+
+Since the string cannot move at the ends due to the fixed boundary conditions, then
+
+$$
+\begin{aligned}
+y(0, t) & =B_me^{j\omega_m t}=0 \\
+y(L, t) & =A_m\sin k_mLe^{j\omega_m t}=0
+\end{aligned}
+$$
+
+From the first equation, $B_m=0$ since $\exp(j\omega_m t)>0$. With the second equation, there is indeed the case that $A_m=0$. However, this reduces $y(x, t)$ down to the trivial case as $A_m=B_m=0$ means there is no vibration. Therefore, we must consider the non-trivial case where $\sin k_mL=0$. This occurs at unit intervals of $k_m=n\pi/L$ called the wave number.
+
+Now, we consider specific values of $n$. When $n=0$, $k_0=0$ and $y_0(x, t)$ again reduces down to the trivial case. The result is
+
+$$
+\omega_n=\frac {n\pi c}L
+$$ {#eq-natural-frequency-standing-wave}
+
+@eq-natural-frequency-standing-wave is called the natural frequency of a standing wave or of a node $n$. Using $\sin x=(e^{jx}-e^{-jx})/(2i)$ gives
+
+The total free vibration response is simply the sum of each vibration response.
+
+$$
+y(x, t)=\sum\limits_{m=1}^{+\infty}y_m(x, t)=\sum\limits_{m=1}^{+\infty}A_m\sin\left(\frac {n\pi x}L\right)e^{j\omega_n t}
+$$ {#eq-total-vibration-response-example}
+
+The value for $A_m$ depends on the initial condition. Substitute the initial conditions into @eq-total-vibration-response-example to compute $A_m$.
+
+::: {.callout-important}
+
+Each $n$ in @eq-total-vibration-response-example describes a specific mode shape. For $n=1$, $y_1(x)=\sin\left(\frac {\pi x}L\right)$. This represents a string vibrating with the greatest displacement at $x=\frac L2$. When $n=2$, this is the harmonic as $y_2(x)=\sin\left(\frac {2\pi x}L\right)=\sin 2\omega_1$ where $\omega_1$ is the natural frequency (when $n=1$). The wave shape for this mode is that of a string vibrating where the center $x=\frac L2$ does not move.
+
+:::
