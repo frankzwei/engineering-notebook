@@ -1,0 +1,21 @@
+---
+title: Bayesian Inference Equation Derivations
+---
+
+This page documents the derivations for the equations used when applying Bayesian inference to real-world phenomena. These equations are based off Juniper and Yoko's 2022 and 2024 papers on calibrating a physics-based model of a Rijke tube.
+
+# Notation
+
+For an experiment $i$, define $\textbf a\in\mathbb{R}^p$ to be a $p\times1$ vector of the unknown model parameters. These are parameters that will be iterated on and tuned mathematically to satisfy a certain criteria. Next, we define $\textbf z_i\in\mathbb{R}^{m_i}$ to be an $m_i\times1$ vector of the experimental observation. These are values measured from experiment $i$ such as temperature, pressure, mass flux, etc. that quantify the behavior of the system. Next, we assume a physics-based model $\mathcal H(\textbf x_i, \textbf a)$ whose output $\textbf s_i(\textbf a)=\mathcal H(\textbf x_i, \textbf a)$ gives the model prediction. The goal is to find a parameter set such that the residual $\textbf r_i(\textbf a)=\textbf s_i(\textbf a)-\textbf z_i$ is minimized (i.e., prediction and experimental observations match closely). Note that both $\textbf r_i(\textbf a)$ and $\textbf s_i(\textbf a)$ must have the same size, $m_i\times1$.
+
+We may assume experimental errors (sensor noise, repeatability, etc.) are independent of one another for a well-defined experiment. Moreover, we assume the experiment error follows a normal distribution centered at zero with a covariance of $R_i$, $\boldsymbol{\varepsilon}_i\sim\mathcal N(0, R_i)$. Recall that covariance $\sigma^2$ is simply the square of the standard deviation. The measurement error covariance $R_i$ has size $m_i\times m_i$ for consistency with $\textbf s_i(\textbf a)$.
+
+$$
+\textbf z_i(\textbf a)=\textbf s_i(\textbf a)+\boldsymbol{\varepsilon}_i
+$$
+
+We also assume the unknown model parameters are normally distributed about $\textbf a_0$ with a variance of $C_0$. Like $R_i$, $C_0$ is the prior parameter covariance of size $p\times p$.
+
+$$
+\textbf a\sim\mathcal N(\textbf a_0, C_0)
+$$
