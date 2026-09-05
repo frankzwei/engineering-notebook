@@ -58,7 +58,7 @@ website:
           href: notes/ae6765/index.qmd
           contents:
             - text: Classical Thermodynamics
-              href: notes/ae6765/lectures/classical_thermodynamics.qmd
+              href: notes/ae6765/lectures/classical-thermodynamics.qmd
 format:
   html:
     theme:
