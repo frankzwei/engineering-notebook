@@ -1,0 +1,287 @@
+---
+title: Classical Thermodynamics for Compressible Substances
+---
+
+# Introduction and Definitions
+
+Thermodynamics is the study of energy and matter. That is, how energy and matter change throughout a process. Broadly speaking, we may list four laws or postulates from empirical evidence.
+
+1. **The Zeroth Law of Thermodynamics**
+
+   Bodies are in thermal equilibrium with each other only when they have the same degree of "hotness". In modern physics, we use temperature to describe "hotness" between objects. So two objects with the same temperature are in thermal equilibrium.
+
+2. **The First Law of Thermodynamics**
+
+   Energy cannot be created nor destroyed, it is conserved. One of the key conclusions from this law is that perpetual motion machines cannot exist.
+
+3. **The Second Law of Thermodynamics**
+
+   Entropy can only be created, it cannot be destroyed. Therefore, it is impossible to reverse any natural process in its entirety and there is a "time dependence" in all processes that arises from the inability to destroy entropy.
+
+4. **The State Postulate**
+
+   The number of independent thermodynamic properties needed to define a state can be determined prior.
+
+When analyzing an object or region, we typically classify objects or regions as systems or surroundings. A *thermodynamic system* is simply a finite portion of matter or restricted portion of space upon which we are interested in. For example, when considering a volume of air inside a piston, we may declare the enclosed air to be our system. The *surroundings* on the other hand is anything not enclosed by the system. For the example above, the piston, outer environment, etc. make up the *surroundings*. Sometimes, *environment* is also used to describe the surroundings. The system is enclosed by the *control surface*. This is a surface, typically imaginary but can also be real, that separates the system from its surroundings. Oftentimes, it is helpful to classify the system based off the object or region it is enclosing. The system is called a *control mass* if a finite volume of matter is enclosed, and a *control volume* if a finite portion of space is restricted.
+
+There are three different types of systems, they are *isolated*, *closed*, and *open* systems. An open system is one where both matter and energy may be exchanged with the surroundings. An example is a boiling pot of water (superheated water vapor from the pot can be exchanged with the environment). A closed system is one where only energy may be exchanged, no matter is permitted to cross the control surface. An example is a plastic water bottle with the cap on. Lastly, an isolated system is one where neither energy or matter may be exchanged. In reality, no systems are truly isolated. The closest approximation is likely an insulated water bottle.
+
+# The State Postulate
+
+Recall that a thermodynamic state is a unique description of a substance that is identified by its state variables such as temperature, pressure, volume, mass, etc. An important question to ask is how many thermodynamic properties must be known to be able to uniquely identify a system's state?
+
+Empirical evidence suggests that the number of ways a substance's energy can be independently changed gives the required number of independent thermodynamic properties. Broadly speaking, there are two ways of changing a substance's energy level: reversible work modes and heat transfer. Work is defined as applying a force across a certain distance. Mathematically, this is expressed as
+
+$$
+\delta W=F\,\mathrm dx
+$$
+
+A work mode is reversible if one of two requirements are met.
+
+1. The force $F$ is independent of direction and rate of change of the process.
+
+2. An equivalent amount of energy is transferred to the system when $x$ is increased by $\mathrm dx$ as when $x$ is decreased by the same $\mathrm dx$ amount.
+
+In reality, no processes are ever truly reversible. However, what is considered is not whether the work mode is reversible or irreversible, but rather *can* the work mode be reversible. Three examples of reversible work modes are **fluid compression**, **polarization**, and **surface tension extension**.
+
+$$
+\begin{aligned}
+\delta W & =-p\,\mathrm dV \\
+\delta W & =\textbf E\cdot\mathrm d\left(v\textbf P\right) \\
+\delta W & =\sigma\,\mathrm dA
+\end{aligned}
+$$
+
+A *simple substance* is defined as a substance that only has one reversible work mode. In most cases, we will be dealing with a simple substance whose only reversible work mode is through fluid compression. In this case, the substance is called a *simple compressible substance*. If we define $n$ to be the number of relevant reversible work modes, then the formal definition of the state postulate is
+
+::: {.callout-important title="The State Postulate"}
+
+The number of independent, intensive, thermodynamic properties of a specified substance is equal to $n+1$. This requires knowing the state of the specified substance, including the fraction of each constituent in a mixture or the quality of the fluid if dealing with multi-phase substances, as well as the number of reversible work modes that will affect the system in question.
+
+:::
+
+The state postulate, however, makes no determination for which set of $n+1$ properties are independent. Furthermore, two thermodynamic properties may not always be independent of each other. For example, when undergoing a phase change, temperature and pressure are independent of each other (knowing temperature gives no information for what pressure the system is in). The relationships between thermodynamic properties is given by an equation of state. Most state equations relate intensive thermodynamic properties with one another.
+
+# The Second Law
+
+The concept of entropy was created originally to explain the time-dependent nature of most processes. For example, energy always seems to flow from hot to cold, but never the reverse. The first law does not dictate directionality as energy is conserved regardless of the direction energy flows. As such, there must be some property of the system that differentiates the two.
+
+Entropy, $S$, was introduced by Clausius in 1865 to explain this dependence on time. Entropy can be produced, but never destroyed. For the case of an isolated system, entropy is always increasing as matter or energy cannot flow into or out of the system.
+
+$$
+S_{\mathrm{final}}-S_{\mathrm{initial}}=\Delta S=\mathcal P_s\geq0
+$$
+
+where $\mathcal P_s$ is the entropy production.
+
+## Reversible and Irreversible Processes
+
+::: {.callout-important title="Reversible Process Definition"}
+
+When there is no entropy production in a system or process, $\mathcal P_s=0$ and we call the system or process reversible. Conversely, when $\mathcal P_s>0$, the process is called irreversible.
+
+:::
+
+To illustrate why, consider an isolated system with some process whose forward and reverse directions are denoed by $F$ and $R$ respectively.
+
+![$T-S$ diagram of reversible and irreversible processes]($ASSETS_BASE_URL/notes/ae6765/assets/reversible-irreversible-processes.png){width=40% .lightbox}
+
+Since $Q=0$, there is no entropy convected into or out of the system. Therefore, the only contribution of entropy is $\mathcal P_s$. There are three situations to consider:
+
+1. $\Delta S<0$: This requires $\mathcal P_s<0$, which is impossible since entropy cannot be destroyed.
+
+2. $\Delta S=0$: This requires $\mathcal P_s=0$. These types of processes may occur in the forward or backwards direction ($F$ and $R$ both satisfy the requirement that entropy cannot be destroyed). As such, these processes are *reversible*.
+
+3. $\Delta S>0$: This requires $\mathcal P_s>0$. These types of processes can only occur in the forward direction as $R_{\mathrm{imp}}$ requires entropy destruction. As such, the reverse direction is impossible to occur and the process is *irreversible*.
+
+All real processes are irreversible. Some processes may be minimally irreversible (i.e., close to the limit of reversibility). In these cases, the reversible assumption can be nearly correct and helpful as a limit.
+
+## Thermodynamic Definition of Temperature {#sec-thermo-def-temperature}
+
+Historically, temperature was assigned as a measurement of the degree of "hotness" of a substance. Maxwell, in the late 1800s, eventually introduced a thermodynamic definition for temperature based off mathematical reasoning.
+
+We consider an isolated system $C$ that is comprised of two closed systems $A$ and $B$ with differing temperatures. A rigid wall separates the two systems from one another. Since $A$ and $B$ are closed, they may exchange energy via heat transfer, but not mass. System $C$ is retained by a rigid, adiabatic wall.
+
+![The isolated system used for deriving the thermodynamic definition of temperature]($ASSETS_BASE_URL/notes/ae6765/assets/temperature-thermo-def-system.png){width=20% .lightbox}
+
+$A$ and $B$ are in internal thermodynamic equilibrium. They are not in thermodynamic equilibrium with each other as $T_A\neq $_B$. Because of this, $C$ is also not in thermodynamic equilibrium since its constituents are not in thermal equilibrium initially.
+
+If we wait, we would expect the temperatures to equalize from heat transfer. When $T_A=T_B$, $A$ and $B$ are in thermal equilibrium with each other, so $C$ is now in thermodynamic equilibrium. Since $S_C$ can only increase, the maximum value of $S_C$ occurs at thermal equilibrium when $T_A=T_B$ and no more thermal change may occur.
+
+For a nonreacting, simple compressible substance
+
+$$
+S_C=S_A(U_A, V_A)+S_B(U_B, V_B)
+$$ {#eq-thermodynamic-temperature-definition-entropy}
+
+We arbitrarily choose $U$ and $V$ as two independent variables that $S$ depends on. The choice of $U$ and $V$ is due to how the system is isolated and rigid, so $\mathrm dU_C=0$ and $\mathrm dV=0$.
+
+Consider a progress variable $\mu$ that tracks the fraction of $U$ in $A$, $\mu=U_A/U_C$. Since $V$ and $U_C$ are fixed, the only variable that changes as the system equilibrates is $\mu$. If $\mu=0$, then all thermal energy in $C$ is located in $B$. As $\mu$ increases, $S_C$ will increase until it equilibrates at some $0<\mu<1$. Similarly, if $\mu=1$, all thermal energy in $C$ is located in $A$ and $T_A$ will decrease until the equilibrium point. Therefore, the $S-\mu$ graph will be an inverted parabolic shape. The equilibrium point occurs at the maximum.
+
+We can find this equilibrium point by differentiating @eq-thermodynamic-temperature-definition-entropy.
+
+$$
+\frac {\mathrm dS_C}{\mathrm d\mu}=\left(\frac {\partial S_A}{\partial U_A}\right)_{V_A}\frac {\mathrm dU_A}{\mathrm d\mu}+\left(\frac {\partial S_B}{\partial U_B}\right)_{V_B}\frac {\mathrm dU_B}{\mathrm d\mu}
+$$ {#eq-thermodynamic-temperature-definition-entropy-derivative}
+
+From the 1st and 2nd laws for an isolated system at equilibrium, we also have
+
+$$
+\begin{aligned}
+\frac {\mathrm dU_C}{\mathrm d\mu} & =\frac {\mathrm dU_A}{\mathrm d\mu}+\frac {\mathrm dU_B}{\mathrm d\mu}=0 \\
+\frac {\mathrm dS_C}{\mathrm d\mu} & =0
+\end{aligned}
+$$
+
+Substituting into @eq-thermodynamic-temperature-definition-entropy-derivative gives
+
+$$
+\left(\frac {\partial S_A}{\partial U_A}\right)_{V_A}=\left(\frac {\partial S_B}{\partial U_B}\right)_{V_B}
+$$
+
+In other words, two systems are in thermal equilibrium when $\left(\frac {\partial S}{\partial U}\right)_V$ is the same. However, by definition, we also know that two systems are in thermal equilibrium when $T$ is the same. Therefore, we may use the derivative above to define $T$ as
+
+$$
+T\equiv\left(\frac {\partial U}{\partial S}\right)_V
+$$ {#eq-thermodynamic-temperature-definition}
+
+::: {.callout-important}
+
+The thermodynamic definition for temperature is only valid for nonreacting simple compressible substances in *thermal equilibrium*. This is because the only way for a temperature to be defined is if the system has a constant and uniformly distributed temperature. This is the only case for when $T$ is "well-defined".
+
+:::
+
+::: {.callout-note title="Why $1/T$ for the Thermodynamic Definition" collapse=True}
+
+The choice of $T^{-1}$ for $\left(\frac {\partial S}{\partial U}\right)_V$ is to ensure consistency with the definition that heat transfer occurs from high $T$ to low $T$. If we assume $T_A>T_B$, then heat should flow from $A$ to $B$. This means $\mathrm dU_A<0$. If we consider the total derivative of @eq-thermodynamic-temperature-definition-entropy
+
+$$
+\mathrm dS_C=\frac {\mathrm dU_A}{T_A}+\frac {\mathrm dU_B}{T_B}=\left(\frac 1{T_A}-\frac 1{T_B}\right)\,\mathrm dU_A
+$$
+
+when $T_A>T_B$, $\mathrm dU_A<0$ as expected.
+
+:::
+
+## Thermodymamic Definition of Pressure
+
+In a similar vein, pressure also has a thermodynamic definition. Instead of a rigid divider like in @sec-thermo-def-temperature, we now use a flexible one that allows $p_A$ and $p_B$ to equalize. Though $A$ and $B$ are still closed, they may now exchange both $Q$ and $p\,\mathrm dV$ work.
+
+This time, since the system may perform compression or expansion work, we must consider two progress variables $\mu_U$ and $\mu_V$. Once again, at thermodynamic equilibrium, $p_A=p_B$ and $T_A=T_B$
+
+$$
+\frac {\mathrm dS_C}{\mathrm d\mu_U}=\frac {\mathrm dS_C}{\mathrm d\mu_V}=0
+$$
+
+We differentiate @eq-thermodynamic-temperature-definition-entropy with respect to $\mu_U$ and $\mu_V$ to get
+
+$$
+\begin{aligned}
+\frac {\mathrm dS_C}{\mathrm d\mu_U} & =\left(\frac {\partial S_A}{\partial U_A}\right)_{V_A}\frac {\mathrm dU_A}{\mathrm d\mu_U}+\left(\frac {\partial S_B}{\partial U_B}\right)_{V_B}\frac {\mathrm dU_B}{\mathrm d\mu_U}=\frac 1{T_A}\frac {\mathrm dU_A}{\mathrm d\mu_U}+\frac 1{T_B}\frac {\mathrm dU_B}{\mathrm d\mu_U} \\
+\frac {\mathrm dS_C}{\mathrm d\mu_V} & =\left(\frac {\partial S_A}{\partial V_A}\right)_{U_A}\frac {\mathrm dV_A}{\mathrm d\mu_V}+\left(\frac {\partial S_B}{\partial V_B}\right)_{U_B}\frac {\mathrm dV_B}{\mathrm d\mu_V}
+\end{aligned}
+$$
+
+The first equation is consistent with @eq-thermodynamic-temperature-definition-entropy-derivative for defining $T$. The second equation provides the condition for mechanical equilibrium as
+
+$$
+\left(\frac {\partial S_A}{\partial V_A}\right)_{U_A}=\left(\frac {\partial S_B}{\partial V_B}\right)_{U_B}
+$$
+
+To remain consistent with the fact that systems with higher $p$ should expand against lower $p$, and the units of pressure as being Force/Length^2^, the thermodynamic definition for pressure is
+
+$$
+\frac pT\equiv\left(\frac {\partial S}{\partial V}\right)_U
+$$ {#eq-thermodynamic-pressure-definition}
+
+::: {.callout-important}
+
+The thermodynamic definition for pressure is only valid for nonreacting simple compressible substances in *thermodynamic equilibrium*. The system must have a well-defined $T$, necessitating thermal equilibrium, and must also have a well-defined $p$, necessitating mechanical equilibrium.
+
+:::
+
+## Gibb's Equation
+
+Using @eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition in our definition of $S=S(U, V)$, then
+
+$$
+\mathrm dS=\left(\frac {\partial S}{\partial U}\right)_V\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_U\,\mathrm dV=\frac {\mathrm dU}T+\frac pT\,\mathrm dV
+$$
+
+Re-arranging gives the classical form of Gibb's equation
+
+$$
+\mathrm dU=T\,\mathrm dS-p\,\mathrm dV
+$$ {#eq-gibbs-equation}
+
+::: {.callout-important}
+
+This form of Gibb's equation makes no assumption regarding the reversibility of any work processes, presence of heat transfer, etc. In fact, the only strict requirements are that the substance is a nonreacting simple incompressible substance and that the system is in *thermodynamic equilibrium*.
+
+:::
+
+## Heat Transfer and Entropy Transfer {#sec-entropy-transfer}
+
+Next, we investigate the relationship between heat transfer and entropy transfer. The relationship can be derived by considering a thermal energy reservoir (TER). This is a control mass whose thermal mass is large enough that heat transfer to or from the TER does not change its temperature. As such, we may assume our system's $T$ is constant and uniform (i.e., our system is always in thermodynamic equilibrium).
+
+From Gibb's equation with fixed volume and the 1^st^ Law, we have
+
+$$
+\mathrm dS=\frac {\mathrm dU}T=\frac {\delta Q}T
+$$ {#eq-entropy-transfer}
+
+## Heat Transfer and Entropy Production
+
+At this point, we've established heat transfer can convect entropy into or out of our system. However, entropy can also be produced. The conditions for entropy production only require that a finite temperature difference occur. To see why, consider an isolated system $C$ comprised of two TERs, $A$ and $B$. Without loss of generality, assume $T_A>T_B$ and $\delta Q$ flows from $A$ into $B$.
+
+From @sec-entropy-transfer, $\mathrm dS_A=-\delta Q/T_A$ and $\mathrm dS_B=\delta Q/T_B$. $S_A$ decreases as heat flows from $A$ to $B$. Conversely, $S_B$ increases as $B$ receives more energy from $A$. We may solve $A$'s entropy transfer equation and substitute into $B$'s to see
+
+$$
+\mathrm dS_B=-\frac {T_A}{T_B}\,\mathrm dS_A
+$$
+
+Since $C$ is isolated, we know $S_C$ must increase on account of $\mathcal P_s>0$ as $C$ tends towards equilibrium. As a result
+
+$$
+\mathrm dS_C=\mathrm dS_A+\mathrm dS_B=\left(1-\frac {T_A}{T_B}\right)\,\mathrm dS_A\geq0
+$$
+
+::: {.callout-important}
+
+Entropy production occurs anytime there is heat transfer across a finite temperature difference. It is important to note that the same entropy leaving a system is not necessarily mean the same amount of entropy is entering an adjacent system. If we consider the example above, $\mathrm dS_B=\delta Q/T_B>\delta Q/T_A=\mathrm dS_A$. This means $B$ receives *more* entropy than that leaving $A$. The reason for this is because entropy was *produced* at the interface between $A$ and $B$, as there is a finite temperature difference where $T_A$ meets $T_B$.
+
+:::
+
+## Second Law for Control Mass
+
+The total change in entropy for a control mass can be derived by considering an isolated system where a control mass receives energy from a TER and work is done to a mechanical energy reservoir (MER). Since the entire system is isolated, it may have entropy production $\delta\mathcal P_s$. The entropy production is equal to the entropy change gained from the TER and that lost to the MER.
+
+$$
+\delta\mathcal P_s=\mathrm dS_{\mathrm{TER}}+\mathrm dS_{\mathrm{MER}}+\mathrm dS_{\mathrm{CM}}
+$$
+
+For a control mass with no microscopic disorder (i.e., no entropy), the only possible way to exchange energy is through reversible work. Since there is no microscopic disorder, conductive heat transfer cannot occur as there is no gradient for energy to transfer along. Substituting in @eq-entropy-transfer gives
+
+$$
+\mathrm dS_{\mathrm{CM}}=\frac {\delta Q}T+\mathcal P_s
+$$ {#eq-total-entropy-change}
+
+The 1^st^ and 2^nd^ terms in the RHS of @eq-total-entropy-change are for entropy transferred and produced inside the control mass.
+
+::: {.callout-important}
+
+Recall that a reversible process is one where $\mathcal P_s=0$. For the case of @eq-total-entropy-change, the system is reversible if $\mathrm dS_{\mathrm{CM}}=\delta Q/T$. If $\mathrm dS_{\mathrm{CM}}>\delta Q/T$, then the process must be irreversible.
+
+:::
+
+# Auxiliary Thermodynamic Functions
+
+So far, the thermodynamic properties we've encountered have been temperature, pressure, specific volume (or density), entropy, internal energy, etc. Some of these properties can be easily measured (e.g., temperature, pressure, density). However, other properties like entropy and internal energy must be directly computed.
+
+There are other thermodynamic properties we may introduce that also have physical interpretations, but can be convenient to use depending on the situation.
+
+1. **Enthalpy**
+
+$$
+H=U+pV\qquad\qquad
+$$

@@ -42,3 +42,12 @@ figcaption, .figure-caption {
     padding-inline: 1.5rem;
   }
 }
+
+/* Adjust display size of inline and block latex equations */
+.math.inline, .MathJax {
+  font-size: 90% !important;
+}
+
+.math.display, .MathJax {
+  font-size: 90% !important;
+}
