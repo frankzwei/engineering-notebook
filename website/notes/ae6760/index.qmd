@@ -2,4 +2,4 @@
 title: "AE 6760: Acoustics I"
 ---
 
-Course taken under Dr. Meaude in Fall 2026.
+Course taken under Dr. Meaud in Fall 2026.

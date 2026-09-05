@@ -92,7 +92,7 @@ Since $Q=0$, there is no entropy convected into or out of the system. Therefore,
 
 2. $\Delta S=0$: This requires $\mathcal P_s=0$. These types of processes may occur in the forward or backwards direction ($F$ and $R$ both satisfy the requirement that entropy cannot be destroyed). As such, these processes are *reversible*.
 
-3. $\Delta S>0$: This requires $\mathcal P_s>0$. These types of processes can only occur in the forward direction as $R_{\mathrm{irreversible}}$ requires entropy destruction. As such, the reverse direction is impossible to occur and the process is *irreversible*.
+3. $\Delta S>0$: This requires $\mathcal P_s>0$. These types of processes can only occur in the forward direction as $R_{\mathrm{imp}}$ requires entropy destruction. As such, the reverse direction is impossible to occur and the process is *irreversible*.
 
 All real processes are irreversible. Some processes may be minimally irreversible (i.e., close to the limit of reversibility). In these cases, the reversible assumption can be nearly correct and helpful as a limit.
 
@@ -249,6 +249,28 @@ $$
 ::: {.callout-important}
 
 Entropy production occurs anytime there is heat transfer across a finite temperature difference. It is important to note that the same entropy leaving a system is not necessarily mean the same amount of entropy is entering an adjacent system. If we consider the example above, $\mathrm dS_B=\delta Q/T_B>\delta Q/T_A=\mathrm dS_A$. This means $B$ receives *more* entropy than that leaving $A$. The reason for this is because entropy was *produced* at the interface between $A$ and $B$, as there is a finite temperature difference where $T_A$ meets $T_B$.
+
+:::
+
+## Second Law for Control Mass
+
+The total change in entropy for a control mass can be derived by considering an isolated system where a control mass receives energy from a TER and work is done to a mechanical energy reservoir (MER). Since the entire system is isolated, it may have entropy production $\delta\mathcal P_s$. The entropy production is equal to the entropy change gained from the TER and that lost to the MER.
+
+$$
+\delta\mathcal P_s=\mathrm dS_{\mathrm{TER}}+\mathrm dS_{\mathrm{MER}}+\mathrm dS_{\mathrm{CM}}
+$$
+
+For a control mass with no microscopic disorder (i.e., no entropy), the only possible way to exchange energy is through reversible work. Since there is no microscopic disorder, conductive heat transfer cannot occur as there is no gradient for energy to transfer along. Substituting in @eq-entropy-transfer gives
+
+$$
+\mathrm dS_{\mathrm{CM}}=\frac {\delta Q}T+\mathcal P_s
+$$ {#eq-total-entropy-change}
+
+The 1^st^ and 2^nd^ terms in the RHS of @eq-total-entropy-change are for entropy transferred and produced inside the control mass.
+
+::: {.callout-important}
+
+Recall that a reversible process is one where $\mathcal P_s=0$. For the case of @eq-total-entropy-change, the system is reversible if $\mathrm dS_{\mathrm{CM}}=\delta Q/T$. If $\mathrm dS_{\mathrm{CM}}>\delta Q/T$, then the process must be irreversible.
 
 :::
 
