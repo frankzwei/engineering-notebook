@@ -138,7 +138,7 @@ where $c=\sqrt{T/\rho_L}$ is the wave speed, $T$ is the tension in the string, a
 
 4. No damping is present in the string.
 
-Assume a general solution of the form
+The general solution is given by D'Alembert's formula
 
 $$
 y(x, t)=y_1(ct-x)+y_2(ct+x)
@@ -151,23 +151,30 @@ where $y_1$ and $y_2$ are two arbitrary functions.
 Take the partial derivative of @eq-wave-equation-general-solution twice.
 
 $$
-\frac {\partial^2y}{\partial x^2}=
+\begin{aligned}
+\frac {\partial^2y}{\partial x^2} & =y_1''(ct-x)+y_2''(ct+x) \\
+\frac {\partial^2y}{\partial t^2} & =c^2y_1''(ct-x)+c^2y_2''(ct+x)
+\end{aligned}
 $$
+
+Factoring out $c^2$ from the RHS of $\partial^2y/\partial t^2$ gives @eq-wave-equation.
 
 :::
 
-::: {.callout-important title="Solving for $y_1$ and $y_2$"}
+In @eq-wave-equation-general-solution, $y_1$ and $y_2$ are unknown functions that depend on the boundary conditions and initial conditions.
 
-In @eq-wave-equation-general-solution, $y_1$ and $y_2$ are unknown. In reality, these functions depend on the boundary conditions if the string is finite and initial conditions. For example, consider a string of infinite length with the following initial conditions.
+::: {.callout-note title="Solving for $y_1$ and $y_2$ Example" collapse=true}
+
+To illustrate the procedure for solving for $y_1$ and $y_2$, consider a string of infinite length subject to the initial conditions below. Note that two are needed since the PDE is 2^nd^ order.
 
 $$
 \begin{aligned}
 y(x, 0) & =y_0(x) \\
-\frac {\partial y}{\partial t}(x, 0) & =0
+\frac {\partial y}{\partial y}(x, 0) & =0
 \end{aligned}
 $$
 
-Substituting into @eq-wave-equation-general-solution gives the following system of equation.
+We may substitute into @eq-wave-equation-general-solution to obtain a system of equation.
 
 $$
 \begin{aligned}
@@ -175,6 +182,23 @@ y_1(-x)+y_2(x) & =y_0(x) \\
 cy_1'(-x)+cy_2'(x) & =0
 \end{aligned}
 $$
+
+The second equation in $y'(\pm x)$ above implies after integrating that $-y_1(-x)+y_2(x)=\alpha$ for an arbitrary constant $\alpha$. Therefore, $y_2(x)=y_1(-x)+\alpha$. Substitute this equation for $y_2$ into the first equation and solve for $y_1(x)$ to arrive at
+
+$$
+\begin{aligned}
+y_1(x) & =\frac 12\left[y_0(-x)+\alpha\right] \\
+y_2(x) & =\frac 12\left[y_0(x)+\alpha\right]
+\end{aligned}
+$$
+
+Since $\alpha$ is any constant, we may assume $\alpha=0$ without loss of generality so the solution becomes
+
+$$
+y(x, t)=\frac 12\left[y_0(x-ct)+y_0(x+ct)\right]
+$$
+
+There is a physical meaning to $y(x, t)$ above. The $y_0(x-ct)$ term represents a wave propagating to the right and $y_0(x+ct)$ represents an identical wave propagating to the left. Each wave propagates at a speed set by the wave speed, $c$.
 
 :::
 
