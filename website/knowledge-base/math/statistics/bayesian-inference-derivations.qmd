@@ -1,0 +1,5 @@
+---
+title: Bayesian Inferencing Derivations
+---
+
+This page is a reference document for all relevant equations used in Bayesian inference.

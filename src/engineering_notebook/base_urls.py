@@ -99,7 +99,7 @@ def replace_placeholders(args: Namespace) -> int:
     :param args: The CLI arguments as a namespace object.
     :return: The number of HTML files updated.
     """
-    config_resource: Traversable = files('engineering_notebook.config').joinpath('base-urls.yaml')
+    config_resource: Traversable = files('engineering_notebook').joinpath('config', 'base-urls.yaml')
     output_path: Path = _validate_path(args.output_dir)
 
     with as_file(config_resource) as resource_path:

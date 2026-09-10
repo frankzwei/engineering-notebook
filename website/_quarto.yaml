@@ -52,6 +52,10 @@ website:
               contents:
                 - text: Chapter 1. Hyperbolic PDEs
                   href: knowledge-base/math/differential-equations/finite-difference-schemes-pdes/1-hyperbolic-pdes.qmd
+        - section: Statistics
+          contents:
+            - text: Bayesian Inference Derivations
+              href: knowledge-base/math/statistics/bayesian-inference-derivations.qmd
     - id: software
       style: floating
       collapse-level: 1
