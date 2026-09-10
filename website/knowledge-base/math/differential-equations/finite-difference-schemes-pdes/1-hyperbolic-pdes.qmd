@@ -22,7 +22,7 @@ Consistency is not the only property required to ensure a scheme converges. If a
 
 ![An example of a stability region]($ASSETS_BASE_URL/knowledge-base/math/differential-equations/finite-difference-schemes-pdes/assets/1-stability-region-example.png){#fig-stability-region-example width=40% .lightbox}
 
-::: {.callout-important title="Stability Definition for PDEs"}
+::: {.callout-important title="Stability Definition for Finite Difference Schemes"}
 
 A finite difference scheme $P_{k, h}v_m^n=0$ for a 1^st^ order equation is stable in its stability region $\Lambda$ if there is an integer $J$ such that for any time $T>0$, there is a constant $C_T$ such that
 
@@ -90,7 +90,7 @@ Therefore, $-1\leq a\lambda\leq0$ is a necessary condition for stability for FTF
 
 Stability for finite difference schemes is closely related to the concept of well-posedness for IVPs for PDEs. For the definition below, we require that these schemes are 1^st^ order differentiation with respect to time.
 
-::: {.callout-important title="Stability Definition for Finite Difference Schemes"}
+::: {.callout-important title="Stability Definition for PDEs"}
 
 The initial value problem for the 1^st^ order PDE $Pu=0$ is well-posed if there exists a constant $C_T$ such that any solution $u(t, x)$ satisfies
 
