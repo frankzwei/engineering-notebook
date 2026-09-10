@@ -18,6 +18,8 @@ website:
         menu:
           - text: Engineering
             href: knowledge-base/engineering/index.qmd
+          - text: Mathematics
+            href: knowledge-base/math/index.qmd
           - text: Software
             href: knowledge-base/software/index.qmd
       - text: Class Notes
@@ -40,6 +42,16 @@ website:
               contents:
                 - text: Chapter 4. The Discretization Process
                   href: knowledge-base/engineering/cfd/finite-volume-method-cfd/4-discretization-process.qmd
+    - id: math
+      style: floating
+      collapse-level: 1
+      contents:
+        - section: Differential Equations
+          contents:
+            - section: Finite Difference Schemes and PDEs
+              contents:
+                - text: Chapter 1. Hyperbolic PDEs
+                  href: knowledge-base/math/differential-equations/finite-difference-schemes-pdes/1-hyperbolic-pdes.qmd
     - id: software
       style: floating
       collapse-level: 1
