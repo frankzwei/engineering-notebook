@@ -111,3 +111,37 @@ A finite difference scheme for a PDE whose initial value problem is well-posed i
 :::
 
 The equivalence theorem ties together the concept of consistency and stability for determining whether a finite difference scheme converges. Previously, we focused on the idea that consistency and stability imply convergence. Another consequence of the theorem is the reverse direction; that is, all unstable or inconsistent schemes will never be convergent.
+
+# The CFL Condition
+
+A necessary condition for stability for many *explicit* schemes that follow the form of the wave equation is $|a\lambda|\leq1$ where $\lambda=\frac kh$. This condition is called the Courant-Friedrichs-Lewy (CFL) condition.
+
+::: {.callout-important title="The CFL Condition"}
+
+For an explicit scheme for an equation of the form
+
+$$
+v_m^{n+1}=\alpha v_{m-1}^n+\beta v_m^n+\gamma v_{m+1}^n
+$$ {#eq-cfl-condition-general-equation}
+
+where $\lambda=\frac kh$ is held constant, a necessary condition for stability is the requirement that $|a\lambda|\leq1$. For the case of systems of equations, where $\textbf v$ is a vector and $\boldsymbol{\alpha}$, $\boldsymbol{\beta}$, and $\boldsymbol{\gamma}$ are matrices, the CFL condition becomes $|a_i\lambda|\leq1$ for all eigenvalues $a_i$ of the matrix $\textbf A$.
+
+::: {.callout-note title=Proof collapse=true}
+
+We first consider the case of a single equation and then extend it to a system. If we assume that $|a\lambda|>1$, then if we consider the point $(t, x)=(1, 0)$, we see that the solution to the PDE depends on the values of $u_0(x)$ at $x=-a$ by following the characteristic curve connecting $(t, x)=(1, 0)$ to the $x$ axis.
+
+![The 2D grid for an unstable scheme]($ASSETS_BASE_URL/knowledge-base/math/differential-equations/finite-difference-schemes-pdes/assets/1-cfl-condition-proof.png){#fig-cfl-condition-proof width=40% .lightbox}
+
+:::
+
+A similar argument can be used to show that there is no explicit, consistent scheme for the hyperbolic PDE that is stable for *all* values of $\lambda$. In other words, there will always exist a $\lambda$ where the scheme is unstable as $(h, k)\to(0, 0)$.
+
+:::
+
+Conceptually, the CFL condition relates the numerical speed of propagation with the speed of propagation of the PDE. We may rewrite @eq-cfl-condition-general-equation as
+
+$$
+\frac 1{\lambda}\leq|a|
+$$
+
+where $\frac 1{\lambda}=\frac hk$ is the numerical speed of propagation for the scheme. This speed must always exceed the PDE's speed of propagation in order for the scheme to converge. If the numerical scheme cannot propagate the solution as fast as the PDE's solution, then the solution of the scheme cannot possibly converge to the solution of the PDE.
