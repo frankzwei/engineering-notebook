@@ -1,0 +1,11 @@
+---
+title: Generating a Physics-Based Model of an Electrically-Heated Rijke Tube with Bayesian Inference
+format:
+  html:
+    toc: true
+    toc-location: right
+    other-links:
+      - text: Juniper and Yoko (2022)
+        href: "$FILES_BASE_URL/knowledge-base/engineering/modeling/files/2022_Juniper-Yoko_Modeling-Rijke-Tube-with-Bayesian-Inference_JSV-535.pdf"
+        icon: file-pdf
+---
