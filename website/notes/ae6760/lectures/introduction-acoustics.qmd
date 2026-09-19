@@ -1,5 +1,5 @@
 ---
-title: Introduction to Acoustics
+title: "Part A: Introduction to Acoustics"
 ---
 
 # Part II. Review of Driven-Damped Oscillations

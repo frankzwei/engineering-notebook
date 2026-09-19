@@ -1,5 +1,5 @@
 ---
-title: The Acoustic Wave Equation
+title: "Part B: The Acoustic Wave Equation"
 ---
 
 # Derivation of the Wave Equation
@@ -27,3 +27,9 @@ The $\nabla p$ term is on the acoustic pressure, defined as $\frac {\partial p}{
 $$
 \frac {\partial\rho}{\partial t}+\rho_0\nabla\cdot\textbf u=0
 $$
+
+# Harmonic Solutions to the Classical Wave Equation
+
+## Harmonic Spherical Waves
+
+The other type of wave that can be created is the spherical wave. Unlike a plane wave, spherical waves propagate in all directions simultaneously from a point source. With these wave types, the surface of constant pressure becomes a sphere in 3D or circle in 2D centered on the source.
