@@ -124,7 +124,7 @@ $$
 \frac {\mathrm dS_C}{\mathrm d\mu}=\left(\frac {\partial S_A}{\partial U_A}\right)_{V_A}\frac {\mathrm dU_A}{\mathrm d\mu}+\left(\frac {\partial S_B}{\partial U_B}\right)_{V_B}\frac {\mathrm dU_B}{\mathrm d\mu}
 $$ {#eq-thermodynamic-temperature-definition-entropy-derivative}
 
-From the 1st and 2nd laws for an isolated system at equilibrium, we also have
+From the 1^st^ and 2^nd^ Laws for an isolated system at equilibrium, we also have
 
 $$
 \begin{aligned}
@@ -142,7 +142,7 @@ $$
 In other words, two systems are in thermal equilibrium when $\left(\frac {\partial S}{\partial U}\right)_V$ is the same. However, by definition, we also know that two systems are in thermal equilibrium when $T$ is the same. Therefore, we may use the derivative above to define $T$ as
 
 $$
-T\equiv\left(\frac {\partial U}{\partial S}\right)_V
+\boxed{T\equiv\left(\frac {\partial U}{\partial S}\right)_V}
 $$ {#eq-thermodynamic-temperature-definition}
 
 ::: {.callout-important}
@@ -163,7 +163,7 @@ when $T_A>T_B$, $\mathrm dU_A<0$ as expected.
 
 :::
 
-## Thermodymamic Definition of Pressure
+## Thermodymamic Definition of Pressure {#sec-thermo-def-pressure}
 
 In a similar vein, pressure also has a thermodynamic definition. Instead of a rigid divider like in @sec-thermo-def-temperature, we now use a flexible one that allows $p_A$ and $p_B$ to equalize. Though $A$ and $B$ are still closed, they may now exchange both $Q$ and $p\,\mathrm dV$ work.
 
@@ -191,7 +191,7 @@ $$
 To remain consistent with the fact that systems with higher $p$ should expand against lower $p$, and the units of pressure as being Force/Length^2^, the thermodynamic definition for pressure is
 
 $$
-\frac pT\equiv\left(\frac {\partial S}{\partial V}\right)_U
+\boxed{\frac pT\equiv\left(\frac {\partial S}{\partial V}\right)_U}
 $$ {#eq-thermodynamic-pressure-definition}
 
 ::: {.callout-important}
@@ -211,7 +211,7 @@ $$
 Re-arranging gives the classical form of Gibb's equation
 
 $$
-\mathrm dU=T\,\mathrm dS-p\,\mathrm dV
+\boxed{\mathrm dU=T\,\mathrm dS-p\,\mathrm dV}
 $$ {#eq-gibbs-equation}
 
 ::: {.callout-important}
@@ -234,7 +234,7 @@ $$ {#eq-entropy-transfer}
 
 At this point, we've established heat transfer can convect entropy into or out of our system. However, entropy can also be produced. The conditions for entropy production only require that a finite temperature difference occur. To see why, consider an isolated system $C$ comprised of two TERs, $A$ and $B$. Without loss of generality, assume $T_A>T_B$ and $\delta Q$ flows from $A$ into $B$.
 
-From @sec-entropy-transfer, $\mathrm dS_A=-\delta Q/T_A$ and $\mathrm dS_B=\delta Q/T_B$. $S_A$ decreases as heat flows from $A$ to $B$. Conversely, $S_B$ increases as $B$ receives more energy from $A$. We may solve $A$'s entropy transfer equation and substitute into $B$'s to see
+From @sec-entropy-transfer, $\mathrm dS_A=-\frac {\delta Q}{T_A}$ and $\mathrm dS_B=\frac {\delta Q}{T_B}$. $S_A$ decreases as heat flows from $A$ to $B$. Conversely, $S_B$ increases as $B$ receives more energy from $A$. We may solve $A$'s entropy transfer equation and substitute into $B$'s to see
 
 $$
 \mathrm dS_B=-\frac {T_A}{T_B}\,\mathrm dS_A
@@ -248,7 +248,9 @@ $$
 
 ::: {.callout-important}
 
-Entropy production occurs anytime there is heat transfer across a finite temperature difference. It is important to note that the same entropy leaving a system is not necessarily mean the same amount of entropy is entering an adjacent system. If we consider the example above, $\mathrm dS_B=\delta Q/T_B>\delta Q/T_A=\mathrm dS_A$. This means $B$ receives *more* entropy than that leaving $A$. The reason for this is because entropy was *produced* at the interface between $A$ and $B$, as there is a finite temperature difference where $T_A$ meets $T_B$.
+Entropy production occurs anytime there is heat transfer across a finite temperature difference. It is probably important to note that if a given amount of entropy leaves a system, this does not necessarily mean the same amount of entropy enters the surroundings. In simpler terms, if our system loses $400$ J/K of entropy, this does not necessarily mean the surroundings then gain $400$ J/K of entropy.
+
+The reason for this is due to entropy production. If we consider the example above, then $\mathrm dS_B=\frac {\delta Q}{T_B}>\frac {\delta Q}{T_A}=\mathrm dS_A$. This means $B$ receives *more* entropy than that leaving $A$ since $T_B<T_A$. Since there was a finite temperature difference at the interface between $A$ and $B$, entropy was produced!
 
 :::
 
@@ -276,12 +278,141 @@ Recall that a reversible process is one where $\mathcal P_s=0$. For the case of 
 
 # Auxiliary Thermodynamic Functions
 
-So far, the thermodynamic properties we've encountered have been temperature, pressure, specific volume (or density), entropy, internal energy, etc. Some of these properties can be easily measured (e.g., temperature, pressure, density). However, other properties like entropy and internal energy must be directly computed.
+So far, we've been using the same set of thermodynamic properties for developing different relations. Certain quantities, like temperature, pressure, etc. can be easily measured. Other properties, however, like entropy and internal energy must be computed (entropy meters do not exist).
 
-There are other thermodynamic properties we may introduce that also have physical interpretations, but can be convenient to use depending on the situation.
+We may define any arbitrary thermodynamic property we choose, provided the units are consistent. In some cases, there are other properties that will be more convenient, depending on the situation, than the fundamental ones we've been using. Like internal energy, temperature, etc. these also have their own physical interpretations. Three very commonly used auxiliary properties are defined below; their extensive and intensive definitions are given respectively.
 
-1. **Enthalpy**
+1. Enthalpy
 
 $$
-H=U+pV\qquad\qquad
+\begin{aligned}
+H & =U+pV \\
+h & =u+pv
+\end{aligned}
+$$ {#eq-enthalpy-definition}
+
+2. Gibbs Free Energy
+
 $$
+\begin{aligned}
+G & =H-TS \\
+g & =h-Ts
+\end{aligned}
+$$ {#eq-gibbs-free-energy-definition}
+
+3. Helmholtz Free Energy
+
+$$
+\begin{aligned}
+F & =U-TS \\
+f & =u-Ts
+\end{aligned}
+$$ {#eq-helmholtz-free-energy-definition}
+
+## Properties of Enthalpy {#sec-properties-of-enthalpy}
+
+To illustrate the advantage of enthalpy, consider a simple compressible substance that experiences a state change from state $1$ to state $2$. From its definition above, the enthalpy change $\Delta H$ is
+
+$$
+\Delta H_{12}=H_2-H_1=U_2-U_1+p_2V_2-p_1V_1=\Delta U_{12}+p_2V_2-p_1V_1
+$$
+
+Now, let's consider three different variations of a closed system (i.e., control mass). We consider the case of constant pressure (isobaric), constant volume (isochoric), and an isolated system (rigid and adiabatic). Recall that the substance is simple compressible, so the only significant reversible work mode is $p\,\mathrm dV$ work. The 1^st^ Law may be written as
+
+$$
+\begin{aligned}
+\Delta U_{12} & =Q+W \\
+\Delta H_{12} & =Q+W+p_2V_2-p_1V_1
+\end{aligned}
+$$
+
+- **Isobaric Process:** Assuming $p_1=p_2\equiv p$, the 1^st^ Law simplifies down to $\Delta H_{12}=Q$. In other words, the $\Delta H$ of the system is equal to the heat transfer exchanged during the process.
+
+- **Isochoric Process:** If no volume change occurs, then $\mathrm dV=0$ and the 1^st^ Law reduces down to $\Delta U_{12}=Q$. Here, internal energy change is a more useful property to use than enthalpy.
+
+- **Isolated System:** Since the system is isolated, energy and mass exchange are not permitted. From the 1^st^ Law, that means $\Delta U_{12}=0$ so $Q=W=0$. Furthermore, because no work is permitted, the system's volume must remain constant per $\delta W=-p\,\mathrm dV$. Therefore, the 1^st^ Law becomes $\Delta H_{12}=V\Delta p_{12}$.
+
+The three scenarios illustrate how $H$ gives us an easy way to back out heat transfer for constant pressure systems by the 1^st^ Law. If instead, the process is constant volume, then $U$ should be used instead. And lastly, for the case of a rigid and adiabatic system, enthalpy is not "conserved" as its change depends on the pressure change across the processes.
+
+## General Conditions for Chemical Equilibrium
+
+The remaining two auxiliary properties, $G$ and $F$, are more useful for describing the point where a mixture reaches chemical equilibrium. To set the context, imagine we have a mixture enclosed by our system boundary. Depending on the composition of each species, this mixture may or may not be in chemical equilibrium. In some cases, we may be interested at the chemical equilibrium point, where the relative compositions of each species stabilizes within a certain time frame.
+
+To illustrate the usefulness of $G$ and $F$, we consider the case where there is no work except $p\,\mathrm dV$ work. Writing the 1^st^ and 2^nd^ Laws out, we have
+
+$$
+\begin{aligned}
+\mathrm dU & =\delta Q+\delta W=\delta Q-p\,\mathrm dV \\
+\mathrm dS & =\frac {\delta Q}T+\delta\mathcal P_s
+\end{aligned}
+$$
+
+Solving for $\delta Q$ in the 1^st^ Law and substituting into the 2^nd^ Law gives an equation similar in form to @eq-gibbs-equation. We've made no assumptions regarding the reversibility of the process.
+
+$$
+T\,\mathrm dS-\mathrm dU-p\,\mathrm dV=\delta\mathcal P_s\geq0
+$$
+
+Once again, we consider the three scenarios for an isolated system, a system undergoing a constant $T$ and $V$ process, and a system undergoing a constant $T$ and $p$ process.
+
+- **Isolated System:** Since $\mathrm dU=\mathrm dV=0$ (see @sec-properties-of-enthalpy for why), the equation above reduces down to $\mathrm dS\geq0$. In other words, as the mixture tends towards chemical equilibrium, the entropy continues increasing until it is *maximized* at the equilibrium point.
+
+- **Constant $T$ and $V$ System:** Since $\mathrm dT=\mathrm dV=0$, we can show that
+
+  $$
+  T\,\mathrm dS-\mathrm dU-p\,\mathrm dV=\mathrm d(U-TS)-S\,\mathrm dT-p\,\mathrm dV=-\mathrm dF\geq 0
+  $$
+
+   Therefore, $\mathrm dF\leq0$ and the Helmholtz free energy is *minimized* at the equilibrium point. This minimization, however, is only appropriate for systems at constant temperature and volume.
+
+- **Constant $T$ and $p$ System:** Since $\mathrm dT=\mathrm dp=0$, we can show similarly that
+
+  $$
+  T\,\mathrm dS-\mathrm dU-p\,\mathrm dV=T\,\mathrm dS-\mathrm d(U+pV)+V\,\mathrm dp=\mathrm d(TS-H)-S\,\mathrm dT+V\, \mathrm dp=-\mathrm dG\geq0
+  $$
+
+  Therefore, $\mathrm dG\leq0$ and Gibbs free energy is also *minimized* at the equilibrium point.
+
+::: {.callout-important title="Characterizing the Chemical Equilibrium Point of a Mixture"}
+
+To determine when a mixture is in chemical equilibrium, we may look at the free energy available depending on the system and what thermodynamic properties are being kept constant. For an **isolated system** with constant $U$ and $V$, the chemical equilibrium point occurs where entropy is maximized. This matches the process used when deriving @eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition in @sec-thermo-def-temperature and @sec-thermo-def-pressure.
+
+$$
+\mathrm dS\geq0
+$$
+
+Meanwhile, for an **isothermal and isochoric system** (constant $T$ and $V$), chemical equilibrium can be determined by finding the composition that minimizes the Helmholtz free energy.
+
+$$
+\mathrm dF\leq0
+$$
+
+And lastly, for an **isothermal and isobaric system** (constant $T$ and $p$), the composition that minimizes the Gibbs free energy determines the chemical equilibrium point.
+
+$$
+\mathrm dG\leq0
+$$
+
+:::
+
+The scenarios above each made assumptions regarding the process that occurred to reach the chemical equilibrium point. For Helmholtz energy, for instance, we restricted $T$ and $V$ to be constant in the process. This is akin to leaving this mixture in a rigid and isothermal box, while letting its composition vary until the equilibrium point is reached.
+
+These restrictions, if they must be strictly enforced, render the relations above useless. For most engineering applications, especially in aerospace, constant $T$ and $V$ or constant $T$ and $p$ never occur. In fact, constant temperature and pressure in a rocket engine typically indicates poor operating efficiency! Fortunately for us, the actual process doesn't have to take place at these restricted conditions to be able to use these relations. For instance, we may still apply the concept of minimizing Gibbs free energy, $G$, in a mixture, if the mixture's $T$ and $p$ are known! This is what makes Gibbs free energy particularly useful, as it is very easy for us to measure a fluid's temperature and pressure. Once the fluid state is known, the problem is simply an optimization problem to determine the point of $G_{\mathrm{min}}$!
+
+## Chemical Potential and Mixture Equilibria
+
+The substances we've considered up until this point have been pure substances (single species). We've defined our thermodynamic properties as a function of two other independent thermodynamic properties, e.g., $S=S(U, V)$. Now, we expand our consideration to include mixtures of $k$ simple compressible substances. For mixtures, the composition must also be known to determine whether two thermodynamic states are identical. With entropy, for example, we must now have
+
+$$
+S=S(U, V, n_1, n_2, \ldots, n_k)
+$$
+
+Using the thermodynamic definitions of temperature and pressure (@eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition) on the total derivative of $S$ gives
+
+$$
+\mathrm dS=\left(\frac {\partial S}{\partial U}\right)_{V,n_i}\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_{U,n_i}\,\mathrm dV+\sum\limits_{j=1}^k\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{j\neq i}}\,\mathrm dn_j=\frac {\mathrm dU}T+\frac pT\,\mathrm dV-\sum\limits_{j=1}^k\frac {\mu_i}T\,\mathrm dn_j
+$$
+
+We assume thermal and mechanical equilibrium to have a well-defined $T$ and $p$ in the mixture. The last partial term, $\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{j\neq i}}$ is defined as the chemical potential $\mu_i$ with an appropriate temperature scale. Mathematically, the chemical potential is a measure of how much the entropy changes as the number of moles of species $i$ is varied while holding $U$, $V$, and all other moles of species constant.
+
+With $T$ and $p$, we declared that two systems in thermal and mechanical (no external forces) equilibrium have the same $T$ and $p$. Therefore, it stands to reason that two systems in chemical and phase equilibrium will have the same $\mu$. For example, when freezing liquid water at $0^{\circ}$C, the chemical potentials between the two phases (ice and water) will be identical: $\mu_{\mathrm{liq}}=\mu_{\mathrm{ice}}$.
