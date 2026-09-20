@@ -232,15 +232,15 @@ $$ {#eq-entropy-transfer}
 
 ## Heat Transfer and Entropy Production
 
-At this point, we've established heat transfer can convect entropy into or out of our system. However, entropy can also be produced. The conditions for entropy production only require that a finite temperature difference occur. To see why, consider an isolated system $C$ comprised of two TERs, $A$ and $B$. Without loss of generality, assume $T_A>T_B$ and $\delta Q$ flows from $A$ into $B$.
+At this point, we've established heat transfer can transfer entropy into or out of our system. However, entropy can also be produced. The conditions for entropy production only require a finite temperature difference to be present. To see why, we may consider an isolated system $C$ that is comprised of two TERs, $A$ and $B$. Without loss of generality, assume $T_A>T_B$ and $\delta Q$ flows from $A$ into $B$.
 
-From @sec-entropy-transfer, $\mathrm dS_A=-\frac {\delta Q}{T_A}$ and $\mathrm dS_B=\frac {\delta Q}{T_B}$. $S_A$ decreases as heat flows from $A$ to $B$. Conversely, $S_B$ increases as $B$ receives more energy from $A$. We may solve $A$'s entropy transfer equation and substitute into $B$'s to see
+From @sec-entropy-transfer, $\mathrm dS_A=-\frac {\delta Q}{T_A}$ and $\mathrm dS_B=\frac {\delta Q}{T_B}$ so $S_A$ must decrease as thermal energy flows from $A$ to $B$. Conversely, $S_B$ must increase since it receives energy from system $A$. To determine the entropy change for system $B$, we solve for $\delta Q$ from system $A$'s entropy transfer and substitute into system $B$'s to get
 
 $$
 \mathrm dS_B=-\frac {T_A}{T_B}\,\mathrm dS_A
 $$
 
-Since $C$ is isolated, we know $S_C$ must increase on account of $\mathcal P_s>0$ as $C$ tends towards equilibrium. As a result
+Now, recall that system $C$ is isolated. This means $S_C$ must be constantly increasing until it reaches a maximum value at the thermal equilibrium point. Moreover, we can calculate the entropy contained in $C$ by summing up the entropies contained in $A$ and $B$! Doing so and taking the total derivative gives
 
 $$
 \mathrm dS_C=\mathrm dS_A+\mathrm dS_B=\left(1-\frac {T_A}{T_B}\right)\,\mathrm dS_A\geq0
@@ -407,12 +407,20 @@ $$
 S=S(U, V, n_1, n_2, \ldots, n_k)
 $$
 
-Using the thermodynamic definitions of temperature and pressure (@eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition) on the total derivative of $S$ gives
+Using the thermodynamic definitions of temperature and pressure (@eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition) on the total derivative of $S$, and assuming the system is in thermal and mechanical equilibrium, gives
 
 $$
-\mathrm dS=\left(\frac {\partial S}{\partial U}\right)_{V,n_i}\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_{U,n_i}\,\mathrm dV+\sum\limits_{j=1}^k\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{j\neq i}}\,\mathrm dn_j=\frac {\mathrm dU}T+\frac pT\,\mathrm dV-\sum\limits_{j=1}^k\frac {\mu_i}T\,\mathrm dn_j
+\mathrm dS=\left(\frac {\partial S}{\partial U}\right)_{V,n_i}\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_{U,n_i}\,\mathrm dV+\sum\limits_{j=1}^k\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{i\neq j}}\,\mathrm dn_j=\frac {\mathrm dU}T+\frac pT\,\mathrm dV-\frac 1T\sum\limits_{j=1}^k\mu_j\,\mathrm dn_j
 $$
 
-We assume thermal and mechanical equilibrium to have a well-defined $T$ and $p$ in the mixture. The last partial term, $\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{j\neq i}}$ is defined as the chemical potential $\mu_i$ with an appropriate temperature scale. Mathematically, the chemical potential is a measure of how much the entropy changes as the number of moles of species $i$ is varied while holding $U$, $V$, and all other moles of species constant.
+The index variable $1\leq i\leq k$ accounts for all constituents inside the mixture. The notation $n_i$ means the set of moles of species $i$ where $1\leq i\leq k$. On its own, $n_i$ refers to the moles of each species, for all species in the mixture. And when $n_{i\neq j}$ like in the sum, we effectively exclude the number of moles of species $j$ from the set.
 
-With $T$ and $p$, we declared that two systems in thermal and mechanical (no external forces) equilibrium have the same $T$ and $p$. Therefore, it stands to reason that two systems in chemical and phase equilibrium will have the same $\mu$. For example, when freezing liquid water at $0^{\circ}$C, the chemical potentials between the two phases (ice and water) will be identical: $\mu_{\mathrm{liq}}=\mu_{\mathrm{ice}}$.
+The last partial derivative $T\left(\partial S/\partial n_j\right)_{U,V,n_{i\neq j}}$ is defined as the *chemical potential* $\mu_j$. The mathematical definition effectively accounts for the entropy change when the number of moles of species $j$ is varied with everything else constant. Note that this property is a molar intensive property since it's the extensive entropy change, $\partial S$, normalized by the number of moles $n_j$. Its units, therefore, are Energy/Moles.
+
+With thermal and mechanical equilibriums, we said that two systems have the same $T$ and $p$ respectively assuming no external and body forces act on the system. Therefore, it stands to reason that two systems in chemical and phase equilibrium must have the same $\mu$. For example, when freezing water at $0^{\circ}$C, the chemical potentials between the two phases (ice and water) will be identical: $\mu_{\mathrm{liq}}=\mu_{\mathrm{ice}}$. Similarly, for a chemical reaction like
+
+$$
+\mathrm N_2+\mathrm O_2\rightleftharpoons2\mathrm{NO}
+$$
+
+the total chemical potential of the reactants' side should be equal to that of the product's side at chemical equilibrium. The total chemical potential of a species is given by the product of the species' $\mu$ and the number of moles of that species. Therefore, $\mu_{\mathrm N_2}+\mu_{\mathrm O_2}=2\mu_{\mathrm{NO}}$ in the equation above.
