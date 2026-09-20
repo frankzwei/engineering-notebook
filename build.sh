@@ -2,7 +2,7 @@
 set -euo pipefail
 
 quarto_version="1.10.18"
-uv_version="0.12.7"
+uv_version="0.12.12"
 
 build_dir=$(realpath -m build)
 tools_dir="$build_dir/tools"
@@ -11,15 +11,12 @@ uv_dir="$tools_dir/uv"
 
 # Remove stale files and folders
 if [ -d "$tools_dir" ]; then
-    echo "Removing stale build directory files: $tools_dir"
+    printf "Removing stale build directory files: $tools_dir"
     rm -rf "$tools_dir"
 fi
 
 mkdir -p "$quarto_dir" "$uv_dir"
-
-echo
-echo "Installing necessary website dependencies, this may take a minute..."
-echo
+printf "\nInstalling necessary website dependencies, this may take a minute...\n"
 
 # Install uv, adjust installation directory and use the unmanaged install environment variable for CI/CD
 curl -LsSf "https://astral.sh/uv/${uv_version}/install.sh" \
