@@ -407,12 +407,20 @@ $$
 S=S(U, V, n_1, n_2, \ldots, n_k)
 $$
 
-Using the thermodynamic definitions of temperature and pressure (@eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition) on the total derivative of $S$ gives
+Using the thermodynamic definitions of temperature and pressure (@eq-thermodynamic-temperature-definition and @eq-thermodynamic-pressure-definition) on the total derivative of $S$, and assuming the system is in thermal and mechanical equilibrium, gives
 
 $$
-\mathrm dS=\left(\frac {\partial S}{\partial U}\right)_{V,n_i}\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_{U,n_i}\,\mathrm dV+\sum\limits_{j=1}^k\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{j\neq i}}\,\mathrm dn_j=\frac {\mathrm dU}T+\frac pT\,\mathrm dV-\sum\limits_{j=1}^k\frac {\mu_i}T\,\mathrm dn_j
+\mathrm dS=\left(\frac {\partial S}{\partial U}\right)_{V,n_i}\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_{U,n_i}\,\mathrm dV+\sum\limits_{j=1}^k\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{i\neq j}}\,\mathrm dn_j=\frac {\mathrm dU}T+\frac pT\,\mathrm dV-\frac 1T\sum\limits_{j=1}^k\mu_j\,\mathrm dn_j
 $$
 
-We assume thermal and mechanical equilibrium to have a well-defined $T$ and $p$ in the mixture. The last partial term, $\left(\frac {\partial S}{\partial n_j}\right)_{U,V,n_{j\neq i}}$ is defined as the chemical potential $\mu_i$ with an appropriate temperature scale. Mathematically, the chemical potential is a measure of how much the entropy changes as the number of moles of species $i$ is varied while holding $U$, $V$, and all other moles of species constant.
+The index variable $1\leq i\leq k$ accounts for all constituents inside the mixture. The notation $n_i$ means the set of moles of species $i$ where $1\leq i\leq k$. On its own, $n_i$ refers to the moles of each species, for all species in the mixture. And when $n_{i\neq j}$ like in the sum, we effectively exclude the number of moles of species $j$ from the set.
 
-With $T$ and $p$, we declared that two systems in thermal and mechanical (no external forces) equilibrium have the same $T$ and $p$. Therefore, it stands to reason that two systems in chemical and phase equilibrium will have the same $\mu$. For example, when freezing liquid water at $0^{\circ}$C, the chemical potentials between the two phases (ice and water) will be identical: $\mu_{\mathrm{liq}}=\mu_{\mathrm{ice}}$.
+The last partial derivative $T\left(\partial S/\partial n_j\right)_{U,V,n_{i\neq j}}$ is defined as the *chemical potential* $\mu_j$. The mathematical definition effectively accounts for the entropy change when the number of moles of species $j$ is varied with everything else constant. Note that this property is a molar intensive property since it's the extensive entropy change, $\partial S$, normalized by the number of moles $n_j$. Its units, therefore, are Energy/Moles.
+
+With thermal and mechanical equilibriums, we said that two systems have the same $T$ and $p$ respectively assuming no external and body forces act on the system. Therefore, it stands to reason that two systems in chemical and phase equilibrium must have the same $\mu$. For example, when freezing water at $0^{\circ}$C, the chemical potentials between the two phases (ice and water) will be identical: $\mu_{\mathrm{liq}}=\mu_{\mathrm{ice}}$. Similarly, for a chemical reaction like
+
+$$
+\mathrm N_2+\mathrm O_2\rightleftharpoons2\mathrm{NO}
+$$
+
+the total chemical potential of the reactants' side should be equal to that of the product's side at chemical equilibrium. The total chemical potential of a species is given by the product of the species' $\mu$ and the number of moles of that species. Therefore, $\mu_{\mathrm N_2}+\mu_{\mathrm O_2}=2\mu_{\mathrm{NO}}$ in the equation above.
