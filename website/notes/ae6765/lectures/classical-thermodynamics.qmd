@@ -232,15 +232,15 @@ $$ {#eq-entropy-transfer}
 
 ## Heat Transfer and Entropy Production
 
-At this point, we've established heat transfer can convect entropy into or out of our system. However, entropy can also be produced. The conditions for entropy production only require that a finite temperature difference occur. To see why, consider an isolated system $C$ comprised of two TERs, $A$ and $B$. Without loss of generality, assume $T_A>T_B$ and $\delta Q$ flows from $A$ into $B$.
+At this point, we've established heat transfer can transfer entropy into or out of our system. However, entropy can also be produced. The conditions for entropy production only require a finite temperature difference to be present. To see why, we may consider an isolated system $C$ that is comprised of two TERs, $A$ and $B$. Without loss of generality, assume $T_A>T_B$ and $\delta Q$ flows from $A$ into $B$.
 
-From @sec-entropy-transfer, $\mathrm dS_A=-\frac {\delta Q}{T_A}$ and $\mathrm dS_B=\frac {\delta Q}{T_B}$. $S_A$ decreases as heat flows from $A$ to $B$. Conversely, $S_B$ increases as $B$ receives more energy from $A$. We may solve $A$'s entropy transfer equation and substitute into $B$'s to see
+From @sec-entropy-transfer, $\mathrm dS_A=-\frac {\delta Q}{T_A}$ and $\mathrm dS_B=\frac {\delta Q}{T_B}$ so $S_A$ must decrease as thermal energy flows from $A$ to $B$. Conversely, $S_B$ must increase since it receives energy from system $A$. To determine the entropy change for system $B$, we solve for $\delta Q$ from system $A$'s entropy transfer and substitute into system $B$'s to get
 
 $$
 \mathrm dS_B=-\frac {T_A}{T_B}\,\mathrm dS_A
 $$
 
-Since $C$ is isolated, we know $S_C$ must increase on account of $\mathcal P_s>0$ as $C$ tends towards equilibrium. As a result
+Now, recall that system $C$ is isolated. This means $S_C$ must be constantly increasing until it reaches a maximum value at the thermal equilibrium point. Moreover, we can calculate the entropy contained in $C$ by summing up the entropies contained in $A$ and $B$! Doing so and taking the total derivative gives
 
 $$
 \mathrm dS_C=\mathrm dS_A+\mathrm dS_B=\left(1-\frac {T_A}{T_B}\right)\,\mathrm dS_A\geq0
