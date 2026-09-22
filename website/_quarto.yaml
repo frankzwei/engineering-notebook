@@ -34,6 +34,12 @@ website:
       style: floating
       collapse-level: 1
       contents:
+        - section: Acoustics
+          contents:
+            - section: Fundamentals of Acoustics
+              contents:
+                - text: Chapter 5. Acoustic Wave Equation and Solutions
+                  href: knowledge-base/engineering/acoustics/fundamentals-of-acoustics/5-acoustic-wave-equation-solutions.qmd
         - section: CFD
           contents:
             - text: Introduction to AUSM Scheme
