@@ -10,6 +10,7 @@ format:
         icon: file-pdf
 ---
 
+
 # Derivation {#sec-derivation}
 
 Consider the two dimensional system of Euler equations for an ideal gas.
@@ -18,7 +19,7 @@ $$
 \frac {\partial\textbf U}{\partial t}+\frac {\partial\textbf E}{\partial x}+\frac {\partial\textbf F}{\partial y}=0
 $$ {#eq-euler-equation}
 
-The conservation vector, $\textbf U$, and inviscid flux vectors, $\textbf E$ and $\textbf F$, are defined as
+The conservative vector, $\textbf U$, and inviscid flux vectors, $\textbf E$ and $\textbf F$, are defined as
 
 $$
 \begin{aligned}
@@ -33,3 +34,109 @@ $$
 \end{pmatrix}
 \end{aligned}
 $$
+
+The specific total energy, $e_t$, is the sum of the specific internal energy, $e$, and the kinetic energy, $\frac 12(u^2+v^2)$. The specific stagnation enthalpy, $h_t$ is related to $e_t$ through $\rho h_t=\rho e_t-p$. The first step in the derivation is to realize that the inviscid flux vector may be decomposed as the sum of a convective and pressure component.
+
+$$
+\textbf E=\begin{pmatrix}
+\rho \\\rho u \\\rho v \\\rho h_t
+\end{pmatrix}u+\begin{pmatrix}
+0 \\ p \\ 0 \\ 0
+\end{pmatrix}=\textbf E^{(c)}+\begin{pmatrix}
+0 \\ p \\ 0 \\ 0
+\end{pmatrix}
+$$
+
+The convective term $\textbf E^{(c)}$ can be viewed as passive scalar quantities that are convected away by the velocity $u$ at the cell interface. The pressure flux contribution is governed by the acoustic wave speeds as pressure information propagates through a fluid at the speed of sound. If we denote an arbitrary interface with a subscript of $\frac 12$, and denote the left and right properties as $\mathrm L$ and $\mathrm R$, then both terms may be expressed in terms of a left and right average quantity. The convective term can be expressed as
+
+$$
+\textbf E_{\frac 12}^{(c)}=u_{\frac 12}\begin{pmatrix}
+\rho \\\rho u \\v \\\rho h_t
+\end{pmatrix}_{\mathrm L/\mathrm R}=M_{\frac 12}\begin{pmatrix}
+\rho a \\\rho ua \\\rho va \\\rho h_ta
+\end{pmatrix}_{\mathrm L/\mathrm R}
+$$ {#eq-convective-term-interface-expression}
+
+where the $\mathrm L/\mathrm R$ notation is defined as
+
+$$
+(\cdot)_{\mathrm L/\mathrm R}=\begin{cases}
+(\cdot)_{\mathrm L} & \qquad M_{\frac 12}\geq0 \\
+(\cdot)_{\mathrm R} & \qquad M_{\frac 12}<0
+\end{cases}
+$$ {#eq-left-right-notation-definition}
+
+The crux here is coming up with a suitable scheme to calculate the Mach number at the cell interface, $M_{\frac 12}$. From this point on, $M_{\frac 12}$ will be referred to as the advection velocity. Liou and Steffen (1993) recommend representing this velocity as a combination of wave speeds traveling towards the interface from the neighboring left and right cell states. By combining the contributions of the left and right states, this is expressed mathematically as
+
+$$
+M_{\frac 12}=M_{\mathrm L}^++M_{\mathrm R}^-
+$$ {#eq-advection-velocity-decomposition}
+
+The split Mach numbers $M_{\mathrm L}^+$ and $M_{\mathrm R}^-$ may be calculated using any suitable manner. Liou and Steffen (1993) recommend using a Van Leer splitting scheme to calculate $M^{\pm}$.
+
+$$
+M^{\pm}=\begin{cases}
+\pm\dfrac 14(M\pm1)^2 & \qquad|M|\leq1 \\\\
+\dfrac 12(M\pm|M|) & \qquad|M|>1
+\end{cases}
+$$ {#eq-advection-velocity-van-leer-splitting}
+
+Note that $M^+$ and $M^-$ represent the flux contributions moving in the positive and negative axis directions respectively. They correspond to the left and right cell states respectively as well, as that is the direction the flux must travel to reach the cell boundary. The pressure flux term can also be decomposed in the same manner as Eqn. (@eq-advection-velocity-decomposition).
+
+$$
+p_{\frac 12}=p_{\mathrm L}^++p_{\mathrm R}^-
+$$ {#eq-pressure-decomposition}
+
+Pressure splitting $p^{\pm}$ is weighted using a polynomial expansion based on the characteristic speeds $M\pm1$. Two equations are given for the pressure split terms, one is for a third order cubic split and the other is for a first order linear split. Each pressure splitting equation is divided into whether the advection velocity is subsonic or supersonic. For the third order split, then
+
+$$
+p_3^{\pm}=\begin{cases}
+\dfrac p4(M\pm1)^2(2\mp M) & \qquad|M|\leq1 \\\\
+\dfrac p2\dfrac {M\pm|M|}M & \qquad|M|>1
+\end{cases}
+$$ {#eq-pressure-splitting-third-order}
+
+A simpler form is the first order linear split.
+
+$$
+p_1^{\pm}=\begin{cases}
+\dfrac p2(1\pm M) & \qquad|M|\leq1 \\\\
+\dfrac p2\dfrac {M\pm|M|}M & \qquad|M|>1
+\end{cases}
+$$
+
+It is important to note that the first order pressure split, $p_1$, is not differentiable at the speed of sound, when $|M|=1$. From testing, Liou and Steffen (1993) conclude that both first and third order splits perform reasonably well. The flux at the cell boundary is then
+
+$$
+\begin{pmatrix}
+\rho u \\\rho u^2+p \\\rho uv \\\rho h_tu
+\end{pmatrix}_{\frac 12}=\frac 12M_{\frac 12}\left[\begin{pmatrix}
+\rho a \\\rho ua \\\rho va \\\rho h_ta
+\end{pmatrix}_{\mathrm L}+\begin{pmatrix}
+\rho a \\\rho ua \\\rho va \\\rho h_ta
+\end{pmatrix}_{\mathrm R}\right]-\frac 12\left|M_{\frac 12}\right|\Delta_{\frac 12}\left\{\begin{pmatrix}
+\rho a \\\rho ua \\\rho va \\\rho h_ta
+\end{pmatrix}\right\}+\begin{pmatrix}
+0 \\p_{\mathrm L}^++p_{\mathrm R}^- \\0 \\0
+\end{pmatrix}
+$$ {#eq-ausm-flux-formulation}
+
+where $\{\cdot\}_{\mathrm L/\mathrm R}=\{\cdot\}_{\mathrm R}-\{\cdot\}_{\mathrm L}$. As can be seen, the first term in Eqn. (@eq-ausm-flux-formulation) is a Mach number-weighted average of the left and right flux quantities. The second term is the numerical dissipation term that renders the flux formula upwinding. This term contains the scalar coefficient $\left|M_{\frac 12}\right|$ that requires only $\mathcal O(n)$ operations to evaluate. In contrast, the Roe matrix from the Roe scheme requires $\mathcal O(n^2)$ operations to evaluate. This is one, albeit a very small, advantage of AUSM over the Roe scheme.
+
+If viscous terms are present, $\textbf E_v$ and $\textbf F_v$ should be calculated using the typical central-average representation. The AUSM scheme retains the simplicity and efficiency of a standard flux-vector splitting (FVS) scheme, while also achieving a comparable level of superior accuracy as standard flux differencing splitting (FDS) schemes.
+
+# Extension to All Speeds
+
+The formulation from @sec-derivation is only applicable to high speed compressible flows. With the trend of current CFD applications, it is highly advantageous to have a scheme that is applicable for all flow regimes (subsonic, transonic, and supersonic). There are two major deficiencies that occur when applying an existing compressible scheme to low speed flows.
+
+1. Convergence is increasingly slow for low Mach numbers to the point where convergence may stall after a certain point.
+
+2. Solutions are grossly inaccurate
+
+To extend the baseline AUSM scheme to all flow regimes, referred to in literature as AUSM^+^-up, consider the inviscid Euler equation of one dimension.
+
+$$
+\frac {\partial\textbf U}{\partial t}+\nabla\cdot\textbf E=0
+$$ {#eq-ausm-extension-euler-equation}
+
+Extending to multiple dimensions means repeating the same flux splitting process to each new flux term added. Like @sec-derivation, the definitions for $\textbf U$ and $\textbf E$ remain identical.
