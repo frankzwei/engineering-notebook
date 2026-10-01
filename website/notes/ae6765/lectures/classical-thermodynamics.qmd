@@ -276,7 +276,7 @@ Recall that a reversible process is one where $\mathcal P_s=0$. For the case of 
 
 :::
 
-# Auxiliary Thermodynamic Functions
+# Auxiliary Thermodynamic Functions {#sec-auxiliary-thermodynamic-functions}
 
 So far, we've been using the same set of thermodynamic properties for developing different relations. Certain quantities, like temperature, pressure, etc. can be easily measured. Other properties, however, like entropy and internal energy must be computed (entropy meters do not exist).
 
@@ -424,3 +424,149 @@ $$
 $$
 
 the total chemical potential of the reactants' side should be equal to that of the product's side at chemical equilibrium. The total chemical potential of a species is given by the product of the species' $\mu$ and the number of moles of that species. Therefore, $\mu_{\mathrm N_2}+\mu_{\mathrm O_2}=2\mu_{\mathrm{NO}}$ in the equation above.
+
+# Equilibrium States for Reacting Gases
+
+Now we shift our focus to chemical equilibrium. The goal for this section is how to determine the chemical equilibrium state of a mixture of gases when the thermodynamic state and initial mixture are known.
+
+Recall from the state postulate that it takes two independent, intensive thermodynamic properties to be known for a well-defined simple compressible substance to uniquely constrain its state. In general, for gases, the common pairs of thermodynamic properties we choose are $(u, v)$, $(h, p)$, or $(T, p)$. For our example, as well as most applications we will see, it is generally common to specify $(T, p)$ for the mixture.
+
+However, knowing the two thermodynamic properties alone is not enough. Remember, the state postulate requires the substance to be *well-defined*. We generally do not know the composition of the mixture at chemical equilibrium and therefore, the crux of the problem now boils down to ways of determining the equilibrium composition when two independent properties are known.
+
+Fortunately though, the equilibrium composition is uniquely determined by the relative amount of initial masses present due to mass conservation. Because we cannot create nor destroy nuclei, mass conservation requires the number of atomic nuclei in the equilibrated state be equal to the amount of atomic nuclei in the initial state. For example, if we consider a mixture initially consisting of $5$ moles of $\mathrm{NH_3}$ and $8$ moles of $\mathrm{N_2O}$, we know the equilibrium composition *must* contain $\mathrm N:\mathrm H:\mathrm O$ in a $21:15:8$ ratio as it is physically impossible to have an $\mathrm H$ atom convert into an $\mathrm N$ atom in the absence of nuclear reactions.
+
+::: {.callout-note title="Atom Conservation for Equilibrium"}
+
+When calculating the equilibrium state of a mixture of reacting gases, it is enough to specify the **atomic ratios** of the initial mixture to constrain the equilibriated substance. That is, simply knowing the number of atoms total in the mixture is enough to classify the substance as "well-defined". It is *not necessary* to know the exact species and their amounts in the initial mixture.
+
+:::
+
+With the thermodynamic state known, we may proceed with determining the equilibrium composition. Recall that a general requirement for equilibrium is that
+
+$$
+\sum\limits_i\mu_i\,\mathrm dn_i=0
+$$ {#eq-chemical-equilibrium-general-requirement}
+
+This is true regardless if we assume the mixture is thermally perfect, ideal, calorically perfect, etc. Additionally, recall in @sec-auxiliary-thermodynamic-functions, we concluded that if $T$ and $p$ are known, we may determine the equilibrium point as the point where $G$ of the mixture is *minimized*.
+
+## Chemical Reaction Review
+
+Before proceeding, it is helpful to review some useful concepts related to chemical equilibrium. Recall that for a balanced chemical reaction, we require
+
+$$
+\sum\limits_i \nu_iM_i=0
+$$ {#eq-balanced-chemical-reaction-relation}
+
+where $\nu_i$ is the stoichiometric coefficient of the $i$^th^ species, $M_i$. By definition, $\nu_i>0$ for species on the right-hand side, and negative for species on the left-hand side.
+
+::: {.callout-note title="Interpreting the Balanced Chemical Reaction Relation" collapse=true}
+
+The notation used in @eq-balanced-chemical-reaction-relation may seem confusing initially, but interpreting the summation term-by-term shows that @eq-balanced-chemical-reaction-relation is an alternate way of writing any chemical relation. For each species in the chemical relation, we multiply by its signed coefficient and add everything together. If the equation is properly balanced, the right-hand side should be zero. This is equivalent to writing the chemical relation as a mathematical equation where all species on the left-hand side have been moved to the right-hand side.
+
+For example, the balanced chemical reaction for the formation of water vapor is
+
+$$
+\mathrm{H_2}+\frac 12\mathrm{O_2}\rightleftharpoons\mathrm{H_2O}
+$$
+
+Therefore, $1\leq i\leq 3$ and we have the following relation from @eq-balanced-chemical-reaction-relation.
+
+$$
+\sum\limits_i\nu_iM_i=1\cdot\mathrm{H_2O}+(-1)\cdot\mathrm{H_2}+\left(-\frac 12\right)\cdot\mathrm{O_2}=\mathrm{H_2O}-\mathrm{H_2}-\frac 12\mathrm{O_2}=0
+$$
+
+The last equation is equivalent to the $\mathrm{H_2O}$ formation equation we wrote above, but with all species moved to the same side and the $\rightleftharpoons$ replaced with an equals sign!
+
+:::
+
+We may define the progress variable $\mathrm dn$ for species $i$ as so.
+
+$$
+\mathrm dn=\frac {\mathrm dn_i}{\nu_i}
+$$ {#eq-chemical-reaction-progress-variable}
+
+When the reaction proceeds towards the right-hand side, $\mathrm dn>0$. Conversely, when the reaction proceeds towards the left-hand side, $\mathrm dn<0$.
+
+::: {.callout-note title="Progress Variable Behavior Explanation" collapse=true}
+
+To see why $\mathrm dn>0$ or $\mathrm dn<0$ automatically determines the "favored" direction, we apply @eq-chemical-reaction-progress-variable to a product and reactant for a reaction proceeding to the right and show the sign is the same.
+
+To do so, we first assume species $i$ is a product. When the reaction shifts to the right, $\mathrm dn_i>0$ as more molecules of species $i$ are formed. Since $\nu_i>0$ as the molecule is on the right-hand side, the division in @eq-chemical-reaction-progress-variable is positive and $\mathrm dn>0$.
+
+Now, we assume species $i$ is a reactant. When the reaction shifts to the right, $\mathrm dn_i<0$ as molecules of species $i$ are consumed to form more products. This time, $\nu_i<0$ as $i$ is on the left-hand side, so @eq-chemical-reaction-progress-variable remains $\mathrm dn>0$.
+
+The case where the reaction proceeds to the left is identical to the right-direction shift considered above, except the signs are inverted and $\mathrm dn<0$ regardless if species $i$ is a product or reactant.
+
+:::
+
+Substitute @eq-chemical-reaction-progress-variable into the differential form of @eq-chemical-equilibrium-general-requirement like so.
+
+$$
+\mathrm dG=\sum\limits_i\mu_i\,\mathrm dn_i=\sum\limits_i\nu_i\mu_i\,\mathrm dn\leq0
+$$ {#eq-chemical-equilibrium-general-requirement-differential}
+
+Since $G$ reaches a minimum at chemical equilibrium, the derivative must be zero at that point.
+
+::: {.callout-note title="Interpreting Minimum Gibbs Free Energy" collapse=true}
+
+Let's consider the case for a thermally perfect gas. From eq. XXX, $G$ becomes
+
+$$
+\begin{aligned}
+G=\sum\limits_i\mu_in_i & =\sum\limits_in_i\left[\mu_i^0+\overline RT\ln\left(\frac p{p^0}\right)\right] \\
+ & =\sum\limits_in_i\left[\mu_i^0+\overline RT\ln\left(\frac p{p^0}\right)+\overline RT\ln\chi_i\right] \\
+ & =\sum\limits_in_i\mu_i^0+\sum\limits_in_i\overline RT\ln\chi_i
+\end{aligned}
+$$
+
+We assume fixed temperature, $T$, in the last equation and evaluated the system pressure at standard pressure, $p=p^0$. The first term involving $\mu_i^0$ is only a function of $T$ as $\mu_i^0$ is always evaluated at standard pressure. Thus, the first term accounts for the change in $G$ due to changes in $T$.
+
+The second term accounts for the 
+
+When both terms strike a balance and minimize $G$, that is when the equilibrium point occurs.
+
+:::
+
+## Equilibrium Constant for Thermally Perfect Gas
+
+We look at the case for a thermally perfect gas. From eq. XXX, we know that the chemical potential for a thermally perfect gas can be separated into a temperature and pressure dependence.
+
+$$
+\mu_i=\mu_i^0+\overline RT\ln\left(\frac p{p^0}\right)
+$$
+
+At equilibrium, we know that $\sum\limits_i\nu_i\mu_i^*=0$. The $*$ denotes conditions at chemical equilibrium. Substituting the equation above into the condition for equilibrium, we may define a new thermodynamic property called the *equilibrium constant*, $K_p$.
+
+$$
+\boxed{-\frac 1{\overline RT}\sum\limits_i\nu_i\mu_i^0=\ln\prod\limits_i\left(p_i^*\right)^{\nu_i}\equiv\ln K_p}
+$$
+
+Rewrite to solve for $K_p$ gives
+
+$$
+K_p\equiv\prod\limits_i\left(p_i^*\right)^{\nu_i}=\exp\left(-\frac 1{\overline RT}\sum\limits_i\nu_i\mu_i^0\right)
+$$ {#eq-equilibrium-constant-1}
+
+::: {.callout-note title="Derivation of Equilibrium Constant" collapse=true}
+
+Start with the Gibbs free energy at the equilibrium point and substitute the chemical potential in.
+
+$$
+\sum\limits_i\nu_i\mu_i^*=\sum\limits_i\nu_i\left[\mu_i^0+\overline RT\ln\left(\frac {p_i^*}{p^0}\right)\right]=0
+$$
+
+Distribute the sum and separate the pressure-dependent term from the temperature-dependent term.
+
+$$
+-\frac 1{\overline RT}\sum\limits_i\nu_i\mu_i^0=\sum\limits_i\nu_i\ln\left(\frac {p_i^*}{p^0}\right)=\sum\limits_i\ln\left[\left(\frac {p_i^*}{p^0}\right)^{\nu_i}\right]
+$$
+
+Recall that a sum of logarithms can be collapsed into a single logarithm.
+
+$$
+\ln x_1+\ln x_2+\ldots+\ln x_n=\sum\limits_{i=1}^n\ln x_i=\ln(x_1x_2\ldots x_n)=\ln\prod\limits_{i=1}^nx_i
+$$
+
+Applying this identity and defining $K_p$ as the quantity inside the natural logarithm, @eq-equilibrium-constant-1 naturally falls out.
+
+:::
