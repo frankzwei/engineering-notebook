@@ -52,6 +52,10 @@ website:
               contents:
                 - text: Chapter 1. Hyperbolic PDEs
                   href: knowledge-base/math/differential-equations/finite-difference-schemes-pdes/1-hyperbolic-pdes.qmd
+                - text: Chapter 2. Analysis of Difference Schemes
+                  href: knowledge-base/math/differential-equations/finite-difference-schemes-pdes/2-analysis-finite-difference-schemes.qmd
+                - text: Chapter 3. Order of Accuracy of Difference Schemes
+                  href: knowledge-base/math/differential-equations/finite-difference-schemes-pdes/3-order-of-accuracy-finite-difference-schemes.qmd
         - section: Statistics
           contents:
             - text: Bayesian Inference Derivations

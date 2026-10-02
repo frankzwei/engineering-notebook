@@ -1,0 +1,52 @@
+---
+title: Order of Accuracy for Finite Difference Schemes
+format:
+  html:
+    other-links:
+      - text: Strikwerda (2007)
+        href: "$FILES_BASE_URL/knowledge-base/math/differential-equations/finite-difference-schemes-pdes/files/2007_Strikwerda_Finite-Difference-Schemes-and-PDEs_2nd-Edition.pdf"
+        icon: file-pdf
+---
+
+# Order of Accuracy
+
+## The Lax-Wendroff Scheme
+
+To derive the Lax-Wendroff scheme, start off with the solution to the one-way wave equation $u(t, x)$ and expand with a Taylor series centered at $(t, x)$. The goal here is to express the time derivatives $u_t$ and $u_{tt}$ in terms of their spatial derivatives, $u_x$ and $u_{xx}$, to obtain a second order accurate scheme.
+
+$$
+u(t+k, x)=u(t, x)+ku_t(t, x)+\frac {k^2}2u_{tt}(t, x)+\mathcal O(k^3)
+$$
+
+From the inhomogeneous form of the wave equation, we have the following expressions for $u_t$ and $u_{tt}$.
+
+$$
+\begin{aligned}
+u_t & =-au_x+f \\
+u_{tt} & =-au_{tx}+f_t=a^2u_{xx}-af_x+f_t
+\end{aligned}
+$$
+
+Substitute into the Taylor series to see
+
+$$
+u(t+k, x)=u(t, x)-aku_x(t, x)+\frac {a^2k^2}2u_{xx}(t, x)+kf-\frac {ak^2}2f_x+\frac {k^2}2f_t+\mathcal O(k^3)
+$$
+
+Next, we replace the derivatives in $x$ with second-order accurate central differences and $f_t$ by a forward difference to obtain
+
+$$
+u(t+k, x)=u(t, x)-ak\frac {u(t, x+h)-u(t, x-h)}{2h}+\frac {a^2k^2}2\frac {u(t, x+h)-2u(t, x)+u(t, x-h)}{h^2}+\frac k2\left[f(t+k, x)+f(t, x)\right]-\frac {ak^2}2\frac {f(t, x+h)-f(t, x-h)}{2h}+\mathcal O(kh^2)+\mathcal O(k^3)
+$$
+
+Truncating gives the Lax-Wendroff scheme as
+
+$$
+v_m^{n+1}=v_m^n-\frac {a\lambda}2(v_{m+1}^n-v_{m-1}^n)+\frac {a^2\lambda^2}2(v_{m+1}^n-2v_m^n+v_{m-1}^n)+\frac k2(f_m^{n+1}+f_m^n)-\frac {a\lambda k}4(f_{m+1}^n-f_{m-1}^n)
+$$ {#eq-lax-wendroff-1}
+
+The form for @eq-lax-wendroff-1 may be rewritten as
+
+$$
+\frac {v_m^{n+1}-v_m^n}k+a\frac {v_{m+1}^n-v_{m-1}^n}{2h}-\frac {a^2k}2\frac {v_{m+1}^n-2v_m^n+v_{m-1}^n}{h^2}=\frac 12\left(f_m^{n+1}+f_m^n\right)-\frac {ak}{4h}\left(f_{m+1}^n-f_{m-1}^n\right)
+$$ {#eq-lax-wendroff-2}

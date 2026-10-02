@@ -1,0 +1,122 @@
+---
+title: Analysis of Finite Difference Schemes
+format:
+  html:
+    other-links:
+      - text: Strikwerda (2007)
+        href: "$FILES_BASE_URL/knowledge-base/math/differential-equations/finite-difference-schemes-pdes/files/2007_Strikwerda_Finite-Difference-Schemes-and-PDEs_2nd-Edition.pdf"
+        icon: file-pdf
+---
+
+This chapter is centered on applying Fourier transforms to investigate the behavior of finite difference schemes and their solutions. Before we begin, we should first give a brief review of Fourier transforms.
+
+# Fourier Analysis
+
+Fourier transforms are a tool that will be frequently utilized to study stability and well-posedness of a difference scheme. We will perform Fourier analysis on both the real line $\mathbb R$ and on the grid of integers $h\mathbb Z$, defined as $h\mathbb Z=\{hm:m\in\mathbb Z\}$. For an analytical function $u(x)$ defined in $\mathbb R$, its Fourier transform $\hat u(\omega)$ is given by
+
+$$
+\hat u(\omega)=\frac 1{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-i\omega x}u(x)\,\mathrm dx
+$$ {#eq-fourier-transform-definition}
+
+The Fourier transform of $u$ is a function of the real variable $\omega$ and is uniquely defined for $u$. Even though $u$ might be a real-valued function, $\hat u(\omega)$ may be complex. The inverse Fourier transform recovers the original $$ from a given $\hat u(\omega)$.
+
+$$
+u(x)=\frac 1{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{i\omega x}\hat u(\omega)\,\mathrm d\omega
+$$ {#eq-fourier-inversion-transform-definition}
+
+In most numerical applications, a continuous domain is discretized into individual points. If $v_m$ is a grid function defined for $m\in\mathbb Z$, then its Fourier transform is given by an infinite sum as opposed to an integral.
+
+$$
+\hat v(\xi)=\frac 1{\sqrt{2\pi}}\sum\limits_{m=-\infty}^{\infty}e^{-im\xi}v_mh
+$$ {#eq-fourier-transform-grid-definition}
+
+where we restrict $\xi\in[-\pi,\pi]$ and require periodicity of $\hat v(\xi)$ at the endpoints, $\hat v(-\pi)=\hat v(\pi)$. The inverse Fourier transform recovers $v_m$ from $\hat v(\xi)$ and is defined as
+
+$$
+v_m=\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}e^{imh\xi}\hat v(\xi)\,\mathrm d\xi
+$$ {#eq-fourier-inversion-transform-grid-definition}
+
+An important consequence of @eq-fourier-transform-definition and @eq-fourier-inversion-transform-definition is the $L^2$ norm of $u$, $\lVert u\rVert_2$, is the same as the $L^2$ norm of $\hat u(\omega)$.
+
+$$
+\lVert u\rVert_2^2=\int_{-\infty}^{\infty}\left|u(x)\right|^2\,\mathrm dx=\int_{-\infty}^{\infty}\left|\hat u(\omega)\right|^2\,\mathrm d\omega
+$$ {#eq-parseval-relation-definition}
+
+With the discrete transforms, @eq-fourier-transform-grid-definition and @eq-fourier-inversion-transform-grid-definition, the $L^2$ norms of $v$ and $\hat v$ are equal.
+
+$$
+\lVert\hat v\rVert_h^2=\int_{-\pi/h}^{\pi/h}\left|\hat v(\xi)\right|^2\,\mathrm d\xi=\sum\limits_{m=-\infty}^{\infty}\left|v_m\right|^2h=\lVert v\rVert_h^2
+$$ {#eq-parseval-relation-grid-definition}
+
+The equations @eq-parseval-relation-definition and @eq-parseval-relation-grid-definition are called **Parseval's relations**. We can use Parseval's relations to show that the Fourier transform is defined for all functions in $L^2(\mathbb R)$ and $L^2(h\mathbb Z)$.
+
+::: {.callout-note title="Proof of Parseval's Relation for $L^2(h\mathbb Z)$" collapse=true}
+
+Start off with the left-hand side of @eq-parseval-relation-grid-definition and apply @eq-fourier-inversion-transform-grid-definition through the identity $\left|\hat v(\xi)\right|^2=\hat v(\xi)\overline{\hat v(\xi)}$.
+
+$$
+\begin{aligned}
+\lVert\hat v\rVert_h^2 & =\int_{-\pi/h}^{\pi/h}\left|\hat v(\xi)\right|^2\,\mathrm d\xi=\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}\overline{\hat v(\xi)}\sum_{m=-\infty}^{\infty}e^{-imh\xi}v_mh\,\mathrm d\xi\\ & =\frac 1{\sqrt{\pi}}\sum\limits_{m=-\infty}^{\infty}\int_{-\pi/h}^{\pi/h}e^{-imh\xi}\overline{\hat v(\xi)}\,\mathrm d\xi\,v_mh\\ & =\sum\limits_{m=-\infty}^{\infty}\overline{\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}e^{imh\xi}\hat v(\xi)\,\mathrm d\xi}\,v_mh\\ & =\sum\limits_{m=-\infty}^{\infty}\overline{v_m}v_mh\\ & =\lVert v_m\rVert_h^2
+\end{aligned}
+$$
+
+:::
+
+## Fourier Analysis and PDEs
+
+# Von Neumann Analysis
+
+Fourier transforms (or broadly speaking, analysis) is used to determine sufficient and necessary conditions for stability for finite difference schemes. Such analysis is called von Neumann analysis of stability. Let's first illustrate with an example before extending the scope of applicability. Recall the forward-time backward-space scheme of the convection equation.
+
+$$
+\frac {v_m^{n+1}-v_m^n}k+a\frac {v_m^n-v_{m-1}^n}h=0
+$$
+
+Writing in terms of $\lambda=\frac kh$ and solving for the grid function at the $n+1$ time level, then
+
+$$
+v_m^{n+1}=(1-a\lambda)v_m^n+a\lambda v_{m-1}^n
+$$ {#eq-forward-time-backward-space-scheme}
+
+Use @eq-fourier-inversion-transform-grid-definition on $v_m^n$ and $v_{m-1}^n$ gives
+
+$$
+\begin{aligned}
+v_m^n & =\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}e^{imh\xi}\hat v^n(\xi)\,\mathrm d\xi\\
+v_{m-1}^n & =\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}e^{i(m-1)h\xi}\hat v^n(\xi)\,\mathrm d\xi
+\end{aligned}
+$$
+
+We substitute into @eq-forward-time-backward-space-scheme and group like terms to obtain
+
+$$
+v_m^{n+1}=\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}e^{imh\xi}\left(1-a\lambda+a\lambda e^{-ih\xi}\right)\hat v^n(\xi)\,\mathrm d\xi
+$$
+
+This integral is nearly identical to a direct application of @eq-fourier-inversion-transform-grid-definition on $v_m^{n+1}$.
+
+$$
+v_m^{n+1}=\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}e^{imh\xi}\hat v^{n+1}(\xi)\,\mathrm d\xi
+$$
+
+Since Fourier transforms are unique between different functions, we know that the integrand of both integral expressions for $v_m^{n+1}$ must be the same.
+
+$$
+\hat v^{n+1}(\xi)=\left(1-a\lambda+a\lambda e^{-ih\xi}\right)\hat v^n(\xi)\equiv g(h\xi)\hat v^n(\xi)
+$$ {#eq-amplification-factor-forward-time-backward-space-scheme}
+
+The coefficient $g(h\xi)$ is called the **amplification factor**, so called that since its magnitude is the amount the amplitude of each frequency in the solution is amplified each time step taken. For a given frequency $\xi$, the amplitude at the $n$^th^ time level is given by $\hat v^n(\xi)$. Stepping backwards in time by $n$ time levels, @eq-amplification-factor-forward-time-backward-space-scheme becomes
+
+$$
+\hat v^n(\xi)=g(h\xi)^n\hat v^0(\xi)
+$$ {#eq-amplification-factor-zero-time-level}
+
+::: {.callout-note title="Superscript Notation for $g(h\xi)$ and $\hat v(\xi)$"}
+
+Be mindful of superscript notation differences between the amplification factor $g(h\xi)$ and the solution amplitude $\hat v(\xi)$. In @eq-amplification-factor-zero-time-level, the superscript on $\hat v$ is the time level index whereas on $g$, it is a power (i.e., exponent).
+
+:::
+
+All one-step schemes can be expressed in the form of @eq-amplification-factor-zero-time-level via a Fourier transform. This allows for a unified procedure to determine the stability and accuracy of a myriad of one-step schemes. The formulation changes slightly for multi-step schemes, this will be covered later.
+
+Proceeding with our example of studying forward-time backward space, we can use @eq-amplification-factor-zero-time-level to study stability. Apply Parseval's relation, @eq-parseval-relation-grid-definition, 
