@@ -1,0 +1,9 @@
+---
+title: Major Minor Species Model
+---
+
+::: {.callout-note title="Major Minor Species Model vs. Equilibrium Calculations" collapse=true}
+
+The major minor species model is a simplified way of analytically computing the equilibrium composition of both major species *and* minor species in a mixture by assuming the minor species play a *negligible* effect on the composition of the major species. That is, we perform an equilibrium calculation using just the major species, and then insert the minor species into the model with the assumption that their addition does not significantly change the amount of major species present in the mixture.
+
+:::

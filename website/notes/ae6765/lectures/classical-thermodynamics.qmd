@@ -108,7 +108,7 @@ $A$ and $B$ are in internal thermodynamic equilibrium. They are not in thermodyn
 
 If we wait, we would expect the temperatures to equalize from heat transfer. When $T_A=T_B$, $A$ and $B$ are in thermal equilibrium with each other, so $C$ is now in thermodynamic equilibrium. Since $S_C$ can only increase, the maximum value of $S_C$ occurs at thermal equilibrium when $T_A=T_B$ and no more thermal change may occur.
 
-For a nonreacting, simple compressible substance
+For a nonreacting simple compressible substance
 
 $$
 S_C=S_A(U_A, V_A)+S_B(U_B, V_B)
@@ -145,7 +145,7 @@ $$
 \boxed{T\equiv\left(\frac {\partial U}{\partial S}\right)_V}
 $$ {#eq-thermodynamic-temperature-definition}
 
-::: {.callout-important}
+::: {.callout-note title="Assumptions for Thermodynamic Definition of Temperature"}
 
 The thermodynamic definition for temperature is only valid for nonreacting simple compressible substances in *thermal equilibrium*. This is because the only way for a temperature to be defined is if the system has a constant and uniformly distributed temperature. This is the only case for when $T$ is "well-defined".
 
@@ -194,7 +194,7 @@ $$
 \boxed{\frac pT\equiv\left(\frac {\partial S}{\partial V}\right)_U}
 $$ {#eq-thermodynamic-pressure-definition}
 
-::: {.callout-important}
+::: {.callout-note title="Assumptions for Thermodynamic Definition of Pressure"}
 
 The thermodynamic definition for pressure is only valid for nonreacting simple compressible substances in *thermodynamic equilibrium*. The system must have a well-defined $T$, necessitating thermal equilibrium, and must also have a well-defined $p$, necessitating mechanical equilibrium.
 
@@ -208,13 +208,13 @@ $$
 \mathrm dS=\left(\frac {\partial S}{\partial U}\right)_V\,\mathrm dU+\left(\frac {\partial S}{\partial V}\right)_U\,\mathrm dV=\frac {\mathrm dU}T+\frac pT\,\mathrm dV
 $$
 
-Re-arranging gives the classical form of Gibb's equation
+Re-arranging gives the classical form of Gibbs equation
 
 $$
 \boxed{\mathrm dU=T\,\mathrm dS-p\,\mathrm dV}
 $$ {#eq-gibbs-equation}
 
-::: {.callout-important}
+::: {.callout-note title="Assumptions for Gibbs Equation"}
 
 This form of Gibb's equation makes no assumption regarding the reversibility of any work processes, presence of heat transfer, etc. In fact, the only strict requirements are that the substance is a nonreacting simple incompressible substance and that the system is in *thermodynamic equilibrium*.
 
@@ -276,7 +276,7 @@ Recall that a reversible process is one where $\mathcal P_s=0$. For the case of 
 
 :::
 
-# Auxiliary Thermodynamic Functions
+# Auxiliary Thermodynamic Functions {#sec-auxiliary-thermodynamic-functions}
 
 So far, we've been using the same set of thermodynamic properties for developing different relations. Certain quantities, like temperature, pressure, etc. can be easily measured. Other properties, however, like entropy and internal energy must be computed (entropy meters do not exist).
 
@@ -333,6 +333,344 @@ $$
 - **Isolated System:** Since the system is isolated, energy and mass exchange are not permitted. From the 1^st^ Law, that means $\Delta U_{12}=0$ so $Q=W=0$. Furthermore, because no work is permitted, the system's volume must remain constant per $\delta W=-p\,\mathrm dV$. Therefore, the 1^st^ Law becomes $\Delta H_{12}=V\Delta p_{12}$.
 
 The three scenarios illustrate how $H$ gives us an easy way to back out heat transfer for constant pressure systems by the 1^st^ Law. If instead, the process is constant volume, then $U$ should be used instead. And lastly, for the case of a rigid and adiabatic system, enthalpy is not "conserved" as its change depends on the pressure change across the processes.
+
+## Maxwell's Relations and Mathematical Property Relationships
+
+A useful skill to have is the ability to determine how various state properties change with respect to other quantities. So far, we've only investigated thermodynamic definitions for temperature, pressure, and chemical potential by writing them as partial derivatives between state properties. With the appropriate set of mathematical relations, we should be able to also express certain thermodynamic quantities in terms of partial derivatives and other thermodynamic quantities.
+
+Let's start off with Gibb's equation. Recall @eq-gibbs-equation that expresses change in internal energy as a function of entropy and volumetric change. Written for a potentially reacting substance in intensive form, @eq-gibbs-equation becomes
+
+$$
+\mathrm du=T\,\mathrm ds-p\,\mathrm dv+\sum\limits_i\mu_i\,\mathrm dn_i
+$$
+
+We may use the various definitions for enthalpy, Gibbs free energy, and Helmholtz free energy to rewrite @eq-gibbs-equation in terms of those quantities.
+
+$$
+\begin{aligned}
+h & =u+pv & \qquad\implies\qquad\mathrm dh & =T\,\mathrm ds+v\,\mathrm dp+\sum\limits_i\mu_i\,\mathrm dn_i \\
+g & =h-Ts & \qquad\implies\qquad\mathrm dg & =-s\,\mathrm dT+v\,\mathrm dp+\sum\limits_i\mu_i\,\mathrm dn_i \\
+f & =u-Ts & \qquad\implies\qquad\mathrm df & =-s\,\mathrm dT-p\,\mathrm dv+\sum\limits_i\mu_i\,\mathrm dn_i
+\end{aligned}
+$$ {#eq-gibbs-equation-reacting-extended}
+
+Recall that the mathematical definition of a total differential of $f=f(x, y, z)$ is
+
+$$
+\mathrm df=\frac {\partial f}{\partial x}\,\Biggr|_{y,z}\,\mathrm dx+\frac {\partial f}{\partial y}\,\Biggr|_{x,z}\,\mathrm dy+\frac {\partial f}{\partial z}\,\Biggr|_{x,y}\,\mathrm dz
+$$
+
+Applying this on @eq-gibbs-equation-reacting-extended allows us to express each differential coefficient in terms of partial derivatives. For each of these relations, we get the following:
+
+$$
+\begin{aligned}
+T & =\left.\frac {\partial u}{\partial s}\,\right|_{v,n_i}=\left.\frac {\partial h}{\partial s}\,\right|_{p,n_i} & \qquad\qquad p & =\left.-\frac {\partial u}{\partial v}\,\right|_{s,n_i}=\left.-\frac {\partial f}{\partial v}\,\right|_{T,n_i} \\
+v & =\left.\frac {\partial h}{\partial p}\,\right|_{s,n_i}=\left.\frac {\partial g}{\partial p}\,\right|_{T,n_i} & \qquad\qquad s & =\left.-\frac {\partial g}{\partial T}\,\right|_{p,n_i}=\left.-\frac {\partial f}{\partial T}\,\right|_{v,n_i}
+\end{aligned}
+$$ {#eq-thermodynamic-base-properties-definition}
+
+### Van't Hoff Relation
+
+A useful application of @eq-thermodynamic-base-properties-definition is the derivation of the van't Hoff relation. Though not immediately applicable, we will use it later on for deriving an expression relating chemical equilibrium constants at different temperatures.
+
+Consider the expression $\left.\frac {\partial (G/T)}{\partial T}\right|_{p,n_i}$. We may apply the quotient rule to express the derivative as
+
+$$
+\begin{aligned}
+\left.\frac {\partial(G/T)}{\partial T}\right|_{p,n_i} & =\left.\frac {\partial G}{\partial T}\right|_{p,n_i}\frac 1T+G\left.\frac {\partial(1/T)}{\partial T}\right|_{p,n_i} \\
+& =-\frac ST+G\left(-\frac 1{T^2}\right) \\
+& =\frac {-G-TS}{T^2}
+\end{aligned}
+$$
+
+Substitute the Gibbs free energy definition to see that
+
+$$
+\boxed{\left.\frac {\partial(G/T)}{\partial T}\right|_{p,n_i}=-\frac H{T^2}}
+$$ {#eq-van't-hoff-relation}
+
+This particular identity is useful since for an isothermal process, we can then relate the change between the two states using
+
+$$
+\boxed{\left.\frac {\partial\left(\Delta G_{12}/T\right)}{\partial T}\right|_{p,n_i}=-\frac {\Delta H_{12}}{T^2}}
+$$ {#eq-vant-hoff-relation-change}
+
+### Maxwell's Relations
+
+With @eq-thermodynamic-base-properties-definition, we may construct more complex state property relations using a set of mathematical identities. For a sufficiently smooth and continuous function, whose derivatives up to the second derivative are well defined, the total derivative of $F(y_1, y_2, \ldots, y_i)$ is
+
+
+we have what's known as the **Reciprocity Rule**. If we have the total derivative of , the total derivative gives
+
+$$
+\begin{aligned}
+\mathrm dF & =\left.\frac {\partial F}{\partial y_1}\right|_{y_{j\neq1}}\,\mathrm dy_1+\left.\frac {\partial F}{\partial y_2}\right|_{y_{j\neq2}}\,\mathrm dy_2+\ldots+\left.\frac {\partial F}{\partial y_i}\right|_{y_{j\neq i}}\,\mathrm dy_i \\
+ & =x_1\,\mathrm dy_1+x_2\,\mathrm dy_2+\ldots+x_i\,\mathrm dy_i
+\end{aligned}
+$$
+
+The **Reciprocity Rule** relates the derivatives of each coefficient $x_j$ as
+
+$$
+\boxed{\left.\frac {\partial x_i}{\partial y_j}\right|_{y_{k\neq j}}=\left.\frac {\partial x_j}{\partial y_i}\right|_{y_{k\neq i}}}
+$$ {#eq-reciprocity-rule}
+
+We may apply @eq-reciprocity-rule to the left-hand side in each equation in @eq-gibbs-equation-reacting-extended to show that
+
+$$
+\begin{aligned}
+\left.\frac {\partial T}{\partial v}\right|_{s,n_i} & =-\left.\frac {\partial p}{\partial s}\right|_{v,n_i} & \qquad\qquad\left.\frac {\partial T}{\partial p}\right|_{s,n_i} & =\left.\frac {\partial v}{\partial s}\right|_{p,n_i} & \qquad\qquad\left.\frac {\partial\mu_i}{\partial p}\right|_{T,\chi_i,\chi_j} & =\left.\frac {\partial v}{\partial n_i}\right|_{T,p,n_{j\neq i}} \\
+\left.\frac {\partial v}{\partial T}\right|_{p,n_i} & =\left.-\frac {\partial s}{\partial p}\right|_{T,n_i} & \qquad\qquad\left.\frac {\partial p}{\partial T}\right|_{v,n_i} & =\left.\frac {\partial s}{\partial v}\right|_{T,n_i} & \qquad\qquad\left.\frac {\partial\mu_i}{\partial T}\right|_{p,\chi_i,\chi_j} & =\left.-\frac {\partial s}{\partial n_i}\right|_{T,p,n_{j\neq i}}
+\end{aligned}
+$$ {#eq-maxwells-relation}
+
+::: {.callout-note title="Assumptions for Maxwell's Relation"}
+
+Since the relations in @eq-maxwells-relation were ultimately derived from various forms of Gibbs equations, the only assumption we've made is that the substance is a *simple compressible substance*.
+
+:::
+
+A strong use case of Maxwell's relations is creating equation-of-state relations by expressing a difficult-to-measure quantity like internal energy as a function of measureable properties. These measureable properties are typically $p$, $T$, and $V$. We illustrate with an example for internal energy, $U$.
+
+::: {.callout-note title="Internal Energy State Equation Relation" collapse=true}
+
+For a nonreacting simple compressible substance, assume we can easily measure $T$ and $V$. We may define $U$ as a function of $T$ and $V$ and take the total derivative.
+
+$$
+\mathrm dU=\left.\frac {\partial U}{\partial T}\right|_V\,\mathrm dT+\left.\frac {\partial U}{\partial V}\right|_T\,\mathrm dV
+$$
+
+Substitute $\mathrm dU$ into @eq-gibbs-equation and group common terms. By definition of the total derivative, then
+
+$$
+\begin{aligned}
+\mathrm dS & =\frac 1T\,\mathrm dU+\frac pT\,\mathrm dV=\frac 1T\left(\left.\frac {\partial U}{\partial T}\right|_V\,\mathrm dT+\left.\frac {\partial U}{\partial V}\right|_T\,\mathrm dV\right)+\frac pT\,\mathrm dV \\
+ & =\underbrace{\frac 1T\left.\frac {\partial U}{\partial T}\right|_V}_{=\left.\partial S/\partial T\right|_V}\,\mathrm dT+\underbrace{\frac 1T\left(\left.\frac {\partial U}{\partial V}\right|_T+p\right)}_{=\left.\partial S/\partial V\right|_T}\,\mathrm dV
+\end{aligned}
+$$
+
+Using Maxwell's relations on the second coefficient, $\left.\frac {\partial S}{\partial V}\right|_T=\left.\frac {\partial p}{\partial T}\right|_V$, then we can express the derivative for $U$ purely in terms of $p$ and $T$.
+
+$$
+\boxed{\left.\frac {\partial U}{\partial V}\right|_T=T\left.\frac {\partial p}{\partial T}\right|_V-p}
+$$
+
+:::
+
+### Variable Transformations
+
+One last useful mathematical rule is called the **cyclic rule**, so called because the terms in a partial derivative, $\left.\frac {\partial x}{\partial y}\right|_z$ can be "cyclically" rotated around to create a mathematical relation.
+
+$$
+\boxed{\left.\frac {\partial x}{\partial y}\right|_z\left.\frac {\partial z}{\partial x}\right|_y\left.\frac {\partial y}{\partial z}\right|_x=-1}
+$$ {#eq-cyclic-rule}
+
+Additionally, recall that the derivative is commutative for a continuous and existent derivative, and the inverse of a derivative is the same as inverting the "fraction" term inside the derivative.
+
+$$
+\begin{aligned}
+\left.\frac {\partial x}{\partial y}\right|_z & =\left(\left.\frac {\partial y}{\partial x}\right|_z\right)^{-1} \\
+\frac {\partial}{\partial z}\frac {\partial x}{\partial y} & =\frac {\partial^2x}{\partial z\partial y}=\frac {\partial}{\partial y}\frac {\partial x}{\partial z}
+\end{aligned}
+$$
+
+## Other Measurable Thermodynamic Quantities
+
+We've currently established a list of thermodynamic properties that can be readily measured using a sensor or instrument. These properties are: $p$, $T$, $V$, and $m$. More broadly, however, there are other state properties that can be "easily" measured. The term "easily" in this case is relative, as each of the following properties require more work than the properties defined above, but measuring them in a lab setting is still certainly possible. They are
+
+ - Specific heats or heat capacities
+ - Heats of reaction or phase change
+ - Compressibility coefficients
+
+We will see that each of these properties can be easily computed in a controlled setting based off their thermodynamic definitions. Each of these properties is measured in one of two ways.
+
+ 1. The amount of heat transfer, $\delta Q$, that takes place for one of the properties above to change
+ 2. The change in volume or density that occurs under a fixed condition (e.g., constant enthalpy).
+
+### Specific Heats
+
+Writing out the internal energy and enthalpy of a closed system (control mass) as $U=U(T, V)$ and $H=H(T, p)$, the specific heats are defined as the change in either $U$ or $H$ based off the temperature change component.
+
+$$
+\begin{aligned}
+\mathrm dU & =\left.\frac {\partial U}{\partial T}\right|_V\,\mathrm dT+\left.\frac {\partial U}{\partial V}\right|_T\,\mathrm dV\equiv C_V\,\mathrm dT+\left.\frac {\partial U}{\partial V}\right|_T\,\mathrm dV \\
+\mathrm dH & =\left.\frac {\partial H}{\partial T}\right|_p\,\mathrm dT+\left.\frac {\partial H}{\partial p}\right|_T\,\mathrm dp\equiv C_p\,\mathrm dT+\left.\frac {\partial H}{\partial p}\right|_T\,\mathrm dp
+\end{aligned}
+$$ {#eq-thermodynamic-specific-heats-definition}
+
+The subscripts denote the property held constant in the process. For $C_V$, this is defined as a change in $U$ across a change in $T$ at a fixed volume. Similarly, $C_p$ is defined as a change in $H$ across a change in $T$ at fixed pressure. The properties defined above are extensive. We may relate them to their intensive counterparts by normalizing by mass or moles of substance.
+
+::: {.callout-note title="Conceptual Interpretation of Specific Heats" collapse=true}
+
+Assume only $p\,\mathrm dV$ work is allowed. The 1^st^ Law applied to a control mass gives $\mathrm dU=\delta Q-p\,\mathrm dV$. If we further assume the process is isochoric or isobaric, then $\mathrm dU$ and $\mathrm dH$ in @eq-thermodynamic-specific-heats-definition becomes
+
+$$
+\begin{aligned}
+\mathrm dU=\delta Q-p\,\mathrm dV & =C_V\,\mathrm dT & \qquad\implies\qquad C_V & =\frac {\delta Q}{\mathrm dT} \\
+\mathrm dH=\mathrm dU+p\,\mathrm dV=\delta Q & =C_p\,\mathrm dT & \qquad\implies\qquad C_p & =\frac {\delta Q}{\mathrm dT}
+\end{aligned}
+$$
+
+In other words, $C_p$ and $C_V$ simply indicate the amount of heat transfer required to change a substance's temperature by $\mathrm dT$ amount at constant pressure or constant volume respectively.
+
+:::
+
+The definitions in @eq-thermodynamic-specific-heats-definition assume **constant composition** and **constant phase** where $\mathrm dn_i=0$. For this reason, @eq-thermodynamic-specific-heats-definition definitions should technically be called the *frozen specific heats*.
+
+::: {.callout-important title="Specific Heat Definitions in Non-Isochoric and Non-Isobaric Processes"}
+
+An important point regarding the definitions of $C_p$ and $C_V$ is that these quantities are **not** solely limited to cases where $p$ or $V$ are constant.
+
+For example, let's assume both $T$ and $p$ in a system changes across a process. There still exists a $C_p$ quantity that can be used in the equation for $\mathrm dH$ in @eq-thermodynamic-specific-heats-definition. However, this quantity does not *fully* capture the enthalpy change as there is now a $\left.\frac {\partial H}{\partial p}\right|_T$ component now.
+
+$$
+\mathrm dH=C_p\,\mathrm dT+\left.\frac {\partial H}{\partial p}\right|_T\,\mathrm dp\neq C_p\,\mathrm dT
+$$
+
+Since state properties are path independent, we may consider the process as having two contributions. The first contribution is an isobaric process, as indicated by the $\mathrm dT$ term, and the second contribution is an isothermal process, as indicated by the $\mathrm dp$ term. Upon adding the two contributions, we arrive at the same final state as the original process.
+
+:::
+
+From @eq-maxwells-relation, we can show that
+
+$$
+\begin{aligned}
+&\boxed{
+  \phantom{C_V}\mathllap{C_V}
+  =
+  \mathrlap{
+    \left.\frac{\partial U}{\partial T}\right|_V
+    = T\left.\frac{\partial S}{\partial T}\right|_V
+  }
+  \phantom{
+    \left.\frac{\partial H}{\partial T}\right|_V
+    = T\left.\frac{\partial S}{\partial T}\right|_V
+  }
+}
+\\[0.5em]
+&\boxed{
+  \phantom{C_V}\mathllap{C_p}
+  =
+  \mathrlap{
+    \left.\frac{\partial H}{\partial T}\right|_p
+    = T\left.\frac{\partial S}{\partial T}\right|_p
+  }
+  \phantom{
+    \left.\frac{\partial H}{\partial T}\right|_V
+    = T\left.\frac{\partial S}{\partial T}\right|_V
+  }
+}
+\end{aligned}
+$$ {#eq-thermodynamic-specific-heats-definition-maxwells-relation}
+
+::: {.callout-note title="Assumptions for Specific Heats"}
+
+Though the partial derivative definitions for $C_V$ and $C_p$ are rooted in pure mathematics, the results from the application of Maxwell's relations assume the substance is a *nonreacting simple compressible substance*.
+
+:::
+
+### Compressibility Coefficients
+
+Assume the substance in thermodynamic equilibrium obeys a $p-v-T$ equation of state. Moreover, we assume that volume is expressed in terms of $T$ and $p$ as $V=V(T, p)$. The total derivative definition gives
+
+$$
+\mathrm dV=\left.\frac {\partial V}{\partial T}\right|_p\,\mathrm dT+\left.\frac {\partial V}{\partial p}\right|_T\,\mathrm dp\equiv\alpha V\,\mathrm dT-\kappa V\,\mathrm dp
+$$
+
+This leads to the definitions of the isobaric compressibility coefficient $\alpha$ and the isothermal compressibility coefficient $\kappa$. We also have, distantly, the isentropic compressibility coefficient $\beta$.
+
+$$
+\begin{aligned}
+&\boxed{
+  \phantom{\alpha}\mathllap{\alpha}
+  \equiv
+  \mathrlap{
+    \frac{1}{V}
+    \left.\frac{\partial V}{\partial T}\right|_p
+  }
+  \phantom{
+    -\frac{1}{V}
+    \left.\frac{\partial V}{\partial p}\right|_T
+  }
+}
+\\[0.5em]
+&\boxed{
+  \phantom{\alpha}\mathllap{\kappa}
+  \equiv
+  \mathrlap{
+    -\frac{1}{V}
+    \left.\frac{\partial V}{\partial p}\right|_T
+  }
+  \phantom{
+    -\frac{1}{V}
+    \left.\frac{\partial V}{\partial p}\right|_T
+  }
+}
+\\[0.5em]
+&\boxed{
+  \phantom{\alpha}\mathllap{\beta}
+  \equiv
+  \mathrlap{
+    -\frac{1}{V}
+    \left.\frac{\partial V}{\partial p}\right|_S
+  }
+  \phantom{
+    -\frac{1}{V}
+    \left.\frac{\partial V}{\partial p}\right|_T
+  }
+}
+\end{aligned}
+$$ {#eq-compressibility-coefficients-definition}
+
+::: {.callout-important title="Commonly Confused Notation Between $\alpha$ and $\beta$ in Literature"}
+
+Most texts and literature papers reverse the definitions of $\alpha$ and $\beta$ above in @eq-compressibility-coefficients-definition. That is, $\alpha$ is defined as the isentropic compressibility coefficient and $\beta$ is the isobaric compressibility coefficient. Be sure to consult the notation used in each text for consistency. This course and document assumes the definitions given in @eq-compressibility-coefficients-definition.
+
+:::
+
+The equations in @eq-compressibility-coefficients-definition require a state equation to be supplied. We can illustrate calculating $\alpha$ and $\kappa$ through the $p-v-T$ equation with the ideal gas law.
+
+::: {.callout-note title="Compressibility Coefficients for Ideal Gas"}
+
+For a *nonreacting, thermally perfect, ideal gas* in thermodynamic equilibrium, $\alpha$ and $\kappa$ take on simple expressions.
+
+$$
+\begin{aligned}
+\alpha & =\frac 1V\textcolor{red}{\left.\frac {\partial V}{\partial T}\right|_p}=\frac 1V\frac {n\overline R}p\boxed{=\frac 1T}\\
+\beta & =-\frac 1V\textcolor{red}{\left.\frac {\partial V}{\partial p}\right|_T}=\frac 1V\frac {n\overline RT}{p^2}\boxed{=\frac 1p}
+\end{aligned}
+$$
+
+:::
+
+We can also apply @eq-reciprocity-rule to the governing $\mathrm dV$ equation to derive a differential relation between $\alpha$ and $\kappa$.
+
+$$
+\boxed{\left.\frac {\partial\alpha}{\partial p}\right|_T=\left.-\frac {\partial\kappa}{\partial T}\right|_p}
+$$ {#eq-compressibility-coefficients-reciprocity}
+
+And from the cyclic rule, @eq-cyclic-rule, with $(x, y, z)=(p, T, V)$, then $\alpha$ and $\kappa$ are related by the following derivative:
+
+$$
+\boxed{\left.\frac {\partial p}{\partial T}\right|_V=\frac {\alpha}{\kappa}}
+$$ {#eq-compressibility-coefficients-cyclic}
+
+### Specific Heats and Compressibility Coefficient Relationship
+
+For a *nonreacting simple compressible substance*, $C_p$ and $C_V$ are related by the compressibility coefficients.
+
+$$
+\boxed{C_p-C_V=TV\frac {\alpha^2}{\kappa}}
+$$ {#eq-specific-heat-compressibility-coefficient-relation}
+
+If we further make the assumption that the substance is a *thermally perfect gas*, then $\alpha=\frac 1T$ and $\kappa=\frac 1p$ so @eq-specific-heat-compressibility-coefficient-relation reduces down to
+
+$$
+\hat c_p-\hat c_V=\overline R
+$$
+
+Note that the $C_p$ and $C_V$ quantities are the per-molar intensive quantities of the substance and $\overline R$ is the universal gas constant.
+
 
 ## General Conditions for Chemical Equilibrium
 
@@ -424,3 +762,149 @@ $$
 $$
 
 the total chemical potential of the reactants' side should be equal to that of the product's side at chemical equilibrium. The total chemical potential of a species is given by the product of the species' $\mu$ and the number of moles of that species. Therefore, $\mu_{\mathrm N_2}+\mu_{\mathrm O_2}=2\mu_{\mathrm{NO}}$ in the equation above.
+
+# Equilibrium States for Reacting Gases
+
+Now we shift our focus to chemical equilibrium. The goal for this section is how to determine the chemical equilibrium state of a mixture of gases when the thermodynamic state and initial mixture are known.
+
+Recall from the state postulate that it takes two independent, intensive thermodynamic properties to be known for a well-defined simple compressible substance to uniquely constrain its state. In general, for gases, the common pairs of thermodynamic properties we choose are $(u, v)$, $(h, p)$, or $(T, p)$. For our example, as well as most applications we will see, it is generally common to specify $(T, p)$ for the mixture.
+
+However, knowing the two thermodynamic properties alone is not enough. Remember, the state postulate requires the substance to be *well-defined*. We generally do not know the composition of the mixture at chemical equilibrium and therefore, the crux of the problem now boils down to ways of determining the equilibrium composition when two independent properties are known.
+
+Fortunately though, the equilibrium composition is uniquely determined by the relative amount of initial masses present due to mass conservation. Because we cannot create nor destroy nuclei, mass conservation requires the number of atomic nuclei in the equilibrated state be equal to the amount of atomic nuclei in the initial state. For example, if we consider a mixture initially consisting of $5$ moles of $\mathrm{NH_3}$ and $8$ moles of $\mathrm{N_2O}$, we know the equilibrium composition *must* contain $\mathrm N:\mathrm H:\mathrm O$ in a $21:15:8$ ratio as it is physically impossible to have an $\mathrm H$ atom convert into an $\mathrm N$ atom in the absence of nuclear reactions.
+
+::: {.callout-note title="Atom Conservation for Equilibrium"}
+
+When calculating the equilibrium state of a mixture of reacting gases, it is enough to specify the **atomic ratios** of the initial mixture to constrain the equilibriated substance. That is, simply knowing the number of atoms total in the mixture is enough to classify the substance as "well-defined". It is *not necessary* to know the exact species and their amounts in the initial mixture.
+
+:::
+
+With the thermodynamic state known, we may proceed with determining the equilibrium composition. Recall that a general requirement for equilibrium is that
+
+$$
+\sum\limits_i\mu_i\,\mathrm dn_i=0
+$$ {#eq-chemical-equilibrium-general-requirement}
+
+This is true regardless if we assume the mixture is thermally perfect, ideal, calorically perfect, etc. Additionally, recall in @sec-auxiliary-thermodynamic-functions, we concluded that if $T$ and $p$ are known, we may determine the equilibrium point as the point where $G$ of the mixture is *minimized*.
+
+## Chemical Reaction Review
+
+Before proceeding, it is helpful to review some useful concepts related to chemical equilibrium. Recall that for a balanced chemical reaction, we require
+
+$$
+\sum\limits_i \nu_iM_i=0
+$$ {#eq-balanced-chemical-reaction-relation}
+
+where $\nu_i$ is the stoichiometric coefficient of the $i$^th^ species, $M_i$. By definition, $\nu_i>0$ for species on the right-hand side, and negative for species on the left-hand side.
+
+::: {.callout-note title="Interpreting the Balanced Chemical Reaction Relation" collapse=true}
+
+The notation used in @eq-balanced-chemical-reaction-relation may seem confusing initially, but interpreting the summation term-by-term shows that @eq-balanced-chemical-reaction-relation is an alternate way of writing any chemical relation. For each species in the chemical relation, we multiply by its signed coefficient and add everything together. If the equation is properly balanced, the right-hand side should be zero. This is equivalent to writing the chemical relation as a mathematical equation where all species on the left-hand side have been moved to the right-hand side.
+
+For example, the balanced chemical reaction for the formation of water vapor is
+
+$$
+\mathrm{H_2}+\frac 12\mathrm{O_2}\rightleftharpoons\mathrm{H_2O}
+$$
+
+Therefore, $1\leq i\leq 3$ and we have the following relation from @eq-balanced-chemical-reaction-relation.
+
+$$
+\sum\limits_i\nu_iM_i=1\cdot\mathrm{H_2O}+(-1)\cdot\mathrm{H_2}+\left(-\frac 12\right)\cdot\mathrm{O_2}=\mathrm{H_2O}-\mathrm{H_2}-\frac 12\mathrm{O_2}=0
+$$
+
+The last equation is equivalent to the $\mathrm{H_2O}$ formation equation we wrote above, but with all species moved to the same side and the $\rightleftharpoons$ replaced with an equals sign!
+
+:::
+
+We may define the progress variable $\mathrm dn$ for species $i$ as so.
+
+$$
+\mathrm dn=\frac {\mathrm dn_i}{\nu_i}
+$$ {#eq-chemical-reaction-progress-variable}
+
+When the reaction proceeds towards the right-hand side, $\mathrm dn>0$. Conversely, when the reaction proceeds towards the left-hand side, $\mathrm dn<0$.
+
+::: {.callout-note title="Progress Variable Behavior Explanation" collapse=true}
+
+To see why $\mathrm dn>0$ or $\mathrm dn<0$ automatically determines the "favored" direction, we apply @eq-chemical-reaction-progress-variable to a product and reactant for a reaction proceeding to the right and show the sign is the same.
+
+To do so, we first assume species $i$ is a product. When the reaction shifts to the right, $\mathrm dn_i>0$ as more molecules of species $i$ are formed. Since $\nu_i>0$ as the molecule is on the right-hand side, the division in @eq-chemical-reaction-progress-variable is positive and $\mathrm dn>0$.
+
+Now, we assume species $i$ is a reactant. When the reaction shifts to the right, $\mathrm dn_i<0$ as molecules of species $i$ are consumed to form more products. This time, $\nu_i<0$ as $i$ is on the left-hand side, so @eq-chemical-reaction-progress-variable remains $\mathrm dn>0$.
+
+The case where the reaction proceeds to the left is identical to the right-direction shift considered above, except the signs are inverted and $\mathrm dn<0$ regardless if species $i$ is a product or reactant.
+
+:::
+
+Substitute @eq-chemical-reaction-progress-variable into the differential form of @eq-chemical-equilibrium-general-requirement like so.
+
+$$
+\mathrm dG=\sum\limits_i\mu_i\,\mathrm dn_i=\sum\limits_i\nu_i\mu_i\,\mathrm dn\leq0
+$$ {#eq-chemical-equilibrium-general-requirement-differential}
+
+Since $G$ reaches a minimum at chemical equilibrium, the derivative must be zero at that point.
+
+::: {.callout-note title="Interpreting Minimum Gibbs Free Energy" collapse=true}
+
+Let's consider the case for a thermally perfect gas. From eq. XXX, $G$ becomes
+
+$$
+\begin{aligned}
+G=\sum\limits_i\mu_in_i & =\sum\limits_in_i\left[\mu_i^0+\overline RT\ln\left(\frac p{p^0}\right)\right] \\
+ & =\sum\limits_in_i\left[\mu_i^0+\overline RT\ln\left(\frac p{p^0}\right)+\overline RT\ln\chi_i\right] \\
+ & =\sum\limits_in_i\mu_i^0+\sum\limits_in_i\overline RT\ln\chi_i
+\end{aligned}
+$$
+
+We assume fixed temperature, $T$, in the last equation and evaluated the system pressure at standard pressure, $p=p^0$. The first term involving $\mu_i^0$ is only a function of $T$ as $\mu_i^0$ is always evaluated at standard pressure. Thus, the first term accounts for the change in $G$ due to changes in $T$.
+
+The second term accounts for the 
+
+When both terms strike a balance and minimize $G$, that is when the equilibrium point occurs.
+
+:::
+
+## Equilibrium Constant for Thermally Perfect Gas
+
+We look at the case for a thermally perfect gas. From eq. XXX, we know that the chemical potential for a thermally perfect gas can be separated into a temperature and pressure dependence.
+
+$$
+\mu_i=\mu_i^0+\overline RT\ln\left(\frac p{p^0}\right)
+$$
+
+At equilibrium, we know that $\sum\limits_i\nu_i\mu_i^*=0$. The $*$ denotes conditions at chemical equilibrium. Substituting the equation above into the condition for equilibrium, we may define a new thermodynamic property called the *equilibrium constant*, $K_p$.
+
+$$
+\boxed{-\frac 1{\overline RT}\sum\limits_i\nu_i\mu_i^0=\ln\prod\limits_i\left(p_i^*\right)^{\nu_i}\equiv\ln K_p}
+$$
+
+Rewrite to solve for $K_p$ gives
+
+$$
+K_p\equiv\prod\limits_i\left(p_i^*\right)^{\nu_i}=\exp\left(-\frac 1{\overline RT}\sum\limits_i\nu_i\mu_i^0\right)
+$$ {#eq-equilibrium-constant-1}
+
+::: {.callout-note title="Derivation of Equilibrium Constant" collapse=true}
+
+Start with the Gibbs free energy at the equilibrium point and substitute the chemical potential in.
+
+$$
+\sum\limits_i\nu_i\mu_i^*=\sum\limits_i\nu_i\left[\mu_i^0+\overline RT\ln\left(\frac {p_i^*}{p^0}\right)\right]=0
+$$
+
+Distribute the sum and separate the pressure-dependent term from the temperature-dependent term.
+
+$$
+-\frac 1{\overline RT}\sum\limits_i\nu_i\mu_i^0=\sum\limits_i\nu_i\ln\left(\frac {p_i^*}{p^0}\right)=\sum\limits_i\ln\left[\left(\frac {p_i^*}{p^0}\right)^{\nu_i}\right]
+$$
+
+Recall that a sum of logarithms can be collapsed into a single logarithm.
+
+$$
+\ln x_1+\ln x_2+\ldots+\ln x_n=\sum\limits_{i=1}^n\ln x_i=\ln(x_1x_2\ldots x_n)=\ln\prod\limits_{i=1}^nx_i
+$$
+
+Applying this identity and defining $K_p$ as the quantity inside the natural logarithm, @eq-equilibrium-constant-1 naturally falls out.
+
+:::
