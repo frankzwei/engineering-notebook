@@ -40,6 +40,8 @@ website:
               contents:
                 - text: Chapter 5. Acoustic Wave Equation and Solutions
                   href: knowledge-base/engineering/acoustics/fundamentals-of-acoustics/5-acoustic-wave-equation-solutions.qmd
+                - text: Chapter 6 - Reflection and Transmission
+                  href: knowledge-base/engineering/acoustics/fundamentals-of-acoustics/6-wave-reflection-transmission.qmd
         - section: CFD
           contents:
             - text: Introduction to AUSM Scheme

@@ -1,0 +1,159 @@
+---
+title: Reflection and Transmission
+format:
+  html:
+    other-links:
+      - text: Kinsler et. al. (2000)
+        href: "$FILES_BASE_URL/knowledge-base/engineering/acoustics/fundamentals-of-acoustics/files/2000_Kinsler-et-al_Fundamentals-of-Acoustics_Wiley_4th-Edition.pdf"
+        icon: file-pdf
+---
+
+The equations we've derived so far have only been focused on wave propagation through a single medium. Now, we may consider the acoustics of waves propagating through two different media.
+
+# Changes in Media
+
+Reflection and transmitted waves are generated when an acoustic wave encounters a boundary between two media. These are waves that are reflected back towards the direction of the source, and transmitted through the boundary into the new medium. We first focus on wave propagation through a fluid-fluid boundary before investigating how the equations change for fluid-solid boundaries.
+
+::: {.callout-note title="Effects of Fluid-Fluid vs. Fluid-Solid Boundaries"}
+
+For pressure waves propagating perpendicular to a boundary, the mechanics between fluid-solid boundaries are effectively identical to fluid-fluid boundaries and the same set of equations may be used. The only modification is to the speed of sound, as the *bulk sonic velocity*, based on both the bulk and shear moduli, must be used, instead of the bar.
+
+:::
+
+Let the medium of the incident (and reflected) wave have an impedance of $r_1=\rho_1c_1$, where $\rho_1$ is the equilibrium density of the fluid. And let the medium of the transmitted wave have an impedance of $r_2=\rho_2c_2$. If the complex pressures of the incident, reflected, and transmitted waves are $\textbf P_i$, $\textbf P_r$, and $\textbf P_t$, then the pressure transmission and reflection coefficients are
+
+$$
+\begin{aligned}
+\textbf T & =\frac {\textbf P_t}{\textbf P_i} \\
+\textbf R & =\frac {\textbf P_r}{\textbf P_i}
+\end{aligned}
+$$ {#eq-transmission-reflection-coefficients}
+
+These ratios indicate how the pressure magnitude changes across an interface for transmitted and reflected waves. For harmonic plane waves, recall that the intensity is $I=\frac {P^2}{2r}$. We may define the intensity transmission and reflection coefficients as
+
+$$
+\begin{aligned}
+T_I & =\frac {I_t}{I_i}=\frac {r_1}{r_2}|\textbf T|^2 \\
+R_I & =\frac {I_r}{I_i}=|\textbf R|^2
+\end{aligned}
+$$ {#eq-intensity-transmission-reflection-coefficients}
+
+The intensity coefficients are *purely real* and are therefore, not bolded. The power associated with a soundwave is $IA$ where $A$ is the cross-sectional area of the "beam". If the incident beam has cross-sectional area $A_i$, then $A_t\neq A_i$. However, we will later show that $A_r=A_i$ under all circumstances. That is, the incident beam area will *always* equal that of the reflected beam.
+
+::: {.callout-note title="Cross-Sectional Areas of Beams"}
+
+Most real situations will have beams with a finite cross-sectional area. Locally, a beam can be described as having nealy parallel rays and therefore, a plane wave assumption may be applied within reason. Though the assumption breaks down near the edges resulting from diffraction of the edges of the beam, if we consider the cross-sectional area to be sufficiently greater than the beam's wavelength, then these diffraction effects can be neglected.
+
+In other words, the equations derived in this chapter are only applicable for plane waves, which we assume for beams with sufficiently small wavelengths.
+
+:::
+
+We may define the power transmission and reflection coefficients as
+
+$$
+\begin{aligned}
+T_{\Pi} & =\frac {A_t}{A_i}T_I=\frac {A_tr_1}{A_ir_2}|\textbf T|^2 \\
+R_{\Pi} & =R_I=|\textbf R|^2
+\end{aligned}
+$$ {#eq-power-transmission-reflection-coefficients}
+
+Since energy is conserved, we know that the sum of the energy contributions from the transmitted and reflected wave must equal that of the incident wave.
+
+$$
+T_{\Pi}+R_{\Pi}=1
+$$ {#eq-power-conservation-reflection-transmitted-coefficient}
+
+# Transmission From One Fluid to Another: Normal Incidence
+
+Let $x=0$ be the boundary between fluid $1$, with characteristic impedance $r_1=\rho_1c_1$, and fluid $2$, with characteristic impedance of $r_2=\rho_2c_2$. Assume the incident wave is propagating in the $+x$ direction. For plane waves, we have the following for the three waves.
+
+$$
+\begin{aligned}
+\textbf p_i & =\textbf P_ie^{j(\omega t-k_1x)} \\
+\textbf p_r & =\textbf P_re^{j(\omega t+k_1x)} \\
+\textbf p_t & =\textbf P_te^{j(\omega t-k_2x)}
+\end{aligned}
+$$
+
+Since $\textbf p_r$ propagates in the $-x$ direction in medium $1$, we have $\omega t\textcolor{red}{+}k_1x$. On the other hand, since $\textbf p_t$ propagates through medium $2$, we have $\omega t-k_{\textcolor{red}{2}}x$. All waves have the same $f$ and $\omega$, but will have different wave numbers since $c_1\neq c_2$.
+
+The two boundary conditions that must be satisfied across all time and all points at the interface are:
+
+1. **Continuity of Pressure**
+
+   The acoustic pressures on both sides of the boundary must be equal. This is a consequence of the fact that there can be no net force on an "imaginary", massless plane separating the two fluids.
+
+2. **Continuity of the Normal Component of Velocity**
+
+   The normal components of the *particle velocities* must be equal on both sides. This is due to the requirement that the fluids remain in contact at the boundary for everywhere.
+
+Mathematically, the boundary conditions are
+
+$$
+\begin{aligned}
+\textbf p_i(0)+\textbf p_r(0) & =\textbf p_t(0) \\
+\textbf u_i(0)+\textbf u_r(0) & =\textbf u_t(0)
+\end{aligned}
+$$ {#eq-normal-incidence-boundary-conditions}
+
+Dividing the two equations in @eq-normal-incidence-boundary-conditions gives the *continuity of normal specific impedance* across the interface.
+
+$$
+\frac {\textbf p_i(0)+\textbf p_r(0)}{\textbf u_i(0)+\textbf u_r(0)}=\frac {\textbf p_t(0)}{\textbf u_t(0)}
+$$ {#eq-normal-incidence-continuity-normal-specific-impedance}
+
+Since $\pm r=\frac {\textbf p}{\textbf u}$, then @eq-normal-incidence-continuity-normal-specific-impedance becomes
+
+$$
+r_1\frac {\textbf p_i(0)+\textbf p_r(0)}{\textbf p_i(0)-\textbf p_r(0)}=r_2
+$$
+
+Normalize by $\textbf p_i$ gives the reflection coefficient $\textbf R$ as
+
+$$
+\boxed{\textbf R=\frac {r_2-r_1}{r_2+r_1}=\frac {r_2/r_1-1}{r_2/r_1+1}}
+$$ {#eq-normal-incidence-reflection-coefficient}
+
+From continuity of pressure, then
+
+$$
+\boxed{\textbf T=1+\textbf R=\frac {2r_2/r_1}{r_2/r_1+1}}
+$$ {#eq-normal-incidence-transmission-coefficient}
+
+The intensity coefficients, from @eq-intensity-transmission-reflection-coefficients, for normal incidence are
+
+$$
+\begin{gathered}
+\boxed{\displaystyle R_I=\left(\frac{r_2/r_1-1}{r_2/r_1+1}\right)^2}\\[12pt]
+\boxed{\displaystyle \mathrlap{T_I=\frac{4r_2/r_1}{\left(r_2/r_1+1\right)^2}}\phantom{R_I=\left(\frac{r_2/r_1-1}{r_2/r_1+1}\right)^2}}
+\end{gathered}
+$$ {#eq-normal-incidence-intensity-coefficients}
+
+For normal incidence, $A_t=A_i$ and the power coefficients are equal to the intensity coefficients.
+
+$$
+\begin{gathered}
+\boxed{\displaystyle R_{\Pi}=R_I=\left(\frac{r_2/r_1-1}{r_2/r_1+1}\right)^2}\\[12pt]
+\boxed{\displaystyle \mathrlap{T_{\Pi}=T_I=\frac{4r_2/r_1}{\left(r_2/r_1+1\right)^2}}\phantom{R_{\Pi}=R_I=\left(\frac{r_2/r_1-1}{r_2/r_1+1}\right)^2}}
+\end{gathered}
+$$ {#eq-normal-incidence-power-coefficients}
+
+# Transmission Through a Fluid Layer: Normal Incidence
+
+# Transmission From One Fluid to Another: Oblique Incidence
+
+# Normal Specific Acoustic Impedance
+
+# Reflection From the Surface of a Solid
+
+# Transmission Through a Thin Partition: The Mass Law
+
+The case of wave propagation through a thin medium between two enclosures is of significant interest in architecture, where offices are separated from one another by a thin wall. 
+
+# Method of Images
+
+## Rigid Boundary
+
+## Pressure Release Boundary
+
+## Extensions
