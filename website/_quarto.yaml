@@ -83,6 +83,11 @@ website:
           contents:
             - text: Classical Thermodynamics
               href: notes/ae6765/lectures/classical-thermodynamics.qmd
+        - section: MATH 6640
+          href: notes/math6640/index.qmd
+          contents:
+            - text: Introduction to Partial Differential Equations
+              href: notes/math6640/lectures/hyperbolic-equations.qmd
 format:
   html:
     theme:
