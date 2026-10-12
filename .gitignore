@@ -1,6 +1,5 @@
 # Local reference files
 **/files/*
-**/assets/*
 
 # Build files
 _site/
