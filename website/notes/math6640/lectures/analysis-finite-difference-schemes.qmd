@@ -1,0 +1,112 @@
+---
+title: Analysis of Finite Difference Schemes
+---
+
+# Fourier Analysis
+
+::: {.callout-important title="Definition of Fourier Transform"}
+
+Let $u$ be a function that consumes a real-valued number and maps it to a complex-valued number. Mathematically, $u: \mathbb R\to\mathbb C$. Then its Fourier transform $\hat u(\omega)$ is defined by the following formula.
+
+$$
+\hat u(\omega)=\frac 1{\sqrt{2\pi}}\int_{-\infty}^{\infty}u(x)e^{-i\omega x}\,\mathrm dx
+$$ {#eq-fourier-transform}
+
+The Fourier inversion formula recovers the original $u(x)$ in @eq-fourier-transform from a given $\hat u(\omega)$.
+
+$$
+u(x)=\frac 1{\sqrt{2\pi}}\int_{-\infty}^{\infty}\hat u(\omega)e^{i\omega x}\,\mathrm dx
+$$ {#eq-fourier-inversion-formula}
+
+:::
+
+**Remarks:**
+
+1. The function $\hat u(\omega)$ will generally be a complex-valued function even if $u(x)$ is a strictly real-valued function.
+
+2. The definition given above is not that rigorous.
+
+For completeness, the Fourier transform of an arbitrary example is given below.
+
+::: {.callout-note title="Fourier Transform Example" collapse=true}
+
+Let's apply @eq-fourier-transform to compute $\hat u(\omega)$ if $u(x)$ is defined as the discontinuous function below.
+
+$$
+u(x)=\begin{cases}e^{-x} & x\geq0 \\0 & x<0\end{cases}
+$$
+
+By @eq-fourier-transform, we have
+
+$$
+\begin{aligned}
+\hat u(\omega) & =\frac 1{\sqrt{2\pi}}\int_{-\infty}^{\infty}u(x)e^{-i\omega x}\,\mathrm dx\\ & =\frac 1{\sqrt{2\pi}}\int_0^{\infty}e^{-x}e^{-i\omega x}\,\mathrm dx\\ & =\frac 1{\sqrt{2\pi}}\frac 1{1+i\omega}
+\end{aligned}
+$$
+
+:::
+
+The Fourier transform definition above assumed $u(x)$ was an analytical function. Now, we give a definition for a grid function $v$.
+
+::: {.callout-important title="Definition of Discrete Fourier Transform"}
+
+Let $v$ be a function defined on the grid as $v:h\mathbb Z\to\mathbb C$, then the Fourier transform of the discrete grid function $v$ is
+
+$$
+\hat v(\xi)=\frac 1{\sqrt{2\pi}}\sum\limits_{m\in\mathbb Z}v_me^{-imh\xi}h
+$$ {#eq-discrete-fourier-transform}
+
+The infinite sum in the discrete case can be viewed as a Riemann sum approximation of the integral in @eq-fourier-transform. The Fourier-transformed function $\hat v(\xi)$ is indeed a function defined on $\mathbb C$. However, it is also helpful to view it as a periodic function. As we will show later, $\hat v(\xi)$ is indeed periodic with period $\frac {2\pi}h$ due to $e^{-imh\xi}$. When defining the discrete Fourier inversion formula, we must then restrict $\xi\in\left[-\frac {\pi}h,\frac {\pi}h\right]$ to ensure a well-defined inverse mapping.
+
+$$
+v_m=\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}\hat v(\xi)e^{imh\xi}\,\mathrm d\xi
+$$ {#eq-discrete-fourier-inversion-formula}
+
+:::
+
+**Remarks:** Instead of viewing $\hat v(\xi)$ as a function only on a finite interval, we can also interpret it as a $\frac {2\pi}h$-periodic function defined for all $\xi\in\mathbb R$. The reasoning for this comes from the $e^{-imh\xi}$ term, which itself is $\frac {2\pi}h$-periodic. From @eq-discrete-fourier-transform
+
+$$
+\hat v\left(\xi+\frac {2\pi}h\right)=\frac 1{\sqrt{2\pi}}\sum\limits_{m\in\mathbb Z}v_me^{-imh\left(x+\frac {2\pi}h\right)}h=\frac 1{\sqrt{2\pi}}\sum\limits_{m\in\mathbb Z}v_me^{-imh\xi}he^{-2\pi im}=\hat v(\xi)
+$$
+
+We next give a useful theorem in Fourier analysis.
+
+::: {#thm-parsevals-relation}
+
+## Parseval's Relation
+
+For an integrable continuous function $u:\mathbb R\to\mathbb C$, the L^2^ norm of $u$ is equal to its Fourier-transformed counterpart.
+
+$$
+\int_{-\infty}^{\infty}\left|u(x)\right|^2\,\mathrm dx=\lVert u\rVert_{L^2}^2=\lVert\hat u\rVert_{L^2}^2=\int_{-\infty}^{\infty}\left|\hat u(\omega)\right|^2\,\mathrm d\omega
+$$ {#eq-parsevals-relation}
+
+Similarly, if $v$ is a grid-level function such that $v:h\mathbb Z\to\mathbb C$, then the $h$-norm of $v$ is equal to the $h$-norm of its Fourier-transformed function.
+
+$$
+\sum\limits_{m=-\infty}^{\infty}\left|v_m\right|^2h=\lVert v\rVert_h^2=\lVert\hat v\rVert_h^2=\int_{-\pi/h}^{\pi/h}\left|\hat v(\xi)\right|^2\,\mathrm d\xi
+$$ {#eq-discrete-parsevals-relation}
+
+:::
+
+We give a nonrigorous proof of @eq-discrete-parsevals-relation. The proof of @eq-parsevals-relation may be found in another textbook.
+
+::: {.callout-note title="Proof of Discrete Parseval's Relation" collapse=true}
+
+From $\left|v_m\right|^2=\overline{\hat v(\xi)}\hat v(\xi)$, we have
+
+$$
+\begin{aligned}
+\lVert\hat v\rVert_h^2=\int_{-\pi/h}^{\pi/h}\overline{\hat v(\xi)}\hat v(\xi)\,\mathrm d\xi & =\int_{-\pi/h}^{\pi/h}\frac {\overline{\hat v(\xi)}}{\sqrt{2\pi}}\sum\limits_{m=-\infty}^{\infty}v_me^{-imh\xi}h\,\mathrm d\xi \\
+ & =\frac 1{\sqrt{2\pi}}\sum\limits_{m=-\infty}^{\infty}\int_{-\pi/h}^{\pi/h}\overline{\hat v(\xi)}e^{-imh\xi}\,\mathrm d\xi\, v_mh \\
+ & =\sum\limits_{m=-\infty}^{\infty}\overline{\frac 1{\sqrt{2\pi}}\int_{-\pi/h}^{\pi/h}\hat v(\xi)e^{imh\xi}\,\mathrm d\xi}\,v_mh \\
+ & =\sum\limits_{m=-\infty}^{\infty}\overline{v_m}v_mh \\
+ & =\lVert v\rVert_h^2
+\end{aligned}
+$$
+
+:::
+
+## Fourier Analysis and PDEs
+
