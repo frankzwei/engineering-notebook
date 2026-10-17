@@ -528,3 +528,10 @@ $$ {#eq-well-posedness-pde-definition}
 for $0\leq t\leq T$.
 
 :::
+
+**Remark:** The numerical speed of propagation for a scheme of the form $v_m^{n+1}=\alpha v_{m-1}^n+\beta v_m^n+\gamma v_{m+1}^n$ is $\frac hk=\frac 1{\lambda}$. For such a scheme to be stable, it is necessary that the numerical speed exceed the real speed of the PDE.
+
+$$
+\frac 1{\lambda}\geq|a|
+$$
+

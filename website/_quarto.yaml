@@ -88,6 +88,8 @@ website:
           contents:
             - text: Introduction to Partial Differential Equations
               href: notes/math6640/lectures/hyperbolic-equations.qmd
+            - text: Analysis of Finite Difference Schemes
+              href: notes/math6640/lectures/analysis-finite-difference-schemes.qmd
 format:
   html:
     theme:
