@@ -4,31 +4,296 @@ title: "Part B: The Acoustic Wave Equation"
 
 # Derivation of the Wave Equation
 
-Consider the standard 3D coordinate system. Acoustic variables include
+## Notation
+
+We will use the following notation throughout the course.
+
+- $\rho=\rho(\vec r,t)$ is the instantaneous density
+
+- $\rho_0=\rho_0(\vec r)$ is the equilibrium ambient density. An example of this is the density of ambient air, which is a function of position (e.g., height above sea level).
+
+  The local density $\rho$ may fluctuate over time, but the averaged value will always equate to $\rho_0$.
+
+- $s=\frac {\rho(\vec r, t)-\rho_0(\vec r)}{\rho_0(\vec r)}$ is the condensation
+
+- $\mathcal P=\mathcal P(\vec r, t)$ is the instantaneous pressure
+
+- $\mathcal P_0=\mathcal P_0(\vec r)$ is the ambient equilibrium pressure
+
+- $p(\vec r, t)=\mathcal P(\vec r, t)-\mathcal P_0(\vec r)$ is the acoustic or sound pressure
+
+- $T_K$ is the temperature in Kelvin. In acoustics, we generally do not consider significant timescales where the temperature will change drastically or instantly. Therefore, no distinction is made between the instantaneous and ambient temperature.
+
+## The Lossless Acoustic Wave Equation
+
+We apply three principles when deriving the lossless wave equation. The term "lossless" in this case refers to the lack of viscous effects in the fluid that the wave is propagating through.
+
+1. Newton's 2^nd^ Law
+
+2. Conservation of Mass (Continuity)
+
+3. Medium Equation of State
+
+### Newton's 2^nd^ Law
+
+For small perturbations, where $|p|\ll\mathcal P_0$, we have the following relation called the *linearized Euler equation*. The derivation comes from a simplification of the Navier-Stokes equation. The derivation will not be given here.
 
 $$
-\begin{aligned}
-\rho & =\rho(\textbf x, t) \\
-\mathcal P & =p(\textbf x, t) \\
-\mathcal P_0 & =p_0(\textbf x, t) \\
-p & =\mathcal P(\textbf r, t)-\mathcal P_0(\textbf r)=p(\textbf r, t) \\
-T & =
-\end{aligned}
-$$
+\frac {\partial\mathbf u}{\partial t}+\frac 1{\rho_0}\nabla\mathbf p=\mathbf 0
+$$ {#eq-linearized-euler-equation}
 
-Applying Newton's second law gives for small perturbations using the linearized Euler equation
+where $\nabla\mathbf p$ is the gradient of the acoustic pressure.
+
+### Conservation of Mass
+
+Since mass is always conserved in an acoustic field, we also have the *continuity equation*.
 
 $$
-\frac {\partial\textbf u}{\partial t}+\frac 1{\rho_0}\nabla p=0
+\frac {\partial\rho}{\partial t}+\rho_0\nabla\cdot\mathbf u=0
+$$ {#eq-continuity-equation}
+
+### Equation of State
+
+For a thermally perfect gas, we have the following state relation.
+
+$$
+\mathcal P=\rho RT_K
+$$ {#eq-tpg-equation-state}
+
+There is also an *adiabatic state equation* related to the adiabatic process $p\propto \rho^{\gamma}$ where $\gamma$ is the specific heat ratio. For diatomic gases and air, $\gamma=1.4$.
+
+$$
+\frac {\mathcal P}{\mathcal P_0}=\left(\frac {\rho}{\rho_0}\right)^{\gamma}
+$$ {#eq-adiabatic-equation-state}
+
+In general, we may apply a 1^st^ order Taylor series approximation to $\mathcal P(\rho)$ centered on $\mathcal P_0=\mathcal P(\rho_0)$ to get
+
+$$
+p=\mathcal P(\rho)-\mathcal P(\rho_0)\approx\left.\frac {\partial\mathcal P}{\partial\rho}\right|_{\rho_0}(\rho-\rho_0)=\left.\frac {\partial\mathcal P}{\partial\rho}\right|_{\rho_0}\rho_0s
 $$
 
-The $\nabla p$ term is on the acoustic pressure, defined as $\frac {\partial p}{\partial x}\textbf x+\frac {\partial p}{\partial y}\textbf y+\frac {\partial p}{\partial z}\textbf z$. Next, apply mass conservation in differential form.
+where $s$ is the condensation, defined above. Define the coefficient of $s$ as the *adiabatic bulk modulus*
 
 $$
-\frac {\partial\rho}{\partial t}+\rho_0\nabla\cdot\textbf u=0
+\mathcal B=\rho_0\left.\frac {\partial\mathcal P}{\partial\rho}\right|_{\rho_0}
+$$ {#eq-adiabatic-bulk-modulus}
+
+::: {.callout-tip title="Physical Interpretation of $\mathcal B$"}
+
+The adiabatic bulk modulus can be thought of as the volumetric stiffness of the fluid.
+
+:::
+
+Therefore, the acoustic pressure is simply
+
+$$
+p=\mathcal Bs=\mathcal B\frac {\rho-\rho_0}{\rho_0}
+$$ {#eq-acoustic-pressure-definition}
+
+### Derivation from Conservation Laws
+
+From @eq-acoustic-pressure-definition, we may differentiate with respect to time to get $\frac {\partial p}{\partial t}=\mathcal B\frac {\partial s}{\partial t}$. Additionally, from the definition of $s$, we also have $\frac {\partial s}{\partial t}=\rho_0\frac {\partial\rho}{\partial t}$. Assembling everything together gives
+
+$$
+\frac 1{\mathcal B}\frac {\partial p}{\partial t}+\nabla\cdot\mathbf u=0
 $$
 
-# Harmonic Solutions to the Classical Wave Equation
+Next, we may eliminiate the $\nabla\cdot\mathbf u$ by taking the divergence of @eq-linearized-euler-equation and substituting the $\nabla\cdot\mathbf u$ above to get
+
+$$
+-\frac 1{\mathcal B}\frac {\partial^2\rho}{\partial t^2}+\frac 1{\rho_0}\nabla^2p=0
+$$
+
+Further simplification by relating $\mathcal B$ with the speed of sound, $c=\sqrt{\mathcal B/\rho_0}$, gives the *3D classical acoustic wave*.
+
+$$
+\boxed{\nabla^2p=\frac 1{c^2}\frac {\partial^2\rho}{\partial t^2}}
+$$ {#eq-classical-wave-equation}
+
+### Speed of Sound Relations
+
+We have the following relation for speed of sound from its thermodynamic definition.
+
+$$
+\boxed{c=\sqrt{\frac {\gamma\mathcal P_0}{\rho_0}}=\sqrt{\gamma RT_K}}
+$$ {#eq-speed-of-sound}
+
+where $\mathcal P_0$ and $\rho_0$ are the ambient pressure and density respectively. To prove @eq-speed-of-sound, differentiate @eq-tpg-equation-state with respect to $\rho$ and substitute into $c=\sqrt{\left.\frac {\partial\mathcal P}{\partial\rho}\right|_{\mathrm{ad}}}$.
+
+::: {.callout-tip title="Factors Affecting $c$"}
+
+The relation derived above in @eq-speed-of-sound is only valid for gases that obey @eq-tpg-equation-state. For other substances like solids or liquids, @eq-speed-of-sound cannot be used. Generally, $c$ is measured and used to relate to other quantities. In general though, $c$ depends on $T_K$ and composition ($c$ in freshwater is different than that in saltwater).
+
+:::
+
+# Traveling Wave Solutions to Acoustic Wave Equation
+
+## Helmholtz Equation
+
+From @eq-classical-wave-equation, we assume that the wave is *harmonic* so $p(\mathbf r,t)$ is a sinuisoidal function with respect to time. This allows us to relate the pressure as
+
+$$
+\underline p(\mathbf r,t)=\underline{\underline p}(\mathbf r)e^{j\omega t}
+$$ {#eq-complex-pressure-definition}
+
+Note that the coefficient $\underline{\underline p}$ is double-underlined to signify that it refers to the *amplitude* of the complex-valued pressure function $\underline p$. Substituting @eq-complex-pressure-definition into @eq-classical-wave-equation gives the Helmholtz equation.
+
+$$
+\nabla^2\underline{\underline p}+k^2\underline{\underline p}(\mathbf r)=0
+$$ {#eq-helmholtz-equation}
+
+where $k=\frac {\omega}c$ is called the acoustic wavenumber with units of $\mathrm L^{-1}$.
+
+## Harmonic Plane Waves
+
+For a plane wave, we make the simplification that the wave only propagates in the $x$ direction. Therefore
+
+$$
+\underline{\underline p}(\mathbf r)=\underline{\underline p}(x, y, z)=\underline{\underline p}(x)
+$$
+
+Moreover, since $\underline{\underline p}$ no longer depends on $y$ and $z$, then $\nabla^2\underline{\underline p}=\frac {\partial^2\underline{\underline p}}{\partial x^2}$. Therefore, @eq-helmholtz-equation reduces down to an ODE.
+
+$$
+\frac {\partial^2\underline{\underline p}}{\partial x^2}+k^2\underline{\underline p}=0
+$$ {#eq-plane-wave-ode}
+
+The solution to @eq-plane-wave-ode is given by $\underline{\underline p}(x)=\underline A\exp(-jkx)+\underline B\exp(jkx)$. Therefore @eq-complex-pressure-definition for a *harmonic plane wave* becomes
+
+$$
+\boxed{\underline p(x, t)=\underline Ae^{j(\omega t-kx)}+\underline Be^{j(\omega t+kx)}}
+$$ {#eq-plane-wave-pressure}
+
+The first term, $\underline A\exp[j(\omega t-kx)]$ represents a wave propagating in the $+x$ direction. Similarly, the second term, $\underline B\exp[j(\omega t+kx)]$ represents a wave propagating in the $-x$ direction.
+
+### Particle Velocity
+
+Before proceeding, we should explicitly cover the distinction between two velocity quantities for any given acoustic wave problem. The speed of sound, denoted by $c$, is the velocity at which a pressure disturbance (or acoustic wave) will propagate through a medium.
+
+The particle velocity, denoted by $\mathbf u$, indicates how quickly an individual particle oscillates in an acoustic wave. If the wave is harmonic, then $\mathbf u$ will also be harmonic. Therefore, each particle will sinusoidally oscillate by a very small amount. For the case of a harmonic plane wave, each particle will oscillate in the $x$ direction by $u=|\mathbf u|$ amount.
+
+::: {.callout-note title="Sonic Velocity vs. Particle Velocity in Air"}
+
+For air at standard pressure and temperature, $c\simeq340$ $\mathrm{m/s}$. However, $u$ is generally on the order of magnitude of $1-10^6$ $\mathrm{\mu m/s}$. Broadly speaking, $u\ll c$ and is multiple orders of magnitude smaller.
+
+:::
+
+To compute the particle velocity, we solve the linearized Euler equation, @eq-linearized-euler-equation, for $\textbf u$. In the case of a 1D harmonic plane wave, then $\textbf u=u\hat x$ and $\nabla\underline p=\frac {\partial\underline p}{\partial x}\hat x$. Therefore, @eq-linearized-euler-equation becomes
+
+$$
+\frac {\partial u}{\partial t}=-\frac 1{\rho_0}\frac {\partial p}{\partial x}
+$$
+
+Next, we must make a series of assumptions about the wave itself. Assume the propagation direction is specified and is in the $x$ direction. Now, @eq-plane-wave-pressure reduces down to
+
+$$
+\underline p(x, t)=\underline Ae^{j(\omega t-kx)}
+$$
+
+Furthermore, since the wave is harmonic, we know that the particle velocity vector must also be harmonic. Assume that the particle velocity in the $x$-direction is given by
+
+$$
+\underline u=\underline Ue^{j(\omega t-kx)}
+$$
+
+Substitute this form into the simplified Euler equation above and solve for $\underline U$, the amplitude.
+
+$$
+\underline U=\frac {\underline A}{\rho_0c}
+$$ {#eq-plane-wave-particle-velocity-magnitude}
+
+This is the magnitude of the particle velocity. We may then derive the complete particle velocity vector for a harmonic plane wave was
+
+$$
+\boxed{\mathbf u=\underline u_{\pm}(x, t)\hat x=\pm\frac {\underline p(x, t)}{\rho_0c}\hat x}
+$$ {#eq-plane-wave-particle-velocity}
+
+The $\pm$ notation indicates the direction of wave propagation. If the wave is propagating in the $-x$ direction, for instance, take the negative branch so @eq-plane-wave-particle-velocity is
+
+$$
+\mathbf u=-\frac {\underline p(x, t)}{\rho_0c}\hat x
+$$
+
+::: {.callout-important title="Particle Velocity of a Superposition of Waves"}
+
+If we assume a harmonic wave is comprised of two independent harmonic plane waves traveling in opposite directions, then the governing pressure equation is
+
+$$
+\underline p(x, t)=\underline Ae^{j(\omega t-kx)}+\underline Be^{j(\omega t+kx)}\equiv\underline p_+(x, t)+\underline p_-(x, t)
+$$
+
+The particle velocity for this is then
+
+$$
+\underline u(x, t)=\frac {\underline p_+(x, t)}{\rho_0c}-\frac {\underline p_-(x, t)}{\rho_0c}=\frac {\underline Ae^{j(\omega t-kx)}}{\rho_0c}-\frac {\underline Be^{j(\omega t+kx)}}{\rho_0c}
+$$
+
+Note that $\underline u(x, t)\neq\frac {\underline p(x, t)}{\rho_0c}$. For waves comprised of multiple waves, the particle velocity must be derived by summing up the particle velocities *for each individual wave*.
+
+:::
+
+### Particle Displacement
+
+Since $\bm{\xi}=\frac {\mathrm d\mathbf u}{\mathrm dt}$, we may integrate with respect to time and assume the starting point is the origin. For the case of a harmonic plane wave propagating in the $x$ direction, only $\xi_x$ will be nonzero.
+
+$$
+\bm{\xi}=\frac {\underline p(x, t)}{j\rho_0c\omega}\hat x
+$$ {#eq-plane-wave-particle-displacement}
+
+
+### Phase Angle
+
+The complex amplitude, $\underline A$ for a wave propagating in the $x$ direction in @eq-plane-wave-pressure, can be decomposed into a magnitude term and phase angle term.
+
+$$
+\underline A=\left|\underline A\right|e^{j\theta_A}
+$$
+
+The phase angle accounts for any offset in the wave. The complex pressure in @eq-plane-wave-pressure now becomes
+
+$$
+\underline p(x, t)=\left|\underline A\right|e^{j(\omega t-kx+\theta_A)}
+$$ {#eq-plane-wave-pressure-with-phase}
+
+The real pressure that is physically observed is simply the real part of @eq-plane-wave-pressure-with-phase.
+
+$$
+p(x, t)=\mathrm{Re}\left[\underline p(x, t)\right]=\left|\underline A\right|\cos(\omega t-kx+\theta_A)
+$$ {#eq-plane-wave-real-pressure}
+
+::: {.callout-important title="Angular Frequency and Wavenumber are Analogous"}
+
+The real pressure in a plane wave, @eq-plane-wave-real-pressure, also reveals the role $\omega$ and $k$ play in constructing the acoustic field. The term $\omega$ is the angular frequency and has units of $\mathrm{rad/s}$. It is related to the wave's frequency by
+
+$$
+f=\frac {\omega}{2\pi}
+$$ {#eq-frequency}
+
+where $f$ has units of $\mathrm{Hz}$. The wave's frequency represents the number of wave cycles repeated per second. The frequency is directly used to calculate the *temporal* period of the wave, which is the length of time each wave cycle takes.
+
+$$
+T=\frac 1f=\frac {2\pi}{\omega}
+$$ {#eq-temporal-period}
+
+Note that the period here describes a period in time. There is also a *spatial* period, called the wavelength, $\lambda$. This is the physical distance the wave covers before it repeats itself.
+
+$$
+\lambda=\frac {2\pi}k
+$$ {#eq-wavelength}
+
+The $k$ in @eq-wavelength is the *wavenumber* and is the spatial analog of the angular frequency. The units of $k$ are $\mathrm{rad/m}$, similar to how $\omega$ has units of $\mathrm{rad/s}$.
+
+$$
+k=\frac {\omega}c
+$$ {#eq-wavenumber}
+
+We may relate the wavelength to the period directly by substituting @eq-wavenumber into @eq-wavelength and using @eq-frequency.
+
+$$
+\lambda=cT=\frac cf
+$$ {#eq-wavelength-wavenumber}
+
+:::
 
 ## Harmonic Spherical Waves
 

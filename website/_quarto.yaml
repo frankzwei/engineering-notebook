@@ -5,6 +5,7 @@ project:
   resources:
     - "**/files/**/*"
     - "**/assets/**/*"
+
 website:
   title: Frank's Engineering Notebook
   bread-crumbs: false
@@ -78,6 +79,8 @@ website:
           contents:
             - text: Introduction to Acoustics
               href: notes/ae6760/lectures/introduction-acoustics.qmd
+            - text: The Acoustic Wave Equation
+              href: notes/ae6760/lectures/acoustic-wave-equation.qmd
         - section: AE 6765
           href: notes/ae6765/index.qmd
           contents:
@@ -90,6 +93,7 @@ website:
               href: notes/math6640/lectures/hyperbolic-equations.qmd
             - text: Analysis of Finite Difference Schemes
               href: notes/math6640/lectures/analysis-finite-difference-schemes.qmd
+
 format:
   html:
     theme:
@@ -98,6 +102,7 @@ format:
     css: styles.css
     toc: true
     html-math-method: katex
+
 crossref:
   eq-prefix: Eq.
   fig-prefix: Fig.

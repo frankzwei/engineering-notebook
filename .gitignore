@@ -8,3 +8,7 @@ tools/
 # Python package files
 .venv/
 **/__pycache__/*
+/.quarto/
+**/*.quarto_ipynb
+
+/.luarc.json
