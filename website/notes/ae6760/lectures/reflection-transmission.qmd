@@ -1,0 +1,115 @@
+---
+title: "Part C: Reflection and Transmission of Waves"
+---
+
+
+# Fluid-Fluid Boundaries
+
+## Normal Incidence
+
+Consider the case where an incident plane wave with pressure $p_i$ colliding with a fluid-fluid boundary. The fluids have different characteristic impedances. That is, $z_{0,1}\neq z_{0,2}$.
+
+![Reflection and transmission of a plane wave normal to a fluid-fluid boundary](../assets/reflection-transmission-fluid-fluid.png){.lightbox width=30%}
+
+Part of the wave is transmitted through the boundary into medium $2$. We denote this wave with $p_t$ to signify that it is transmitted through the boundary. Another part of the incident wave is reflected by the boundary back into medium $1$. Let $p_r$ denote the reflected wave. The goal is to determine how much of $p_i$ is transmitted vs. reflected.
+
+Define the *pressure reflection coefficient* as the ratio between the reflected wave's pressure to that of the incident wave's. We may define an identical quantity for the transmitted pressure, called the *pressure transmission coefficient*.
+
+$$
+\begin{aligned}
+\underline T & =\frac {\underline{\underline p}_t}{\underline{\underline p}_i} \\
+\underline R & =\frac {\underline{\underline p}_r}{\underline{\underline p}_i}
+\end{aligned}
+$$ {#eq-pressure-coefficients}
+
+These two quantities are currently unknown, so we need a total of $2$ equations. These two equations come from conservation laws. We have that at the boundary, the net force from the incident wave "colliding" with the boundary should be zero to prevent the boundary from moving (the boundary does not accelerate nor move with constant velocity). Therefore, pressure must be continuous across the boundary.
+
+$$
+p_1(0, t)=p_2(0, t)
+$$ {#eq-fluid-fluid-normal-pressure-constraint}
+
+The second constraint is that the particle velocities must be equal on both sides as energy is transferred across the boundary, but mass is not.
+
+$$
+\underline{\mathbf u}_1=\underline{\mathbf u}_2
+$$ {#eq-fluid-fluid-normal-particle-velocity-constraint}
+
+### Pressure Continuity Constraint
+
+We may express $\underline p_i$, $\underline p_t$, and $\underline p_r$ using their harmonic plane wave definitions.
+
+$$
+\begin{aligned}
+\underline p_i(x, t) & =\underline{\underline p}_i e^{j(\omega t-k_1x)} \\
+\underline p_t(x, t) & =\underline{\underline p}_t e^{j(\omega t-k_2x)} \\
+\underline p_r(x, t) & =\underline{\underline p}_r e^{j(\omega t+k_1x)}
+\end{aligned}
+$$ {#eq-plane-wave-pressures}
+
+The pressure in medium $1$ is the sum of $\underline p_i$ and $\underline p_r$. And the pressure in medium $2$ is simply $\underline p_t$. Therefore, @eq-fluid-fluid-normal-pressure-constraint becomes
+
+$$
+\underline{\underline p}_i+\underline{\underline p}_r=\underline{\underline p}_t
+$$
+
+Normalize both sides by $\underline{\underline p}_t$ to recover $\underline T$ and $\underline R$.
+
+$$
+1+\underline R=\underline T
+$$ {#eq-fluid-fluid-normal-pressure-coefficient-relation}
+
+### Particle Velocity Constraint
+
+From the equation of $\underline{\mathbf u}$ for a plane wave, we have the following
+
+$$
+\begin{aligned}
+\underline u_i(x, t) & =\frac {\underline{\underline p}_i(x, t)}{\rho_1c_1}e^{j(\omega t-k_1x)} \\
+\underline u_t(x, t) & =\frac {\underline{\underline p}_t(x, t)}{\rho_2c_2}e^{j(\omega t-k_2x)} \\
+\underline u_r(x, t) & =-\frac {\underline{\underline p}_r(x, t)}{\rho_1c_1}e^{j(\omega t+k_1x)}
+\end{aligned}
+$$ {#eq-plane-wave-particle-velocities}
+
+The particle velocity in fluid $1$ is the sum of the incident and reflected particle velocities. And the particle velocity in fluid $2$ is simply that of the transmitted wave's. Therefore, @eq-fluid-fluid-normal-particle-velocity-constraint becomes
+
+$$
+\frac {\underline{\underline p}_i-\underline{\underline p}_r}{\rho_1c_1}=\frac {\underline{\underline p}_t}{\rho_2c_2}
+$$
+
+Dividing both sides by $\underline{\underline p}_i$, we get
+
+$$
+\frac {1-\underline R}{z_1}=\frac {\underline T}{z_2}
+$$ {#eq-fluid-fluid-normal-particle-velocity-relation}
+
+### Transmission and Reflection Coefficients
+
+With @eq-fluid-fluid-normal-pressure-coefficient-relation and @eq-fluid-fluid-normal-particle-velocity-relation, solving for $\underline T$ and $\underline R$ gives
+
+$$
+\begin{aligned}
+\underline T & =\frac {2z_2}{z_1+z_2}=\frac {2z_2/z_1}{1+z_2/z_1} \\
+\underline R & =\frac {z_2-z_1}{z_1+z_2}=\frac {z_2/z_1-1}{1+z_2/z_1}
+\end{aligned}
+$$ {#eq-fluid-fluid-normal-pressure-coefficients}
+
+Let's now investigate specific cases of reflection and transmissions across the boundary.
+
+#### Case 1: $z_1\gg z_2$
+
+An example of $z_1\gg z_2$ is an incident wave propagating from air into water. In @eq-fluid-fluid-normal-pressure-coefficients, we assume $z_2$ contribution is negligible so $\underline T=2$ and $\underline R=1$. Under these conditions, the transmitted pressure is expected to be twice as large as that of the incident wave. And the reflected pressure amplitude is expected to be equal to that of the incident wave.
+
+#### Case 2: $z_1\ll z_2$
+
+For the opposite case, where a wave is propagating from water into air, we assume that the impedance $z_2$ is negligible in @eq-fluid-fluid-normal-pressure-coefficients so $\underline T=\frac {2z_2}{z_1}\ll 1$ and $\underline R=-1$. The transmitted wave amplitude is very small (seemingly negligible), whereas the reflected wave amplitude is equal in magnitude to the incident wave's, but opposite in phase.
+
+### Intensity Transmission and Reflection Coefficients
+
+The time-averaged intensities can be constructed im an identical manner to $\underline T$ and $\underline R$.
+
+$$
+\begin{aligned}
+T_I & =\frac {I_t}{I_i} \\
+R_I & =\frac {I_r}{I_i}
+\end{aligned}
+$$ {#eq-fluid-fluid-normal-intensity-coefficients}
