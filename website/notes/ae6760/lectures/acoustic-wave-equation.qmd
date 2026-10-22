@@ -6,23 +6,19 @@ title: "Part B: The Acoustic Wave Equation"
 
 ## Notation
 
-We will use the following notation throughout the course.
+The instantaneous density is defined as $\rho=\rho(\mathbf r, t)$. For a given medium, the density may vary or fluctuate across position and time. Though there may be small fluctuations present, $\rho$ will generally vary across a steady, averaged value in the medium called the equilibrium ambient density $\rho_0=\rho_0(\mathbf r)$. The equilibrium ambient density may be a function of position (e.g., density of air varies as height above sea level increases), but is not time-dependent. We may define condensation as the density difference relative to $\rho_0$. Mathematically, this is defined as
 
-- $\rho=\rho(\vec r,t)$ is the instantaneous density
+$$
+s=\frac {\rho(\mathbf r, t)-\rho_0(\mathbf r)}{\rho_0(\mathbf r)}
+$$ {#eq-condensation}
 
-- $\rho_0=\rho_0(\vec r)$ is the equilibrium ambient density. An example of this is the density of ambient air, which is a function of position (e.g., height above sea level).
+In a similar vein to density, we may define instantaneous and ambient equilibrium pressures as $\mathcal P=\mathcal P(\mathbf r, t)$ and $\mathcal P_0=\mathcal P_0(\mathbf r)$ respectively. The degree of pressure fluctuation between the instantaneous pressure and equilibrium pressure is the acoustic (or sound) pressure.
 
-  The local density $\rho$ may fluctuate over time, but the averaged value will always equate to $\rho_0$.
+$$
+p(\mathbf r, t)=\mathcal P(\mathbf r, t)-\mathcal P_0(\mathbf r)
+$$ {#eq-acoustic-pressure}
 
-- $s=\frac {\rho(\vec r, t)-\rho_0(\vec r)}{\rho_0(\vec r)}$ is the condensation
-
-- $\mathcal P=\mathcal P(\vec r, t)$ is the instantaneous pressure
-
-- $\mathcal P_0=\mathcal P_0(\vec r)$ is the ambient equilibrium pressure
-
-- $p(\vec r, t)=\mathcal P(\vec r, t)-\mathcal P_0(\vec r)$ is the acoustic or sound pressure
-
-- $T_K$ is the temperature in Kelvin. In acoustics, we generally do not consider significant timescales where the temperature will change drastically or instantly. Therefore, no distinction is made between the instantaneous and ambient temperature.
+Lastly, temperature is denoted by $T_K$. The subscript $K$ signifies the units must be in Kelvin. In acoustics, we generally do not consider significant timescales where the temperature changes drastically or instantly. Therefore, we make no distinction between instantaneous and equilibrium ambient temperature.
 
 ## The Lossless Acoustic Wave Equation
 
@@ -411,7 +407,7 @@ $$ {#eq-spherical-wave-particle-velocity}
 Like @eq-plane-wave-particle-displacement, integrate @eq-spherical-wave-particle-velocity with respect to time.
 
 $$
-\boxed{\bm{\xi}=\left(1-\frac j{kr}\right)\frac {\underline p(r, t)}{j\rho_0c\omega}\hat r}
+\boxed{\bm{\underline \xi}=\left(1-\frac j{kr}\right)\frac {\underline p(r, t)}{j\rho_0c\omega}\hat r}
 $$ {#eq-spherical-wave-particle-displacement}
 
 ## Specific Acoustic Impedance
@@ -433,7 +429,7 @@ The term $z_0$ can be calculated from the fluid's ambient density and speed of s
 For a spherical wave, $\hat n_{\mathrm{in}}=\hat r$ so $\underline z$ becomes
 
 $$
-\underline z=\frac {\rho_0c}{1-\frac j{kr}}
+\boxed{\underline z=\frac {\rho_0c}{1-\frac j{kr}}}
 $$ {#eq-spherical-wave-specific-acoustic-impedance}
 
 From @eq-spherical-wave-specific-acoustic-impedance, we can see that $\underline z\neq z_0$ clearly as $\underline z=\underline z(kr)$. But if $kr\gg1$, then $\underline z\to z_0$ for spherical waves. This condition only occurs if the radial distance $r$ dominates the wavenumber and is therefore, only valid in the farfield. From @eq-wavelength, we may rewrite this condition to be in terms of $\lambda$, which is a more-easily recognized property of the wave.
@@ -542,6 +538,14 @@ $$
 $$ {#eq-power}
 
 ### Plane Wave
+
+From @eq-plane-wave-time-average-acoustic-intensity, $\mathbf I$ is constant for a given $x$ position. Therefore, @eq-power becomes
+
+$$
+\Pi=\frac {S|\underline A|^2}{2\rho_0c}
+$$ {#eq-plane-wave-power}
+
+where $S$ is the cross-sectional area of the plane wave.
 
 ### Spherical Wave
 

@@ -81,6 +81,8 @@ website:
               href: notes/ae6760/lectures/introduction-acoustics.qmd
             - text: The Acoustic Wave Equation
               href: notes/ae6760/lectures/acoustic-wave-equation.qmd
+            - text: Reflection and Transmission
+              href: notes/ae6760/lectures/reflection-transmission.qmd
         - section: AE 6765
           href: notes/ae6765/index.qmd
           contents:
